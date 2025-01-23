@@ -1,0 +1,245 @@
+/* From Uiverse.io by PriyanshuGupta28 */
+.checkbox-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-wrapper .terms-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-wrapper .terms-label .label-text {
+    margin-left: 10px;
+}
+
+.checkbox-wrapper .checkbox-svg {
+    width: 30px;
+    height: 30px;
+}
+
+.checkbox-wrapper .checkbox-box {
+    fill: rgba(207, 205, 205, 0.425);
+    stroke: #07d3e3;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 0.6s ease-in;
+}
+
+.checkbox-wrapper .checkbox-tick {
+    stroke: #07d3e3;
+    stroke-dasharray: 172;
+    stroke-dashoffset: 172;
+    transition: stroke-dashoffset 0.6s ease-in;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-box,
+.checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-tick {
+    stroke-dashoffset: 0;
+}
+/* Contenedor general en la parte inferior izquierda */
+.bottom-left-container {
+    position: absolute;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    left: 20px; /* Distancia desde la parte izquierda */
+    display: flex;
+    align-items: center; /* Alinea verticalmente la imagen y el texto */
+    z-index: 10; /* Asegura que se muestre encima de otros elementos */
+}
+
+/* Imagen en la parte inferior izquierda */
+.bottom-left-image {
+    width: 280px; /* Ajusta el tamaño de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Contenedor del texto y botón */
+.text-and-button {
+    display: flex;
+    flex-direction: column; /* Alinea el texto y el botón en columna */
+    align-items: flex-start; /* Alinea los elementos al lado izquierdo */
+    font-family: 'Baloo Chettan 2', sans-serif;
+}
+
+/* Estilo del texto */
+.text-and-button p {
+    margin: 0; /* Elimina márgenes */
+    font-size: 32px; /* Tamaño del texto */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo del botón */
+.login-button {
+    margin-top: 5px; /* Espaciado entre el texto y el botón */
+    padding: 8px 15px; /* Tamaño del botón */
+    font-size: 14px; /* Tamaño del texto dentro del botón */
+    color: #fff; /* Color del texto del botón */
+    background-color: #00ECFFFF; /* Color de fondo del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+/* Efecto hover para el botón */
+.login-button:hover {
+    background-color: #00ECFFFF; /* Color de fondo al pasar el ratón */
+}
+
+.buttonLogin {
+    font-size: 25px;
+    color: #222;
+    font-family: 'Baloo Chettan 2', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+    margin-right: 15px; /* Agrega espacio a la derecha */
+}
+
+.buttonLogin:focus,
+.buttonLogin:hover {
+    color: #222222;
+}
+
+.buttonLogin > img {
+    width: 20px;
+    margin-bottom: -3px;
+}
+
+.buttonLogin:focus:after,
+.buttonLogin:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+.buttonLogin:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #222222;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+/* From Uiverse.io by alexmaracinaru */
+.custom-button {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #00ECFFFF;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.custom-button:hover {
+    background: #00ecff;
+    color: #222222; /* Fuerza el color negro en estado hover */
+
+}
+
+.custom-button > svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.custom-button:hover svg {
+    transform: translateX(5px);
+}
+
+.custom-button:active {
+    transform: scale(0.95);
+}
+.right-image {
+    position: absolute; /* Se posiciona en relación al contenedor principal */
+    top: 50%; /* Centra verticalmente */
+    right: 20px; /* Espaciado desde el lado derecho */
+    transform: translateY(-50%); /* Ajusta el centrado vertical */
+    z-index: 5; /* Asegura que esté por encima de otros elementos */
+}
+
+.right-image img {
+    width: 725px; /* Ajusta el tamaño de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-width: 100%; /* Asegura que no se desborde en pantallas más pequeñas */
+    border-radius: 10px; /* (Opcional) Bordes redondeados */
+}
+
+.buttonSign {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #00ecff;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-family: 'Baloo Chettan 2', sans-serif;
+    color: #000; /* Asegura que el texto sea negro */
+    text-decoration: none; /* Quita subrayado si se aplica automáticamente */
+}
+
+.buttonSign:hover {
+    background: #05c8d6;
+    color: #000; /* Asegura que el texto permanezca negro al hacer hover */
+}
+
+.buttonSign:active {
+    transform: scale(0.95);
+    color: #000; /* Asegura que el texto siga siendo negro al activarse */
+}
+
+.buttonSign:focus {
+    outline: none; /* Opcional: elimina el contorno si se enfoca */
+    color: #000; /* Asegura que el texto sea negro en estado de foco */
+}
+
+.buttonSign > img {
+    width: 24px;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.buttonSign:hover img {
+    transform: translateX(5px);
+}
+/* Contenedor desplazable para los checkboxes */
+.checkbox-wrapper-container {
+    max-height: 150px; /* Ajusta la altura máxima del contenedor */
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ccc; /* Opcional: Agrega un borde para delimitar el área */
+    border-radius: 8px; /* Bordes redondeados */
+    background-color: #fffbfb; /* Fondo claro */
+}
+
+/* Personalización del scrollbar */
+.checkbox-wrapper-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.checkbox-wrapper-container::-webkit-scrollbar-thumb {
+    background-color: #07d3e3;
+    border-radius: 4px;
+}
+
+.checkbox-wrapper-container::-webkit-scrollbar-track {
+    background-color: #fffbfb;
+}
+

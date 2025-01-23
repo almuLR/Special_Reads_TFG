@@ -1,0 +1,40 @@
+.buttonSign {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #e6bbff;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-family: 'Baloo Chettan 2', sans-serif;
+    color: #000; /* Asegura que el texto sea negro */
+    text-decoration: none; /* Quita subrayado si se aplica automáticamente */
+}
+
+.buttonSign:hover {
+    background: #dd99fd;
+    color: #000; /* Asegura que el texto permanezca negro al hacer hover */
+}
+
+.buttonSign:active {
+    transform: scale(0.95);
+    color: #000; /* Asegura que el texto siga siendo negro al activarse */
+}
+
+.buttonSign:focus {
+    outline: none; /* Opcional: elimina el contorno si se enfoca */
+    color: #000; /* Asegura que el texto sea negro en estado de foco */
+}
+
+.buttonSign > img {
+    width: 24px;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.buttonSign:hover img {
+    transform: translateX(5px);
+}

@@ -1,0 +1,66 @@
+/* From Uiverse.io by foxyyyyyyyyyyyyy */
+.form-control {
+    position: relative;
+    margin: 20px 0 40px;
+    width: 100%; /* Usa el 100% del ancho del contenedor */
+    max-width: 400px; /* Limita el ancho máximo en pantallas grandes */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    text-align: center;
+    gap: 5px; /* Espaciado entre el input y el label */
+}
+
+.form-control input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #222020 solid;
+    display: block;
+    width: 100%; /* Asegura que ocupetodo el ancho disponible*/
+    padding: 10px 0;
+    font-size: 16px;
+    color: #222020;
+    text-align: center; /* Centra el texto dentro del input */
+}
+
+.form-control input:focus,
+.form-control input:valid {
+    outline: 0;
+    border-bottom-color: #00ECFFFF;
+}
+
+.form-control label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    pointer-events: none;
+    text-align: center;
+}
+
+.form-control label span {
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    color: #222020;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus+label span,
+.form-control input:valid+label span {
+    color: #00ECFFFF;
+    transform: translateY(-30px);
+}
+
+/* Estilizar el input de tipo date */
+input[type="date"] {
+
+    color: transparent; /* Oculta el texto del campo de fecha */
+    cursor: pointer;
+}
+
+/* Mostrar el texto de la fecha seleccionada */
+input[type="date"]:focus,
+input[type="date"]:valid {
+    color: black; /* Muestra el texto de la fecha seleccionada */
+}
+

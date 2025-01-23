@@ -1,0 +1,112 @@
+.buttonDiscover {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.buttonDiscover.learn-more {
+    width: 12rem;
+    height: auto;
+}
+
+.buttonDiscover.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #e7b1ff;
+    border-radius: 1.625rem;
+}
+
+.buttonDiscover.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #222222;
+}
+
+.buttonDiscover.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+}
+
+.buttonDiscover.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #222222;
+    border-right: 0.125rem solid #222222;
+    transform: rotate(45deg);
+}
+
+.buttonDiscover.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #222222;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.buttonDiscover:hover .circle {
+    width: 100%;
+}
+
+.buttonDiscover:hover .circle .icon.arrow {
+    background: #222222;
+    transform: translate(1rem, 0);
+}
+
+.buttonDiscover:hover .button-text {
+    color: #222222;
+}
+
+.icon-box-icon .custom-icon {
+    width: 180px; /* Ajusta el tamaño deseado */
+    height: 160px; /* Ajusta el tamaño deseado */
+    display: block; /* Asegúrate de que se comporte como bloque */
+    margin: auto; /* Centra la imagen dentro del span */
+}
+
+.floating-image {
+    position: fixed; /* Fija la imagen en la pantalla */
+    bottom: 20px; /* Ajusta la distancia desde el fondo */
+    right: 20px; /* Ajusta la distancia desde el borde derecho */
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+}
+
+.floating-image img {
+    width: 170px; /* Ajusta el tamaño de la imagen */
+    height: auto; /* Mantiene la proporción */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+    transition: transform 0.3s ease; /* Animación al pasar el cursor */
+}
+
+.floating-image img:hover {
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño al pasar el cursor */
+}

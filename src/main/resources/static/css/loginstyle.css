@@ -1,0 +1,183 @@
+/* Configuración general */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/fondoRegistrp.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* Contenedor principal */
+.form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 800px; /* Incrementado para que sea aún más grande */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 60px; /* Incrementado para mayor espacio interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de los inputs */
+.input-container {
+    position: relative;
+    margin: 15px 0;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.input[type="text"],
+.input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    color: #333;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input[type="text"]:focus,
+.input[type="password"]:focus {
+    border-color: #07d3e3;
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-image: linear-gradient(43deg, #07d3e3 0%, #C850C0 46%, #FFCC70 100%);
+    transition: width 0.3s;
+}
+
+.input[type="text"]:focus + .underline,
+.input[type="password"]:focus + .underline {
+    width: 100%;
+}
+
+/* Botón dentro del contenedor */
+.button-container {
+    margin-top: 30px; /* Ajuste del espacio superior */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra el botón verticalmente */
+    flex-direction: column; /* Asegura que esté alineado con los inputs */
+}
+
+button {
+    padding: 15px 30px; /* Tamaño ajustado */
+    font-size: 16px;
+    color: #fff;
+    background-color: #07d3e3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center; /* Centrado dentro del contenedor */
+}
+
+button:hover {
+    background-color: #005f6b;
+}
+
+/* Ajustar posición del botón */
+.form-control .button-container {
+    align-self: center;
+    justify-content: center;
+}
+
+/* Media queries para diseño responsivo */
+@media (min-width: 1024px) {
+    body {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .form-control {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-control {
+        padding: 30px;
+        width: 90%;
+    }
+
+    .input-container {
+        margin: 10px 0;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-control {
+        padding: 20px;
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* Imágenes de las esquinas */
+.bottom-left-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1; /* Asegura que las imágenes estén detrás del formulario si es necesario */
+}
+
+.bottom-left-container img {
+    max-width: 180px; /* Ajustado para mayor visibilidad */
+    max-height: 180px;
+}
+
+.right-image {
+    position: fixed;
+    bottom: 20px;
+    right: 1px;
+    z-index: 1; /* Similar prioridad que la otra esquina */
+}
+
+.right-image img {
+    max-width: 650px; /* Más grande pero adaptativo */
+    max-height: 500px; /* Controla el tamaño en ventanas pequeñas */
+    object-fit: contain; /* Evita distorsión */
+}
+
+/* Evitar solapamiento */
+.container {
+    z-index: 2; /* Asegura que el formulario esté delante de las imágenes */
+    position: relative;
+}

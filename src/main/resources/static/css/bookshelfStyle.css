@@ -1,0 +1,160 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Chettan 2", sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor general */
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.sidebar .logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar .menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sidebar .menu li:hover {
+    background-color: rgba(232, 229, 229, 0.84); /* Color más oscuro al pasar el ratón */
+    color: #000000; /* Cambia el color del texto a blanco */
+    border-radius: 5px;
+
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(220, 215, 215, 0.44); /* Más oscuro para el elemento activo */
+    color: #000000; /* Texto blanco para el elemento activo */
+    font-weight: normal; /* Negrita */
+    font-size: 18px; /* Tamaño más grande para el activo */
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Transición suave para todos los cambios */
+}
+
+.sidebar .menu li img {
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Contenido principal */
+.bookshelf {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Título centrado */
+.bookshelf h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 42px;
+}
+
+/* Contenedor de la estantería */
+/* Contenedor de la estantería */
+.bookshelf-container {
+    position: relative;
+    width: 1500px; /* Ajuste según el ancho deseado */
+    height: 1000px; /* Ajuste según la altura deseada */
+    background-color: #d9c9b8; /* Fondo más oscuro para asemejarse al tono marrón */
+    border: 25px solid #d9c9b8; /* Color del borde más oscuro */
+    border-radius: 15px;
+    box-shadow:
+            inset 0px 6px 15px rgba(200, 190, 180, 0.8), /* Brillo interno superior */
+            inset 0px -6px 15px rgba(140, 120, 100, 0.7), /* Sombra interna inferior */
+            inset 6px 0px 12px rgba(220, 210, 200, 0.8), /* Brillo interno izquierdo */
+            inset -6px 0px 12px rgba(170, 150, 130, 0.7), /* Sombra interna derecha */
+            0px 10px 25px rgba(0, 0, 0, 0.3), /* Sombra externa inferior para el efecto 3D */
+            -4px -4px 10px rgba(255, 255, 255, 0.5); /* Luz externa superior */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Repisas de la estantería */
+.shelf-bar {
+    position: relative;
+    width: 1400px; /* Ancho ajustado al marco */
+    height: 40px; /* Grosor de las repisas */
+    background-color: #d9c9b8; /* Color de las repisas más oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow:
+            inset 4px -4px 6px rgba(150, 130, 110, 0.8), /* Relieve interno para dar volumen */
+            0px 8px 15px rgba(0, 0, 0, 0.2), /* Sombra exterior para levantar la repisa */
+            -2px -2px 4px rgba(200, 200, 200, 0.8); /* Luz exterior superior para resaltar */
+    z-index: 1;
+}
+
+
+/* Filas de libros */
+.books-row {
+    display: flex;
+    gap: 40px; /* Espaciado mayor entre libros */
+    justify-content: center;
+    align-items: center;
+    margin-top: -385px; /* Ajustado para que los libros se coloquen sobre las repisas */
+    z-index: 2;
+}
+
+/* Imagen de los libros */
+.book-image {
+    width: 100px; /* Incrementar tamaño del libro */
+    height: 140px; /* Proporcional al ancho */
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #ddd;
+    transition: transform 0.2s ease-in-out;
+}
+
+.book-image:hover {
+    transform: scale(1.05);
+}
