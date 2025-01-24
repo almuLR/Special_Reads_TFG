@@ -50,19 +50,18 @@ body {
 }
 
 .sidebar .menu li:hover {
-    background-color: rgba(232, 229, 229, 0.84); /* Color más oscuro al pasar el ratón */
-    color: #000000; /* Cambia el color del texto a blanco */
+    background-color: rgba(232, 229, 229, 0.72);
+    color: #000000;
     border-radius: 5px;
-
 }
 
 .sidebar .menu li.active {
-    background-color: rgba(220, 215, 215, 0.44); /* Más oscuro para el elemento activo */
-    color: #000000; /* Texto blanco para el elemento activo */
-    font-weight: normal; /* Negrita */
-    font-size: 18px; /* Tamaño más grande para el activo */
+    background-color: rgba(220, 215, 215, 0.29);
+    color: #000000;
+    font-weight: normal;
+    font-size: 18px;
     border-radius: 5px;
-    transition: all 0.3s ease; /* Transición suave para todos los cambios */
+    transition: all 0.3s ease;
 }
 
 .sidebar .menu li img {
@@ -95,65 +94,72 @@ body {
 .bookshelf h1 {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 42px;
+    font-size: 36px;
+    font-weight: bold;
 }
 
-/* Contenedor de la estantería */
-/* Contenedor de la estantería */
+/* Contenedor principal del bookshelf */
 .bookshelf-container {
-    position: relative;
-    width: 1500px; /* Ajuste según el ancho deseado */
-    height: 1000px; /* Ajuste según la altura deseada */
-    background-color: #d9c9b8; /* Fondo más oscuro para asemejarse al tono marrón */
-    border: 25px solid #d9c9b8; /* Color del borde más oscuro */
+    width: 100%; /* Fijamos un ancho completo */
+    max-width: 1400px; /* Máximo ancho para pantallas grandes */
+    height: 700px; /* Altura fija para evitar variaciones */
+    padding: 20px;
+    margin: auto; /* Centrado */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Espaciado uniforme entre estantes */
+    background-color: #d9c9b8;
+    border: 20px solid #d9c9b8;
     border-radius: 15px;
     box-shadow:
             inset 0px 6px 15px rgba(200, 190, 180, 0.8), /* Brillo interno superior */
             inset 0px -6px 15px rgba(140, 120, 100, 0.7), /* Sombra interna inferior */
             inset 6px 0px 12px rgba(220, 210, 200, 0.8), /* Brillo interno izquierdo */
             inset -6px 0px 12px rgba(170, 150, 130, 0.7), /* Sombra interna derecha */
-            0px 10px 25px rgba(0, 0, 0, 0.3), /* Sombra externa inferior para el efecto 3D */
+            0px 10px 25px rgba(0, 0, 0, 0.3), /* Sombra externa inferior */
             -4px -4px 10px rgba(255, 255, 255, 0.5); /* Luz externa superior */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
 }
 
-/* Repisas de la estantería */
+/* Repisas */
 .shelf-bar {
-    position: relative;
-    width: 1400px; /* Ancho ajustado al marco */
-    height: 40px; /* Grosor de las repisas */
-    background-color: #d9c9b8; /* Color de las repisas más oscuro */
-    border-radius: 10px; /* Bordes redondeados */
+    width: 90%; /* Estante ocupa el 90% del contenedor */
+    max-width: 1300px; /* Máximo ancho */
+    height: 40px; /* Altura fija */
+    background-color: #d9c9b8;
+    border-radius: 10px;
+    margin: 0 auto; /* Centrado horizontal */
     box-shadow:
-            inset 4px -4px 6px rgba(150, 130, 110, 0.8), /* Relieve interno para dar volumen */
-            0px 8px 15px rgba(0, 0, 0, 0.2), /* Sombra exterior para levantar la repisa */
-            -2px -2px 4px rgba(200, 200, 200, 0.8); /* Luz exterior superior para resaltar */
+            inset 4px -4px 6px rgba(150, 130, 110, 0.8), /* Relieve interno */
+            0px 8px 15px rgba(0, 0, 0, 0.2), /* Sombra externa */
+            -2px -2px 4px rgba(200, 200, 200, 0.8); /* Luz externa superior */
     z-index: 1;
 }
 
-
-/* Filas de libros */
+/* Ajustar las filas de portadas */
 .books-row {
     display: flex;
-    gap: 40px; /* Espaciado mayor entre libros */
+    flex-wrap: wrap; /* Permitir que las portadas se ajusten si no caben */
+    gap: 20px; /* Espaciado entre libros */
     justify-content: center;
-    align-items: center;
-    margin-top: -385px; /* Ajustado para que los libros se coloquen sobre las repisas */
-    z-index: 2;
+    position: relative;
+    top: 20px; /* Ajustar para que queden sobre las repisas */
 }
 
-/* Imagen de los libros */
+/* Portadas */
 .book-image {
-    width: 100px; /* Incrementar tamaño del libro */
-    height: 140px; /* Proporcional al ancho */
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 100px; /* Tamaño fijo para las portadas */
+    height: 150px; /* Altura fija para las portadas */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra para destacar */
+    transition: transform 0.2s ease-in-out; /* Efecto hover */
     background-color: #ddd;
-    transition: transform 0.2s ease-in-out;
 }
+
+/* Portadas al pasar el ratón */
+.book-image:hover {
+    transform: scale(1.05); /* Agrandar ligeramente */
+}
+
 
 .book-image:hover {
     transform: scale(1.05);
