@@ -30,8 +30,8 @@ body {
 }
 
 .sidebar .logo {
-    width: 120px;
-    margin-bottom: 20px;
+    width: 140px;
+    margin-bottom: 60px;
 }
 
 .sidebar .menu {
@@ -46,7 +46,7 @@ body {
     gap: 10px;
     padding: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .sidebar .menu li:hover {
@@ -65,8 +65,8 @@ body {
 }
 
 .sidebar .menu li img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
 }
 
 .sidebar .logout {
@@ -163,4 +163,112 @@ body {
 
 .book-image:hover {
     transform: scale(1.05);
+}
+/* Estilos específicos para los enlaces de la barra lateral */
+.sidebar a {
+    text-decoration: none; /* Quitar subrayado en los enlaces */
+    color: inherit; /* Usar el color definido por la barra lateral */
+}
+
+.sidebar a:hover {
+    text-decoration: none; /* Mantener sin subrayado incluso al pasar el ratón */
+    color: #000; /* Opcional: Cambiar el color al pasar el ratón */
+}
+
+.sidebar .menu li.active a {
+    font-weight: bold; /* Resaltar el enlace activo */
+    color: #000; /* Color negro para el enlace activo */
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(220, 215, 215, 0.29);
+    color: #000000;
+    font-weight: normal;
+    font-size: 19px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a img {
+    vertical-align: middle; /* Asegurar alineación de imágenes dentro de los enlaces */
+}
+
+/* Enlaces globales fuera de la barra lateral */
+body a {
+    text-decoration: underline; /* Estilo predeterminado para enlaces globales */
+    color: blue; /* Color predeterminado para enlaces globales */
+}
+
+body a:hover {
+    color: darkblue; /* Color al pasar el ratón sobre enlaces globales */
+}
+.logout-link {
+    --primary-color: #ec4040;
+    --secondary-color: #fff;
+    --hover-color: rgb(17, 17, 17);
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 20px;
+    color: var(--secondary-color) !important; /* Forzar el color blanco */
+    padding: 1em 1.8em;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    text-decoration: none; /* Asegura que no haya subrayado */
+}
+
+/* Asegúrate de que el color en estado hover también sea blanco */
+.logout-link:hover {
+    background-color: var(--hover-color);
+    color: var(--secondary-color) !important; /* Forzar blanco al pasar el ratón */
+}
+
+.logout-link .arrow {
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+}
+
+.logout-link .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid var(--secondary-color);
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+
+.logout-link:hover {
+    background-color: var(--hover-color);
+}
+
+.logout-link:hover .arrow {
+    background: var(--secondary-color);
+}
+
+.logout-link:hover .arrow::before {
+    right: 0;
+}
+
+/* Asegúrate de que los enlaces generales no se vean afectados */
+body a {
+    text-decoration: underline; /* Enlaces normales subrayados */
+    color: blue; /* Color azul para enlaces normales */
+}
+
+body a:hover {
+    color: darkblue; /* Color oscuro al pasar el ratón sobre enlaces normales */
 }

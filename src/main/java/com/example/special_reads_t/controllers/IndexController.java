@@ -13,7 +13,7 @@ public class IndexController {
 
 
     @GetMapping("/indexUser")
-    public String indexUser() {
+    public String indexUserTemplate() {
         return "indexUser";
     }
 
@@ -27,5 +27,52 @@ public class IndexController {
         return "signUp";
     }
 
+    @GetMapping("/iaReader")
+    public String iaReaderTemplate() {
+        return "iaReader";
+    }
 
+    @GetMapping("/journal")
+    public String journalTemplate() {
+        return "journal";
+    }
+    @GetMapping("/bookShelf")
+    public String bookshelfTemplate() {
+        return "bookShelf";
+    }
+
+    @GetMapping("/list")
+    public String listTemplate() {
+        return "list";
+    }
+
+    @GetMapping("/friends")
+    public String friendsTemplate() {
+        return "friends";
+    }
+
+    @GetMapping("/challenge")
+    public String challengeTemplate() {
+        return "challenge";
+    }
+
+    @GetMapping("/ranking")
+    public String rankingTemplate() {
+        return "ranking";
+    }
+
+    @GetMapping("/stats")
+    public String statsTemplate() {
+        return "stats";
+    }
+
+    @GetMapping("/profile")
+    public String profileTemplate() {
+        return "profile";
+    }
+
+    @GetMapping("/help")
+    public String helpTemplate() {
+        return "help";
+    }
 }
