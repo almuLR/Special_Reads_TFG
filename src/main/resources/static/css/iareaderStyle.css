@@ -1,0 +1,355 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Chettan 2", sans-serif;
+    background-color: rgb(179, 228, 255);
+    height: 100vh;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent; /* Fondo transparente para el contenedor */
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.sidebar .logo {
+    width: 140px;
+    margin-bottom: 60px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar .menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.sidebar .menu li:hover {
+    background-color: rgba(232, 229, 229, 0.72);
+    color: #000000;
+    border-radius: 5px;
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(216, 170, 123, 0.25);
+    color: #000000;
+    font-weight: normal;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .menu li img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos específicos para los enlaces de la barra lateral */
+.sidebar a {
+    text-decoration: none; /* Quitar subrayado en los enlaces */
+    color: inherit; /* Usar el color definido por la barra lateral */
+}
+
+.sidebar a:hover {
+    text-decoration: none; /* Mantener sin subrayado incluso al pasar el ratón */
+    color: #000; /* Opcional: Cambiar el color al pasar el ratón */
+}
+
+.sidebar .menu li.active a {
+    font-weight: bold; /* Resaltar el enlace activo */
+    color: #000; /* Color negro para el enlace activo */
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(152, 227, 255, 0.62);
+    color: #000000;
+    font-weight: normal;
+    font-size: 19px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a img {
+    vertical-align: middle; /* Asegurar alineación de imágenes dentro de los enlaces */
+}
+
+/* Enlaces globales fuera de la barra lateral */
+body a {
+    text-decoration: underline; /* Estilo predeterminado para enlaces globales */
+    color: blue; /* Color predeterminado para enlaces globales */
+}
+
+body a:hover {
+    color: darkblue; /* Color al pasar el ratón sobre enlaces globales */
+}
+.logout-link {
+    --primary-color: #ec4040;
+    --secondary-color: #fff;
+    --hover-color: rgb(17, 17, 17);
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 20px;
+    color: var(--secondary-color) !important; /* Forzar el color blanco */
+    padding: 1em 1.8em;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    text-decoration: none; /* Asegura que no haya subrayado */
+}
+
+/* Asegúrate de que el color en estado hover también sea blanco */
+.logout-link:hover {
+    background-color: var(--hover-color);
+    color: var(--secondary-color) !important; /* Forzar blanco al pasar el ratón */
+}
+
+.logout-link .arrow {
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+}
+
+.logout-link .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid var(--secondary-color);
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+
+.logout-link:hover {
+    background-color: var(--hover-color);
+}
+
+.logout-link:hover .arrow {
+    background: var(--secondary-color);
+}
+
+.logout-link:hover .arrow::before {
+    right: 0;
+}
+
+/* Contenido principal */
+/* Ajustar contenedor principal */
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Mantener espacio entre chatbot y footer */
+    align-items: center;
+    width: 100%; /* Usar el espacio completo disponible */
+    height: 95%; /* Reducir un poco la altura para mover todo hacia arriba */
+    background-color: transparent; /* Fondo transparente */
+    padding: 10px 0; /* Reducir padding superior e inferior */
+}
+
+/* Contenedor del chatbot */
+#chat-container {
+    flex-grow: 1;
+    width: 100%; /* Ancho completo */
+    max-width: 900px; /* Límite del ancho */
+    height: 50%; /* Reducir la altura del cuadro de chatbot */
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #ddd; /* Borde alrededor */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinear mensajes al inicio */
+    align-items: center; /* Centrar mensajes horizontalmente */
+    margin-bottom: 10px; /* Reducir margen con el footer */
+    overflow-y: auto; /* Habilitar scroll para mensajes largos */
+}
+footer {
+    display: flex;
+    align-items: center; /* Alinear el botón y el área de texto verticalmente */
+    justify-content: center; /* Centrar ambos elementos horizontalmente */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    background: transparent; /* Fondo transparente */
+    border: none; /* Eliminar el borde superior */
+    padding: 10px 0; /* Reducir espacio superior e inferior */
+    gap: 10px; /* Espaciado entre el área de texto y el botón */
+}
+
+footer textarea {
+    flex-grow: 1; /* Ocupa todo el espacio disponible */
+    max-width: 900px; /* Ancho máximo igual al chatbot */
+    border: 1px solid #ddd; /* Borde ligero */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño del texto */
+    resize: none; /* Evitar redimensionar */
+    height: 50px; /* Altura fija */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+footer textarea:focus {
+    border-color: #007dab; /* Color azul al enfocar */
+    box-shadow: 0 0 0 1px #007dab, 0 0 0 4px rgba(0, 125, 171, 0.25); /* Sombra azul */
+    outline: none; /* Eliminar contorno predeterminado */
+}
+
+footer button {
+    font-family: inherit;
+    font-size: 18px;
+    background: linear-gradient(to bottom, #4dc7d9 0%,#66a6ff 100%);
+    color: white;
+    padding: 0.8em 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+footer button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+footer button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer button span {
+    display: block;
+    margin-left: 0.4em;
+    transition: all 0.3s;
+}
+
+footer button svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+    transition: all 0.3s;
+}
+
+footer button .svg-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-right: 0.5em;
+    transition: all 0.3s;
+}
+
+footer button:hover .svg-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+footer button:hover svg {
+    transform: rotate(45deg);
+}
+.bot-message {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 60%;
+}
+
+.user-message {
+    background-color: #2563eb;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 60%;
+    align-self: flex-end;
+}
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.input + .input {
+    margin-top: 1.75rem;
+}
+
+.input__label {
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.input__field {
+    display: block;
+    margin-top: 0.5rem;
+    border: 1px solid #DDD;
+    border-radius: 0.25rem;
+    padding: 0.75rem 0.75rem;
+    transition: 0.15s ease;
+}
+
+.input__field:focus {
+    outline: none;
+    border-color: #007dab;
+    box-shadow: 0 0 0 1px #007dab, 0 0 0 4px rgba(0, 125, 171, 0.25);
+}
+
+.input__field--textarea {
+    min-height: 100px;
+    max-width: 100%;
+}
+
+.input__description {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    color: #8d8d8d;
+}
