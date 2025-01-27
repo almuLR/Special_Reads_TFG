@@ -75,4 +75,14 @@ public class IndexController {
     public String helpTemplate() {
         return "help";
     }
+
+    @GetMapping("/bookSearchs")
+    public String SearchsTemplate() {
+        return "bookSearchs";
+    }
+
+    @GetMapping("/detailsBook")
+    public String detailsBookTemplate() {
+        return "detailsBook";
+    }
 }

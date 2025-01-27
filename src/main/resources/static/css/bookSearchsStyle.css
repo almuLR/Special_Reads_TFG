@@ -8,6 +8,7 @@ body {
 }
 
 
+/* Contenedor general */
 .container {
     display: flex;
     flex-direction: row;
@@ -176,19 +177,7 @@ body a:hover {
 .logout-link:hover .arrow::before {
     right: 0;
 }
-/* Contenedor principal */
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Alinear elementos al principio */
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding-top: 10px; /* Espaciado superior */
-    padding-bottom: 20px; /* Espaciado inferior */
-    background-color: rgba(253, 206, 249, 0.65); /* Fondo rosa */
-    min-height: 100vh; /* Asegurar que ocupa toda la altura */
-}
+
 /* Contenedor de búsqueda y botones */
 .search-and-buttons {
     display: flex;
@@ -266,113 +255,14 @@ body a:hover {
 .search__icon path {
     fill: white;
 }
-
-/* Ajuste del contenedor blanco (libro) */
-.book-container {
-    display: flex;
-    position: relative;
-    width: 95%;
-    max-width: 1500px;
-    height: 920px; /* Reducir ligeramente la altura */
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: 0 auto; /* Centrar horizontalmente */
-    margin-bottom: 0px; /* Añadir margen inferior para el espacio rosa */
-}
-
-
-/* Páginas del libro */
-.page {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
-    grid-template-rows: repeat(3, 1fr); /* Tres filas */
-    gap: 30px; /* Espaciado entre libros */
-    width: 50%;
-    padding: 40px; /* Más espacio interno */
-    box-sizing: border-box;
-}
-
-/* Libros */
-.book {
-    display: flex;
-    flex-direction: column;
+.rating {
+    align-content: center;
     align-items: center;
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    height: 90%; /* Asegurar altura completa */
+    display: inline-block;
+    justify-content: center; /* Centra las estrellas horizontalmente */
+    gap: 5px; /* Espaciado entre estrellas */
+    margin-top: 10px; /* Añade un margen superior */
 }
-
-/* Contenido de libros */
-.book .cover {
-    width: 80%; /* Mejor ajuste al contenedor */
-    height: 180px; /* Ajuste de altura */
-    background-color: #ccc;
-    border-radius: 8px;
-    margin-bottom: 5px;
-}
-/* Diseño de los libros directamente sobre el fondo */
-.books-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
-    gap: 20px; /* Espaciado entre los libros */
-    padding: 20px; /* Espaciado interno */
-    width: 90%; /* Ancho ajustado al contenido */
-    max-width: 1500px; /* Limitar ancho máximo */
-    margin: 0 auto; /* Centrar horizontalmente */
-    overflow-y: auto; /* Scroll si excede */
-}
-
-.progress,
-.progress-stacked {
-    display: flex; /* Usar Flexbox */
-    justify-content: normal; /* Comenzar desde el inicio */
-    height: 20px; /* Altura fija */
-    width: 100%; /* Usar todo el ancho disponible */
-    background-color: #e0e0e0; /* Fondo gris claro */
-    border-radius: 25px; /* Bordes redondeados */
-    overflow: hidden; /* Asegurar que el contenido no desborde */
-    position: relative; /* Asegurar posición relativa para el contenido interno */
-}
-
-.book .progress-bar {
-    display: flex; /* Flexbox para el contenido */
-    justify-content: center; /* Centrar horizontalmente el texto */
-    align-items: center; /* Centrar verticalmente */
-    background-color: rgba(65, 230, 97, 0.8); /* Fondo verde */
-    height: 100%; /* Usar toda la altura disponible */
-    width: 70%; /* Ejemplo de progreso del 70% */
-    color: black; /* Color del texto */
-    text-align: center; /* Centrar el texto */
-    line-height: 20px; /* Alinear el texto en la altura de la barra */
-    border-radius: 25px 0 0 25px; /* Bordes redondeados solo en el inicio */
-    transition: width 0.6s ease; /* Animación suave */
-}
-@media (prefers-reduced-motion: reduce) {
-    .progress-bar {
-        transition: none;
-        align-items: center;
-    }
-}
-
-.progress-bar-striped {
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-    background-size: var(--bs-progress-height) var(--bs-progress-height);
-}
-
-.progress-stacked > .progress {
-    overflow: visible;
-}
-
-.progress-stacked > .progress > .progress-bar {
-    width: 100%;
-    align-items: center;
-}
-
-
 .rating:not(:checked) > input {
     position: absolute;
     appearance: none;
@@ -406,49 +296,168 @@ body a:hover {
 .rating > input:checked ~ label > svg {
     fill: #ffa723; /* Set color for selected stars */
 }
-
-
-/* Marcador */
-.bookmark {
-    width: 10px;
-    background-color: #00aaff;
-    height: 100%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* Botones de navegación */
-.navigation-buttons {
+/* Contenedor principal */
+.content {
+    flex: 1; /* Permite que el contenido ocupe el espacio restante */
     display: flex;
-    gap: 30px; /* Espaciado entre botones */
-    margin-top: 15px; /* Reducir espacio entre el contenedor blanco y los botones */
-
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+/* Contenedor principal */
+.book-container {
+    flex: 1; /* Asegura que ocupe todo el espacio disponible */
+    width: 100%; /* Ocupa el ancho completo */
+    max-width: 1200px; /* Limita el ancho máximo */
+    height: 100%; /* Asegura que el contenedor blanco ocupe la altura completa */
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Activa el scroll vertical interno */
 }
 
-/* Botones de navegación */
-.navigation-buttons {
+
+/* Grid de libros */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajuste dinámico */
+    gap: 20px; /* Espaciado entre elementos */
+}
+
+/* Cada libro */
+.book-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    position: relative;
 }
 
-.prev-button,
-.next-button {
-    background-color: #3b83f6;
+/* Imagen de la portada */
+.cover {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Información del libro */
+.book-info {
+    font-size: 14px;
+    color: #333;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.book-author,
+.book-rating {
+    margin: 5px 0;
+}
+
+/* From Uiverse.io by adamgiebl */
+.cssbuttons-io-button {
+    align-self: center; /* Asegura que el botón se centre horizontalmente */
+    margin-top: 10px; /* Añade espacio entre el botón y los elementos superiores */
+    width: fit-content;
+    background: #fdcef9;
     color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 0.9em;
     border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #eab0e5;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
     cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #eab0e5;
+    right: 0.3em;
+    transition: all 0.3s;
 }
 
-.prev-button:hover,
-.next-button:hover {
-    background-color: #2a62c4;
+.cssbuttons-io-button:hover .icon {
+    width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #eab0e5;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+    transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+    transform: scale(0.95);
+}
+
+/* Botón "Más" */
+.main__action a{
+    position: absolute; /* Posicionamos relativo al contenedor de la tarjeta */
+    top: 10px; /* Espacio desde la parte superior */
+    right: 10px; /* Espacio desde la parte derecha */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+    color: rgba(28, 28, 30, 1);
+    text-decoration: none;
+}
+
+/* <main-style> ============================ */
+.main__scroll-text {
+    color: rgba(28,28,30,1);
+    text-decoration: none;
+}
+
+.main__action:hover .main__scroll-box {
+    animation: scroll-down 3s infinite;
+}
+
+/* Animate scroll icon */
+@keyframes scroll-down {
+    0%, 100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+
+    35% {
+        transform: translateY(1rem);
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateY(-1rem);
+        opacity: 0;
+    }
 }

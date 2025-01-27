@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special s</title>
-    <link rel="stylesheet" href="/css/readingJournalStyle.css">
-    <link rel="shortcut icon" href="/images/img.png" />
+    <title>Resultados de Búsqueda</title>
+    <link rel="stylesheet" href="/css/bookSearchsStyle.css">
 </head>
 <body>
 <div class="container">
@@ -78,7 +77,8 @@
             </div>
         </a>
     </aside>
-    <!-- Contenedor principal -->
+
+    <!-- Contenido principal -->
     <div class="content">
         <!-- Barra de búsqueda -->
         <div class="search-and-buttons">
@@ -90,96 +90,101 @@
                     </g>
                 </svg>
             </div>
-            <div class="navigation-buttons">
-                <button class="prev-button">⟨</button>
-                <button class="next-button">⟩</button>
-            </div>
         </div>
 
-
-        <!-- Contenedor del libro -->
+        <!-- Contenedor de resultados -->
         <div class="book-container">
-            <div class="page left">
-                <!-- Libros lado izquierdo -->
-                <div class="book">
-                    <div class="cover"></div>
-                    <!--<div class="progress-bar">
-                        <div class="progress" style="width: [[${book.progress}]]%;" th:text="${book.progress + '%'}"></div>
-                    </div>-->
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;">70%</div>
+            <div class="books-grid" id="resultsGrid">
+                <!-- Simulación de libros -->
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="/detailsBook">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
                     </div>
-                    <form action="/rate/{bookId}" method="post">
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
                         <div class="rating">
-                            <input type="radio" id="libro1-star5" name="rate" value="5" />
-                            <label for="libro1-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro1-star4" name="rate" value="4" />
-                            <label for="libro1-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro1-star3" name="rate" value="3" />
-                            <label for="libro1-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro1-star2" name="rate" value="2" />
-                            <label for="libro1-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro1-star1" name="rate" value="1" />
-                            <label for="libro1-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1">
+                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="star-solid">
+                                    <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                </svg>
+                            </label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2">
+                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="star-solid">
+                                    <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                </svg>
+                            </label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3">
+                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="star-solid">
+                                    <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                </svg>
+                            </label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4">
+                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="star-solid">
+                                    <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                </svg>
+                            </label>
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5">
+                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="star-solid">
+                                    <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                </svg>
+                            </label>
                         </div>
-                    </form>
-                </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;">70%</div>
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
+
                     </div>
-                    <form action="/rate/{bookId}" method="post">
+                </div>
+                <!-- Simulación de otro libro -->
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
                         <div class="rating">
                             <input type="radio" id="libro2-star5" name="rate" value="5" />
                             <label for="libro2-star5" title="text"
@@ -242,531 +247,46 @@
                                 ></path></svg
                             ></label>
                         </div>
-                    </form>
-
-                </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;"> 70%</div>
                     </div>
-                    <form action="/rate/{bookId}" method="post">
-                        <div class="rating">
-                            <input type="radio" id="libro3-star5" name="rate" value="5" />
-                            <label for="libro3-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
+                    <button class="cssbuttons-io-button">
+                        Añadir al Journal
+                        <div class="icon">
+                            <svg
+                                    height="24"
+                                    width="24"
+                                    viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
                             >
+                                <path d="M0 0h24v24H0z" fill="none"></path>
                                 <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro3-star4" name="rate" value="4" />
-                            <label for="libro3-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro3-star3" name="rate" value="3" />
-                            <label for="libro3-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro3-star2" name="rate" value="2" />
-                            <label for="libro3-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro3-star1" name="rate" value="1" />
-                            <label for="libro3-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                        fill="currentColor"
+                                ></path>
+                            </svg>
                         </div>
-                    </form>
-
+                    </button>
                 </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;">70%</div>
-                    </div>
-                    <form action="/rate/{bookId}" method="post">
-                        <div class="rating">
-                            <input type="radio" id="libro4-star5" name="rate" value="5" />
-                            <label for="libro4-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro4-star4" name="rate" value="4" />
-                            <label for="libro4-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro4-star3" name="rate" value="3" />
-                            <label for="libro4-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro4-star2" name="rate" value="2" />
-                            <label for="libro4-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro4-star1" name="rate" value="1" />
-                            <label for="libro4-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;">70%</div>
-                    </div>
-                    <form action="/rate/{bookId}" method="post">
-                        <div class="rating">
-                            <input type="radio" id="libro5-star5" name="rate" value="5" />
-                            <label for="libro5-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro5-star4" name="rate" value="4" />
-                            <label for="libro5-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro5-star3" name="rate" value="3" />
-                            <label for="libro5-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro5-star2" name="rate" value="2" />
-                            <label for="libro5-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro5-star1" name="rate" value="1" />
-                            <label for="libro5-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 100%;">100%</div>
-                    </div>
-                    <form action="/rate/{bookId}" method="post">
-                        <div class="rating">
-                            <input type="radio" id="libro6-star5" name="rate" value="5" />
-                            <label for="libro6-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro6-star4" name="rate" value="4" />
-                            <label for="libro6-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro6-star3" name="rate" value="3" />
-                            <label for="libro6-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro6-star2" name="rate" value="2" />
-                            <label for="libro6-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro6-star1" name="rate" value="1" />
-                            <label for="libro6-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 25%;">25%</div>
-                    </div>
-                    <form action="/rate/{bookId}" method="post">
-                        <div class="rating">
-                            <input type="radio" id="libro7-star5" name="rate" value="5" />
-                            <label for="libro7-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro7-star4" name="rate" value="4" />
-                            <label for="libro7-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro7-star3" name="rate" value="3" />
-                            <label for="libro7-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro7-star2" name="rate" value="2" />
-                            <label for="libro7-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro7-star1" name="rate" value="1" />
-                            <label for="libro7-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;">70%</div>
-                    </div>
-                    <form action="/rate/{bookId}" method="post">
-                        <div class="rating">
-                            <input type="radio" id="libro8-star5" name="rate" value="5" />
-                            <label for="libro8-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro8-star4" name="rate" value="4" />
-                            <label for="libro8-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro8-star3" name="rate" value="3" />
-                            <label for="libro8-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro8-star2" name="rate" value="2" />
-                            <label for="libro8-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro8-star1" name="rate" value="1" />
-                            <label for="libro8-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                        </div>
-                    </form>
-                </div>
-                <div class="book">
-                    <div class="cover"></div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;">70%</div>
-                    </div>
-                    <form action="/rate/{bookId}" method="post">
-                        <div class="rating">
-                            <input type="radio" id="libro9-star5" name="rate" value="5" />
-                            <label for="libro9-star5" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro9-star4" name="rate" value="4" />
-                            <label for="libro9-star4" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input checked="" type="radio" id="libro9-star3" name="rate" value="3" />
-                            <label for="libro9-star3" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro9-star2" name="rate" value="2" />
-                            <label for="libro9-star2" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                            <input type="radio" id="libro9-star1" name="rate" value="1" />
-                            <label for="libro9-star1" title="text"
-                            ><svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid"
-                            >
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
-                                ></path></svg
-                            ></label>
-                        </div>
-                    </form>
-                </div>
-                <!-- Repetir libros aquí -->
-            </div>
-            <div class="bookmark"></div>
-            <div class="page right">
-                <!-- Libros lado derecho -->
-                <form action="/rate/{bookId}" method="post">
-                    <div class="book">
-                        <div class="cover"></div>
-                        <div class="progress">
-                            <div class="progress-bar" style="width: 70%;">70%</div>
-                        </div>
-                        <div class="rating">
-                            <input type="radio" id="libro10-star5" name="rate" value="5" onchange="this.form.submit()"/>
-                            <label for="libro10-star5" title="text">
-                                <svg
-                                    viewBox="0 0 576 512"
-                                    height="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="star-solid">
-                                <path
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z">
-
-                                </path>
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
                                 </svg>
-                            </label>
-                            <input type="radio" id="libro10-star4" name="rate" value="4" onchange="this.form.submit()"/>
-                            <label for="libro10-star4" title="text"
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
+                        <div class="rating">
+                            <input type="radio" id="libro2-star5" name="rate" value="5" />
+                            <label for="libro2-star5" title="text"
                             ><svg
                                     viewBox="0 0 576 512"
                                     height="1em"
@@ -777,8 +297,8 @@
                                         d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
                                 ></path></svg
                             ></label>
-                            <input checked="" type="radio" id="libro10-star3" name="rate" value="3" onchange="this.form.submit()"/>
-                            <label for="libro10-star3" title="text"
+                            <input type="radio" id="libro2-star4" name="rate" value="4" />
+                            <label for="libro2-star4" title="text"
                             ><svg
                                     viewBox="0 0 576 512"
                                     height="1em"
@@ -789,8 +309,8 @@
                                         d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
                                 ></path></svg
                             ></label>
-                            <input type="radio" id="libro10-star2" name="rate" value="2" onchange="this.form.submit()"/>
-                            <label for="libro10-star2" title="text"
+                            <input checked="" type="radio" id="libro2-star3" name="rate" value="3" />
+                            <label for="libro2-star3" title="text"
                             ><svg
                                     viewBox="0 0 576 512"
                                     height="1em"
@@ -801,8 +321,20 @@
                                         d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
                                 ></path></svg
                             ></label>
-                            <input type="radio" id="libro10-star1" name="rate" value="1" onchange="this.form.submit()"/>
-                            <label for="libro10-star1" title="text"
+                            <input type="radio" id="libro2-star2" name="rate" value="2" />
+                            <label for="libro2-star2" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star1" name="rate" value="1" />
+                            <label for="libro2-star1" title="text"
                             ><svg
                                     viewBox="0 0 576 512"
                                     height="1em"
@@ -814,14 +346,641 @@
                                 ></path></svg
                             ></label>
                         </div>
-
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
                     </div>
-                </form>
-                <!-- Repetir libros aquí -->
+                </div>
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
+                        <div class="rating">
+                            <input type="radio" id="libro2-star5" name="rate" value="5" />
+                            <label for="libro2-star5" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star4" name="rate" value="4" />
+                            <label for="libro2-star4" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input checked="" type="radio" id="libro2-star3" name="rate" value="3" />
+                            <label for="libro2-star3" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star2" name="rate" value="2" />
+                            <label for="libro2-star2" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star1" name="rate" value="1" />
+                            <label for="libro2-star1" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                        </div>
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
+                        <div class="rating">
+                            <input type="radio" id="libro2-star5" name="rate" value="5" />
+                            <label for="libro2-star5" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star4" name="rate" value="4" />
+                            <label for="libro2-star4" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input checked="" type="radio" id="libro2-star3" name="rate" value="3" />
+                            <label for="libro2-star3" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star2" name="rate" value="2" />
+                            <label for="libro2-star2" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star1" name="rate" value="1" />
+                            <label for="libro2-star1" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                        </div>
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
+                        <div class="rating">
+                            <input type="radio" id="libro2-star5" name="rate" value="5" />
+                            <label for="libro2-star5" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star4" name="rate" value="4" />
+                            <label for="libro2-star4" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input checked="" type="radio" id="libro2-star3" name="rate" value="3" />
+                            <label for="libro2-star3" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star2" name="rate" value="2" />
+                            <label for="libro2-star2" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star1" name="rate" value="1" />
+                            <label for="libro2-star1" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                        </div>
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
+                        <div class="rating">
+                            <input type="radio" id="libro2-star5" name="rate" value="5" />
+                            <label for="libro2-star5" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star4" name="rate" value="4" />
+                            <label for="libro2-star4" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input checked="" type="radio" id="libro2-star3" name="rate" value="3" />
+                            <label for="libro2-star3" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star2" name="rate" value="2" />
+                            <label for="libro2-star2" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star1" name="rate" value="1" />
+                            <label for="libro2-star1" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                        </div>
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
+                        <div class="rating">
+                            <input type="radio" id="libro2-star5" name="rate" value="5" />
+                            <label for="libro2-star5" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star4" name="rate" value="4" />
+                            <label for="libro2-star4" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input checked="" type="radio" id="libro2-star3" name="rate" value="3" />
+                            <label for="libro2-star3" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star2" name="rate" value="2" />
+                            <label for="libro2-star2" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star1" name="rate" value="1" />
+                            <label for="libro2-star1" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                        </div>
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="main__action">
+                        <a class="main__scroll" href="#">
+                            <div class="main__scroll-box">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M11.9997 13.1716L7.04996     8.22186L5.63574 9.63607L11.9997 16L18.3637 9.63607L16.9495 8.22186L11.9997 13.1716Z" fill="rgba(28,28,30,1)">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="main__scroll-text">Más</span>
+                        </a>
+                    </div>
+                    <div class="cover" style="background-image: url('/images/alasNegras.jpeg');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">Alas Negras</h3>
+                        <p class="book-author"><strong>Autor:</strong> Laura Gallego</p>
+                        <p class="book-rating"><strong>Nota:</strong> 4.5/5</p>
+                        <div class="rating">
+                            <input type="radio" id="libro2-star5" name="rate" value="5" />
+                            <label for="libro2-star5" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star4" name="rate" value="4" />
+                            <label for="libro2-star4" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input checked="" type="radio" id="libro2-star3" name="rate" value="3" />
+                            <label for="libro2-star3" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star2" name="rate" value="2" />
+                            <label for="libro2-star2" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                            <input type="radio" id="libro2-star1" name="rate" value="1" />
+                            <label for="libro2-star1" title="text"
+                            ><svg
+                                    viewBox="0 0 576 512"
+                                    height="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="star-solid"
+                            >
+                                <path
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"
+                                ></path></svg
+                            ></label>
+                        </div>
+                        <button class="cssbuttons-io-button">
+                            Añadir al Journal
+                            <div class="icon">
+                                <svg
+                                        height="24"
+                                        width="24"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
             </div>
+
+            <!--<div class="books-grid" id="resultsGrid">
+                {{#books}}
+                <div class="book">
+                    <div class="cover" style="background-image: url('{{coverUrl}}');"></div>
+                    <div class="book-info">
+                        <h3 class="book-title">{{title}}</h3>
+                        <p class="book-author">Autor: {{author}}</p>
+                        <p class="book-rating">Nota: {{rating}}/5</p>
+                        <div class="rating">
+                            {{#stars}}
+                            <label>
+                                <input type="radio" name="rating{{id}}" {{checked}}><svg>★</svg>
+                            </label>
+                            {{/stars}}
+                        </div>
+                    </div>
+                </div>
+                {{/books}}
+            </div> -->
         </div>
-
-
     </div>
 </div>
 </body>
