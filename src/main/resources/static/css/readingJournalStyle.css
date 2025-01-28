@@ -308,12 +308,23 @@ body a:hover {
 
 /* Contenido de libros */
 .book .cover {
-    width: 80%; /* Mejor ajuste al contenedor */
-    height: 180px; /* Ajuste de altura */
-    background-color: #ccc;
+    width: 70%;
+    height: 180px;
     border-radius: 8px;
     margin-bottom: 5px;
+    overflow: hidden; /* Evita que la imagen se salga del contenedor */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.book .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    object-position: center; /* Centra la imagen */
+}
+
 /* Diseño de los libros directamente sobre el fondo */
 .books-grid {
     display: grid;
@@ -434,7 +445,7 @@ body a:hover {
 
 .prev-button,
 .next-button {
-    background-color: #3b83f6;
+    background-color: #00aaff;
     color: white;
     border: none;
     border-radius: 50%;
@@ -450,5 +461,188 @@ body a:hover {
 
 .prev-button:hover,
 .next-button:hover {
-    background-color: #2a62c4;
+    background-color: #0686c1;
+}
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw; /* Ocupar todo el ancho */
+    height: 100vh; /* Ocupar todo el alto */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-items: center;
+    justify-self: center;
+    justify-content: center; /* Centra el modal */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Contenedor del modal */
+.modal-content {
+    background-color: white;
+    width: 50vw; /* Ajuste de tamaño */
+    max-width: 600px; /* No más grande de 600px */
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animación de apertura */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Botón de cerrar */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+/* Botones dentro del modal */
+.modal-buttons button {
+    padding: 12px 20px;
+    font-size: 18px;
+    margin: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.pending-button {
+    padding: 17px 40px;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(255, 56, 86);
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: rgb(201, 46, 70) 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+}
+
+.pending-button:hover {
+    box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
+}
+
+.pending-button:active {
+    background-color: rgb(255, 56, 86);
+    /*50, 168, 80*/
+    box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+}
+
+.read-button {
+    padding: 17px 40px;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(87, 182, 87);
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: rgb(54, 124, 54) 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+}
+
+.read-button:hover {
+    box-shadow: rgb(54, 124, 54) 0px 7px 0px 0px;
+}
+
+.read-button:active {
+    background-color: rgb(87, 182, 87);
+    /*50, 168, 80*/
+    box-shadow: rgb(54, 124, 54) 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+}
+/* Quitar solo el subrayado sin afectar los estilos originales */
+.modal-buttons button,
+.modal-buttons a {
+    text-decoration: none !important; /* Elimina el subrayado */
+}
+
+/* Asegurar que los botones del modal no hereden estilos de enlaces */
+.modal-buttons a {
+    color: white; /* Mantener el color original */
+    display: inline-block; /* Mantener el formato de botón */
+    font-size: 15px;
+}
+/* Asegurar que el texto no cambie a azul en hover */
+.pending-button, .read-button {
+    color: white !important; /* Forzar blanco */
+    text-decoration: none !important; /* Evitar subrayado */
+}
+
+/* Evitar que el hover modifique el color del texto */
+.pending-button:hover, .read-button:hover {
+    color: white !important; /* Mantener blanco */
+    text-decoration: none !important;
+}
+/* Estiliza el select */
+#progressType {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Cuando el select está en foco */
+#progressType:focus {
+    border-color: #1a1c1b;
+    outline: none;
+}
+
+/* Estiliza el input */
+#progressInput {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 150px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Cuando el input está en foco */
+#progressInput:focus {
+    border-color: #1a1c1b;
+    outline: none;
+}
+
+/* Contenedor para alinear el select y el input */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
 }

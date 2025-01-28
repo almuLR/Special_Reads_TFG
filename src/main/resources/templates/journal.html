@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special s</title>
+    <title>Special Reads</title>
     <link rel="stylesheet" href="/css/readingJournalStyle.css">
     <link rel="shortcut icon" href="/images/img.png" />
+    <script src="/js/modal.js" defer></script>
 </head>
 <body>
 <div class="container">
@@ -91,8 +92,8 @@
                 </svg>
             </div>
             <div class="navigation-buttons">
-                <button class="prev-button">⟨</button>
-                <button class="next-button">⟩</button>
+                <button class="prev-button"><</button>
+                <button class="next-button">></button>
             </div>
         </div>
 
@@ -102,7 +103,9 @@
             <div class="page left">
                 <!-- Libros lado izquierdo -->
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <!--<div class="progress-bar">
                         <div class="progress" style="width: [[${book.progress}]]%;" th:text="${book.progress + '%'}"></div>
                     </div>-->
@@ -174,8 +177,32 @@
                         </div>
                     </form>
                 </div>
+                <!-- Modal de Progreso de Lectura -->
+                <div id="readingProgressModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Progreso de lectura</h2>
+
+                        <div class="progress-container">
+                            <label for="progressType">Selecciona el tipo de progreso:</label>
+                            <select id="progressType">
+                                <option value="pages">Páginas</option>
+                                <option value="percentage">Porcentaje</option>
+                            </select>
+
+                            <input type="text" id="progressInput">
+                        </div>
+
+                        <div class="modal-buttons">
+                            <a class="pending-button">Pendiente</a>
+                            <a class="read-button" href="/review">Terminado</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 70%;">70%</div>
                     </div>
@@ -246,7 +273,9 @@
 
                 </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 70%;"> 70%</div>
                     </div>
@@ -317,7 +346,9 @@
 
                 </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 70%;">70%</div>
                     </div>
@@ -388,7 +419,9 @@
 
                 </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 70%;">70%</div>
                     </div>
@@ -459,7 +492,9 @@
 
                 </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 100%;">100%</div>
                     </div>
@@ -530,7 +565,9 @@
 
                 </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 25%;">25%</div>
                     </div>
@@ -601,7 +638,9 @@
 
                 </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 70%;">70%</div>
                     </div>
@@ -671,7 +710,9 @@
                     </form>
                 </div>
                 <div class="book">
-                    <div class="cover"></div>
+                    <div class="cover">
+                        <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                    </div>
                     <div class="progress">
                         <div class="progress-bar" style="width: 70%;">70%</div>
                     </div>
@@ -747,7 +788,9 @@
                 <!-- Libros lado derecho -->
                 <form action="/rate/{bookId}" method="post">
                     <div class="book">
-                        <div class="cover"></div>
+                        <div class="cover">
+                            <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                        </div>
                         <div class="progress">
                             <div class="progress-bar" style="width: 70%;">70%</div>
                         </div>
