@@ -119,18 +119,100 @@
                             </label>
                         </div>
                     </div>
-                    <p><strong>Calificación:</strong> 8.5</p>
-                    <!-- Formato de lectura -->
+                    <p><strong>Calificación:</strong><input type="text"/></p>
+                    <p><strong>Formato:</strong></p>
                     <div class="format">
-                        📖 🖥️ 🎧
-                    </div>
+                        <input type="radio" id="audioBook" name="format" value="audio">
+                        <label for="audioBook">
+                            <img src="/images/audio_format.png" alt="Audio">
+                            <span>Audio</span>
+                        </label>
 
-                    <!-- Plot Twist, Spicy, Funny, Mood -->
-                    <div class="tags">
-                        <div class="plot-twist">💡💡💡</div>
-                        <div class="spicy">🌶️🌶️</div>
-                        <div class="funny">🤡🤡</div>
-                        <div class="mood">😊😢😡</div>
+                        <input type="radio" id="ebook" name="format" value="ebook">
+                        <label for="ebook">
+                            <img src="/images/ebook_format.png" alt="Ebook">
+                            <span>Ebook</span>
+                        </label>
+
+                        <input type="radio" id="book" name="format" value="book">
+                        <label for="book">
+                            <img src="/images/book_format.png" alt="Papel">
+                            <span>Papel</span>
+                        </label>
+                    </div>
+                    <p><strong>Plot Twist:</strong></p>
+                    <div style="align-self: flex-start">
+                        <div class="plot-twist">
+                            <input type="radio" id="twist1" name="plotTwist" value="1">
+                            <label for="twist1"></label>
+
+                            <input type="radio" id="twist2" name="plotTwist" value="2">
+                            <label for="twist2"></label>
+
+                            <input type="radio" id="twist3" name="plotTwist" value="3">
+                            <label for="twist3"></label>
+
+                            <input type="radio" id="twist4" name="plotTwist" value="4">
+                            <label for="twist4"></label>
+
+                            <input type="radio" id="twist5" name="plotTwist" value="5">
+                            <label for="twist5"></label>
+                        </div>
+                    </div>
+                    <p><strong>Spicy:</strong></p>
+                    <div style="align-self: flex-start">
+                        <div class="spicy">
+                            <input type="radio" id="spicy1" name="spicy" value="1">
+                            <label for="spicy1"></label>
+
+                            <input type="radio" id="spicy2" name="spicy" value="2">
+                            <label for="spicy2"></label>
+
+                            <input type="radio" id="spicy3" name="spicy" value="3">
+                            <label for="spicy3"></label>
+
+                            <input type="radio" id="spicy4" name="spicy" value="4">
+                            <label for="spicy4"></label>
+
+                            <input type="radio" id="spicy5" name="spicy" value="5">
+                            <label for="spicy5"></label>
+                        </div>
+                    </div>
+                    <p><strong>Humor:</strong></p>
+                    <div style="align-self: flex-start">
+                        <div class="funny">
+                            <input type="radio" id="funny1" name="funny" value="1">
+                            <label for="funny1"></label>
+
+                            <input type="radio" id="funny2" name="funny" value="2">
+                            <label for="funny2"></label>
+
+                            <input type="radio" id="funny3" name="funny" value="3">
+                            <label for="funny3"></label>
+
+                            <input type="radio" id="funny4" name="funny" value="4">
+                            <label for="funny4"></label>
+
+                            <input type="radio" id="funny5" name="funny" value="5">
+                            <label for="funny5"></label>
+                        </div>
+                    </div>
+                    <p><strong>Mood:</strong></p>
+                    <div class="mood">
+                        <input type="checkbox" id="love">
+                        <label for="love"></label>
+
+                        <input type="checkbox" id="pain">
+                        <label for="pain"></label>
+
+                        <input type="checkbox" id="anger">
+                        <label for="anger"></label>
+
+                        <input type="checkbox" id="xd">
+                        <label for="xd"></label>
+
+                        <input type="checkbox" id="neutral">
+                        <label for="neutral"></label>
                     </div>
                 </div>
 
@@ -138,27 +220,56 @@
 
                 <!-- Página Derecha -->
                 <div class="page right">
-                    <p><strong>Personaje Favorito:</strong> <span>Nombre del personaje</span></p>
+                    <p><strong>Personaje Favorito:</strong></p><input type="text"/>
 
                     <!-- POV (Punto de vista) -->
-                    <div class="pov">
-                        <label><input type="radio" name="pov" value="1a"> 1ª Persona</label>
-                        <label><input type="radio" name="pov" value="2a"> 2ª Persona</label>
-                        <label><input type="radio" name="pov" value="3a"> 3ª Persona</label>
+                    <p><strong>Punto de vista:</strong></p>
+                    <div class="pov" style="gap: 40px">
+                        <input type="radio" id="1persona" name="format" value="1">
+                        <label for="1persona">
+                            <img src="/images/1persona.png" alt="Audio">
+                            <span>1ª</span>
+                        </label>
+
+                        <input type="radio" id="2persona" name="format" value="2">
+                        <label for="2persona">
+                            <img src="/images/3persona.png" alt="Ebook">
+                            <span>2ª</span>
+                        </label>
+
+                        <input type="radio" id="3persona" name="format" value="3">
+                        <label for="3persona">
+                            <img src="/images/2persona.png" alt="Papel">
+                            <span>3ª</span>
+                        </label>
                     </div>
 
-                    <p><strong>Si pudieras definir el libro con una palabra sería:</strong> HOLA</p>
-                    <p><strong>Mi frase favorita del libro ha sido:</strong> HOLA</p>
+                    <p><strong>Si pudieras definir el libro con una palabra sería:</strong> <input type="text"/></p>
+                    <p><strong>Mi frase favorita del libro ha sido:</strong></p><input type="text"/>
 
                     <p><strong>¿Volverías a leer o recomendarías este libro?</strong></p>
-                    <label><input type="radio" name="recommend" value="yes"> ✅ Sí</label>
-                    <label><input type="radio" name="recommend" value="no"> ❌ No</label>
+                    <div class="recomendation" style="gap: 40px">
+                        <input type="radio" id="yes" name="recomendation" value="1">
+                        <label for="yes">
+                            <img src="/images/tick.png" alt="yes">
+                            <span>Sí</span>
+                        </label>
+
+                        <input type="radio" id="no" name="recomendation" value="2">
+                        <label for="no">
+                            <img src="/images/cross.png" alt="No">
+                            <span>No</span>
+                        </label>
+                    </div>
 
                     <p><strong>Reseña del libro:</strong></p>
                     <textarea class="review-text" placeholder="Escribe tu opinión aquí..."></textarea>
+                    <button class="button">Terminado</button>
                 </div>
             </div>
         </div>
+
+
     </div>
 </body>
 </html>

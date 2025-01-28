@@ -329,13 +329,113 @@ body a:hover {
 }
 
 
-.tags {
-    flex-wrap: wrap;
-    gap: 8px;
+/* Estilos para el sistema de calificación de Plot Twist */
+.plot-twist {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 6px;
 }
 
-/* Ajuste para Plot Twist, Spicy, Funny y Mood */
-.plot-twist, .spicy, .funny, .mood {
+.plot-twist input {
+    display: none; /* Oculta los botones de radio */
+}
+
+.plot-twist label {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/plotapagada.png'); /* Imagen apagada */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Cuando el input está seleccionado, cambia la imagen */
+.plot-twist input:checked ~ label,
+.plot-twist label:hover {
+    background-image: url('../images/plotencendida.png'); /* Imagen encendida */
+}
+
+/*spicy*/
+.spicy {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 6px;
+}
+
+.spicy input {
+    display: none; /* Oculta los botones de radio */
+}
+
+.spicy label {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/spicyapagada.png'); /* Imagen apagada */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Cuando el input está seleccionado, cambia la imagen */
+.spicy input:checked ~ label,
+.spicylabel:hover {
+    background-image: url('../images/spicyencendida.png'); /* Imagen encendida */
+}
+
+/*funny*/
+.funny {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 6px;
+}
+
+.funny input {
+    display: none; /* Oculta los botones de radio */
+}
+
+.funny label {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/funnyapagada.png'); /* Imagen apagada */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Cuando el input está seleccionado, cambia la imagen */
+.funny input:checked ~ label,
+.funnylabel:hover {
+    background-image: url('../images/funnyencendida.png'); /* Imagen encendida */
+}
+
+/*mood*/
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Chettan 2", sans-serif;
+    background-color: rgba(253, 206, 249, 0.65);
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+}
+
+/* Estilos para la selección de mood */
+.mood {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -343,9 +443,208 @@ body a:hover {
     font-size: 20px;
 }
 
+.mood input {
+    display: none; /* Ocultar los botones de radio */
+}
+
+.mood label {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Imágenes predeterminadas (sin color) */
+.mood #love + label { background-image: url('/images/love_off.png'); }
+.mood #pain + label { background-image: url('/images/pain_off.png'); }
+.mood #anger + label { background-image: url('/images/anger_off.png'); }
+.mood #xd + label { background-image: url('/images/xd_off.png'); }
+.mood #neutral + label { background-image: url('/images/neutral_off.png'); }
+
+/* Imágenes activadas (con color) */
+.mood #love:checked + label { background-image: url('/images/love_on.png'); }
+.mood #pain:checked + label { background-image: url('/images/pain_on.png'); }
+.mood #anger:checked + label { background-image: url('/images/anger_on.png'); }
+.mood #xd:checked + label { background-image: url('/images/xd_on.png'); }
+.mood #neutral:checked + label { background-image: url('/images/neutral_on.png'); }
+
+/*con lo que lees*/
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Chettan 2", sans-serif;
+    background-color: rgba(253, 206, 249, 0.65);
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+}
+
+/* Estilos para la selección de mood */
+.mood {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.mood input {
+    display: none; /* Ocultar los botones de radio */
+}
+
+.mood label {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Imágenes predeterminadas (sin color) */
+.mood #love + label { background-image: url('/images/love_off.png'); }
+.mood #pain + label { background-image: url('/images/pain_off.png'); }
+.mood #anger + label { background-image: url('/images/anger_off.png'); }
+.mood #xd + label { background-image: url('/images/xd_off.png'); }
+.mood #neutral + label { background-image: url('/images/neutral_off.png'); }
+
+/* Imágenes activadas (con color) */
+.mood #love:checked + label { background-image: url('/images/love_on.png'); }
+.mood #pain:checked + label { background-image: url('/images/pain_on.png'); }
+.mood #anger:checked + label { background-image: url('/images/anger_on.png'); }
+.mood #xd:checked + label { background-image: url('/images/xd_on.png'); }
+.mood #neutral:checked + label { background-image: url('/images/neutral_on.png'); }
+
+/* Contenedor principal */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(253, 206, 249, 0.65);
+}
+
+/* Ajuste del contenedor del libro */
+.book-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    overflow: hidden;
+}
+
+.page {
+    width: 50%;
+    padding: 20px;
+    font-family: "Baloo Chettan 2", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.left {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+}
+
+.right {
+    background-color: white;
+    padding: 30px;
+}
+
+/* Estilos para la selección de formato de lectura */
+.format {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 5px;
+    margin-bottom: 42px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.format input {
+    display: none; /* Ocultar los botones de radio */
+}
+
+.format label {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Radio buttons debajo de las imágenes */
+.format label span {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.format input:checked + label span {
+    font-weight: bold;
+    color: #000;
+}
+
+/*pov*/
+.pov {
+    display: flex;
+    align-items: center;
+    gap: 200px;
+    margin-top: 5px;
+    margin-bottom: 42px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.pov input {
+    display: none; /* Ocultar los botones de radio */
+}
+
+.pov label {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Radio buttons debajo de las imágenes */
+.pov label span {
+    margin-top: 5px;
+    font-size: 18px;
+    gap: 50px;
+    color: #333;
+}
+
+.pov input:checked + label span {
+    font-weight: bold;
+    color: #000;
+}
+
+
 .review-text {
     width: 100%;
-    height: 100px;
+    height: 100%;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
@@ -359,9 +658,70 @@ body a:hover {
 }
 
 .pov img, .recommend img {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
+    gap: 20px;
+}
+
+/*recomendation*/
+.recomendation {
+    display: flex;
+    align-items: center;
+    gap: 200px;
+    margin-top: 5px;
+    margin-bottom: 42px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.recomendation input {
+    display: none; /* Ocultar los botones de radio */
+}
+
+.recomendation label {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
+/* Radio buttons debajo de las imágenes */
+.recomendation label span {
+    margin-top: 5px;
+    font-size: 18px;
+    gap: 50px;
+    color: #333;
+}
+
+.recomendation input:checked + label span {
+    font-weight: bold;
+    color: #000;
+}
+
+.button {
+    cursor: pointer;
+    align-self: center;
+    width: 40%;
+    margin-top: 15px;
+    font-size: large;
+    font-family: inherit;
+    font-weight: bold;
+    color: #199e21;
+    background-color: #f8f8fd;
+    padding: 0.8em 2.2em;
+    border-radius: 50em;
+    border: 6px solid #04d54d;
+    box-shadow: 0px 8px #0e6012;
+}
+.button:active {
+    position: relative;
+    top: 8px;
+    border: 6px solid #059336;
+    box-shadow: 0px 0px;
+}
