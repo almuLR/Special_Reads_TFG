@@ -2,9 +2,163 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Reads</title>
+    <link rel="stylesheet" href="/css/reviewStyle.css">
+    <link rel="shortcut icon" href="/images/img.png" />
+    <script src="/js/modal.js" defer></script>
 </head>
 <body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <img src="/images/logo.png" alt="Special Reads Logo" class="logo">
+            <ul class="menu">
+                <li>
+                    <a href="/indexUser">
+                        <img src="/images/iconMenu/home1.png" alt="Home Icon"> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/iaReader">
+                        <img src="/images/iconMenu/iareader1.png" alt="IA Reader Icon"> IA's Reader
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/journal">
+                        <img src="/images/iconMenu/journal2.png" alt="Journal Icon"> Reading Journal
+                    </a>
+                </li>
+                <li>
+                    <a href="/bookShelf">
+                        <img src="/images/iconMenu/bookshelf1.png" alt="Bookshelf Icon"> Bookshelf
+                    </a>
+                </li>
+                <li>
+                    <a href="/list">
+                        <img src="/images/iconMenu/list1.png" alt="Lists Icon"> Tus Listas
+                    </a>
+                </li>
+                <li>
+                    <a href="/friends">
+                        <img src="/images/iconMenu/friends1.png" alt="Friends Icon"> Amigos
+                    </a>
+                </li>
+                <li>
+                    <a href="/challenge">
+                        <img src="/images/iconMenu/challenge1.png" alt="Challenges Icon"> Challenges
+                    </a>
+                </li>
 
+
+                <li>
+                    <a href="/ranking">
+                        <img src="/images/iconMenu/ranking1.png" alt="Rankings Icon"> Rankings
+                    </a>
+                </li>
+                <li>
+                    <a href="/stats">
+                        <img src="/images/iconMenu/estadisticas1.png" alt="Stats Icon"> Tus Estadísticas
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <img src="/images/iconMenu/profile1.png" alt="Profile Icon"> Perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="/help">
+                        <img src="/images/iconMenu/help1.png" alt="Help Icon"> Ayuda
+                    </a>
+                </li>
+            </ul>
+            <a href="/cerrarSesion" class="logout-link">
+                Cerrar Sesión
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                </div>
+            </a>
+        </aside>
+        <div class="content">
+            <div class="book-container">
+                <div class="page left">
+                    <div class="left-content">
+                        <div class="book-cover">
+                            <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                        </div>
+                        <div class="book-info">
+                            <h2>Título del Libro</h2>
+                            <p><strong>Autor:</strong> Nombre del Autor</p>
+                            <p><strong>Inicio:</strong> 10/14/2024</p>
+                            <p><strong>Fin:</strong> 10/14/2024</p>
+                            <p><strong>Nº Páginas:</strong> 350</p>
+                            <p><strong>Categoría:</strong> Fantasía</p>
+                        </div>
+                    </div>
+                    <div style="align-self: flex-start">
+                        <div class="rating">
+                            <input type="radio" id="star-1" name="star-radio" value="star-1">
+                            <label for="star-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                            </label>
+                            <input type="radio" id="star-2" name="star-radio" value="star-1">
+                            <label for="star-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                            </label>
+                            <input type="radio" id="star-3" name="star-radio" value="star-1">
+                            <label for="star-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                            </label>
+                            <input type="radio" id="star-4" name="star-radio" value="star-1">
+                            <label for="star-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                            </label>
+                            <input type="radio" id="star-5" name="star-radio" value="star-1">
+                            <label for="star-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                            </label>
+                        </div>
+                    </div>
+                    <p><strong>Calificación:</strong> 8.5</p>
+                    <!-- Formato de lectura -->
+                    <div class="format">
+                        📖 🖥️ 🎧
+                    </div>
+
+                    <!-- Plot Twist, Spicy, Funny, Mood -->
+                    <div class="tags">
+                        <div class="plot-twist">💡💡💡</div>
+                        <div class="spicy">🌶️🌶️</div>
+                        <div class="funny">🤡🤡</div>
+                        <div class="mood">😊😢😡</div>
+                    </div>
+                </div>
+
+                <!-- Marcador de página -->
+
+                <!-- Página Derecha -->
+                <div class="page right">
+                    <p><strong>Personaje Favorito:</strong> <span>Nombre del personaje</span></p>
+
+                    <!-- POV (Punto de vista) -->
+                    <div class="pov">
+                        <label><input type="radio" name="pov" value="1a"> 1ª Persona</label>
+                        <label><input type="radio" name="pov" value="2a"> 2ª Persona</label>
+                        <label><input type="radio" name="pov" value="3a"> 3ª Persona</label>
+                    </div>
+
+                    <p><strong>Si pudieras definir el libro con una palabra sería:</strong> HOLA</p>
+                    <p><strong>Mi frase favorita del libro ha sido:</strong> HOLA</p>
+
+                    <p><strong>¿Volverías a leer o recomendarías este libro?</strong></p>
+                    <label><input type="radio" name="recommend" value="yes"> ✅ Sí</label>
+                    <label><input type="radio" name="recommend" value="no"> ❌ No</label>
+
+                    <p><strong>Reseña del libro:</strong></p>
+                    <textarea class="review-text" placeholder="Escribe tu opinión aquí..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
