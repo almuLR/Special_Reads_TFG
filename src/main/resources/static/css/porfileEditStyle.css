@@ -190,16 +190,18 @@ body a:hover {
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: auto;
-    width: 100%;
+    width: 80%;
     max-width: 1000px;
     padding: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 .profile-left {
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .profile-photo {
@@ -219,23 +221,27 @@ body a:hover {
     object-fit: cover;
     border-radius: 50%;
 }
-.profile-info p {
-    margin: 5px 0;
-    font-size: 24px;
-}
-/* Ajuste para separar las etiquetas */
-.tag-container {
+.profile-info {
+    width: 80%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
 }
-.tag {
-    border: 3px solid rgba(121, 181, 168, 0.77);
-    background-color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    color: rgba(121, 181, 168, 0.77);
+
+.profile-info label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    width: 350%;
 }
+
+.profile-info input, .profile-info textarea {
+    width: 350%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 
 
 .profile-right {
@@ -268,7 +274,6 @@ body a:hover {
     border-radius: 10px;
     box-shadow: 5px 5px 0px rgb(59, 133, 129);
     transition-duration: .3s;
-    margin-top: 90px;
     font-family: "Baloo Chettan 2", sans-serif;
 }
 
@@ -298,6 +303,153 @@ body a:hover {
     transition-duration: .3s;
     box-shadow: 2px 2px 0px rgb(86, 193, 187);
 }
+/* From Uiverse.io by PriyanshuGupta28 */
+.checkbox-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-wrapper .terms-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-wrapper .terms-label .label-text {
+    margin-left: 10px;
+}
+
+.checkbox-wrapper .checkbox-svg {
+    width: 30px;
+    height: 30px;
+}
+
+.checkbox-wrapper .checkbox-box {
+    fill: rgba(207, 205, 205, 0.425);
+    stroke: #56c1bb;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 0.6s ease-in;
+}
+
+.checkbox-wrapper .checkbox-tick {
+    stroke: #56c1bb;
+    stroke-dasharray: 172;
+    stroke-dashoffset: 172;
+    transition: stroke-dashoffset 0.6s ease-in;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-box,
+.checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-tick {
+    stroke-dashoffset: 0;
+}
+/* Contenedor general en la parte inferior izquierda */
+.bottom-left-container {
+    position: absolute;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    left: 20px; /* Distancia desde la parte izquierda */
+    display: flex;
+    align-items: center; /* Alinea verticalmente la imagen y el texto */
+    z-index: 10; /* Asegura que se muestre encima de otros elementos */
+}
+
+/* Imagen en la parte inferior izquierda */
+.bottom-left-image {
+    width: 280px; /* Ajusta el tamaño de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Contenedor del texto y botón */
+.text-and-button {
+    display: flex;
+    flex-direction: column; /* Alinea el texto y el botón en columna */
+    align-items: flex-start; /* Alinea los elementos al lado izquierdo */
+    font-family: 'Baloo Chettan 2', sans-serif;
+}
+
+/* Estilo del texto */
+.text-and-button p {
+    margin: 0; /* Elimina márgenes */
+    font-size: 32px; /* Tamaño del texto */
+    color: #333; /* Color del texto */
+}
+/* Contenedor desplazable para los checkboxes */
+.checkbox-wrapper-container {
+    max-height: 150px; /* Ajusta la altura máxima del contenedor */
+    overflow-y: auto;
+    width: 350%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Opcional: Agrega un borde para delimitar el área */
+    border-radius: 8px; /* Bordes redondeados */
+    background-color: #fffbfb; /* Fondo claro */
+}
+
+/* Personalización del scrollbar */
+.checkbox-wrapper-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.checkbox-wrapper-container::-webkit-scrollbar-thumb {
+    background-color: #56c1bb;
+    border-radius: 4px;
+    width: 8px;
+}
+
+.checkbox-wrapper-container::-webkit-scrollbar-track {
+    background-color: #fffbfb;
+}
+
+.save {
+    font-family: inherit;
+    font-size: 20px;
+    background: #55b8ad;
+    color: white;
+    fill: rgb(255, 255, 255);
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+    margin-top: 10px;
+}
+
+.save span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.save svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.save:hover {
+    background: #4a9189;
+}
+
+.save:hover .svg-wrapper {
+    transform: scale(1.25);
+    transition: 0.5s linear;
+}
+
+.save:hover svg {
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
+}
+
+.save:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+}
+
+.save:active {
+    transform: scale(0.95);
+}
 a {
     text-decoration: none !important; /* Elimina el subrayado */
+    width: 50%;
 }

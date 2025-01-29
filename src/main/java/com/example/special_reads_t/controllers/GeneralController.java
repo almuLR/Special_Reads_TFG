@@ -89,4 +89,9 @@ public class GeneralController {
     public String ReviewBookTemplate() {
         return "review";
     }
+
+    @GetMapping("/profileEdit")
+    public String profileEditTemplate() {
+        return "profileEdit";
+    }
 }
