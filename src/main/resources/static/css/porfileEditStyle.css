@@ -383,19 +383,19 @@ body a:hover {
     background-color: #fffbfb; /* Fondo claro */
 }
 
-/* Personalización del scrollbar */
+/* Personalización del scrollbar vertical y horizontal */
 .checkbox-wrapper-container::-webkit-scrollbar {
-    width: 8px;
+    width: 8px; /* Ancho del scrollbar vertical */
+    height: 8px; /* Altura del scrollbar horizontal */
 }
 
 .checkbox-wrapper-container::-webkit-scrollbar-thumb {
-    background-color: #56c1bb;
-    border-radius: 4px;
-    width: 8px;
+    background-color: #56c1bb; /* Color del thumb (la barra que se mueve) */
+    border-radius: 4px; /* Bordes redondeados */
 }
 
 .checkbox-wrapper-container::-webkit-scrollbar-track {
-    background-color: #fffbfb;
+    background-color: #fffbfb; /* Color del track (fondo del scrollbar) */
 }
 
 .save {
