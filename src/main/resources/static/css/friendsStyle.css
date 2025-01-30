@@ -1,0 +1,348 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Chettan 2", sans-serif;
+    background-color: rgba(251, 173, 170, 0.51);
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+}
+/* Barra lateral */
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.sidebar .logo {
+    width: 140px;
+    height: 60px;
+    margin-bottom: 60px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar .menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.sidebar .menu li:hover {
+    background-color: rgba(232, 229, 229, 0.72);
+    color: #000000;
+    border-radius: 5px;
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(251, 173, 170, 0.51);
+    color: #000000;
+    font-weight: normal;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .menu li img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos específicos para los enlaces de la barra lateral */
+.sidebar a {
+    text-decoration: none; /* Quitar subrayado en los enlaces */
+    color: inherit; /* Usar el color definido por la barra lateral */
+}
+
+.sidebar a:hover {
+    text-decoration: none; /* Mantener sin subrayado incluso al pasar el ratón */
+    color: #000; /* Opcional: Cambiar el color al pasar el ratón */
+}
+
+.sidebar .menu li.active a {
+    font-weight: bold; /* Resaltar el enlace activo */
+    color: #000; /* Color negro para el enlace activo */
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(251, 173, 170, 0.51);
+    color: #000000;
+    font-weight: normal;
+    font-size: 19px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a img {
+    vertical-align: middle; /* Asegurar alineación de imágenes dentro de los enlaces */
+}
+
+/* Enlaces globales fuera de la barra lateral */
+body a {
+    text-decoration: underline; /* Estilo predeterminado para enlaces globales */
+    color: blue; /* Color predeterminado para enlaces globales */
+}
+
+body a:hover {
+    color: darkblue; /* Color al pasar el ratón sobre enlaces globales */
+}
+.logout-link {
+    --primary-color: #ec4040;
+    --secondary-color: #fff;
+    --hover-color: rgb(17, 17, 17);
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 20px;
+    color: var(--secondary-color) !important; /* Forzar el color blanco */
+    padding: 1em 1.8em;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    text-decoration: none; /* Asegura que no haya subrayado */
+}
+
+/* Asegúrate de que el color en estado hover también sea blanco */
+.logout-link:hover {
+    background-color: var(--hover-color);
+    color: var(--secondary-color) !important; /* Forzar blanco al pasar el ratón */
+}
+
+.logout-link .arrow {
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+}
+
+.logout-link .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid var(--secondary-color);
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+
+.logout-link:hover {
+    background-color: var(--hover-color);
+}
+
+.logout-link:hover .arrow {
+    background: var(--secondary-color);
+}
+
+.logout-link:hover .arrow::before {
+    right: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(251, 173, 170, 0.51);
+}
+
+.friends-section, .new-friends-section, .leagues-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.progress-bar {
+    width: 100%;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 10px;
+    background: green;
+}
+img {
+    width: 40px;
+    height: 40px;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/**/
+.new-friend-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.new-friend-card p {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+.accept, .decline {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accept {
+    background-color: green;
+    color: white;
+}
+
+.decline {
+    background-color: red;
+    color: white;
+}
+
+/* Contenedor de búsqueda y botones */
+.search-and-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin: 20px auto;
+}
+.search-container {
+    position: relative;
+    width: 40%;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.search-container::after, .search-container::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: absolute;
+}
+
+.search-container::before {
+    top: -1px;
+    left: -1px;
+    background: linear-gradient(0deg, rgb(218, 232, 247) 0%, rgb(255, 255, 255) 100%);
+    z-index: -1;
+}
+
+.search-container::after {
+    bottom: -1px;
+    right: -1px;
+    background: linear-gradient(0deg, rgb(163, 206, 255) 0%, rgb(211, 232, 255) 100%);
+    box-shadow: rgba(79, 156, 232, 0.7019607843) 3px 3px 5px 0px, rgba(79, 156, 232, 0.7019607843) 5px 5px 20px 0px;
+    z-index: -2;
+}
+
+.input {
+    padding: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
+    border: none;
+    color: #9EBCD9;
+    font-size: 20px;
+    font-family: "Baloo Chettan 2", "sans-serif";
+    border-radius: 50px;
+}
+
+.input:focus {
+    outline: none;
+    background: linear-gradient(135deg, rgb(239, 247, 255) 0%, rgb(214, 229, 247) 100%);
+}
+
+
+
+.search__icon {
+    width: 50px;
+    aspect-ratio: 1;
+    border-left: 2px solid white;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-radius: 50%;
+    padding-left: 12px;
+    margin-right: 10px;
+}
+
+.search__icon:hover {
+    border-left: 3px solid white;
+}
+
+.search__icon path {
+    fill: white;
+}
+
+.tick{
+    width: 20px;
+    height: 20px;
+}
+
+.cross{
+    width: 20px;
+    height: 20px;
+}

@@ -1,10 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Reads</title>
+    <link rel="stylesheet" href="/css/friendsStyle.css">
+    <link rel="shortcut icon" href="/images/img.png" />
 </head>
 <body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <img src="/images/logo.png" alt="Special Reads Logo" class="logo">
+            <ul class="menu">
+                <li>
+                    <a href="/indexUser">
+                        <img src="/images/iconMenu/home1.png" alt="Home Icon"> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/iaReader">
+                        <img src="/images/iconMenu/iareader1.png" alt="IA Reader Icon"> IA's Reader
+                    </a>
+                </li>
+                <li>
+                    <a href="/journal">
+                        <img src="/images/iconMenu/journal1.png" alt="Journal Icon"> Reading Journal
+                    </a>
+                </li>
+                <li>
+                    <a href="/bookShelf">
+                        <img src="/images/iconMenu/bookshelf1.png" alt="Bookshelf Icon"> Bookshelf
+                    </a>
+                </li>
+                <li>
+                    <a href="/list">
+                        <img src="/images/iconMenu/list1.png" alt="Lists Icon"> Tus Listas
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/friends">
+                        <img src="/images/iconMenu/friends2.png" alt="Friends Icon"> Amigos
+                    </a>
+                </li>
+                <li>
+                    <a href="/challenge">
+                        <img src="/images/iconMenu/challenge1.png" alt="Challenges Icon"> Challenges
+                    </a>
+                </li>
 
+
+                <li>
+                    <a href="/ranking">
+                        <img src="/images/iconMenu/ranking1.png" alt="Rankings Icon"> Rankings
+                    </a>
+                </li>
+                <li>
+                    <a href="/stats">
+                        <img src="/images/iconMenu/estadisticas1.png" alt="Stats Icon"> Tus Estadísticas
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <img src="/images/iconMenu/profile1.png" alt="Profile Icon"> Perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="/help">
+                        <img src="/images/iconMenu/help1.png" alt="Help Icon"> Ayuda
+                    </a>
+                </li>
+            </ul>
+            <a href="/cerrarSesion" class="logout-link">
+                Cerrar Sesión
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                </div>
+            </a>
+        </aside>
+
+        <!-- Contenedor principal -->
+        <div class="content">
+            <div class="search-and-buttons" style="margin-left: 130px">
+                <div class="search-container">
+                    <input class="input" type="text" placeholder="Introduce el titulo...">
+                    <svg viewBox="0 0 24 24" class="search__icon">
+                        <g>
+                            <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="friends-section">
+                <h2>Your Friends</h2>
+                <div class="friend-card">
+                    <img src="/images/iconoPerfil.png" alt="User Image">
+                    <p>Pepa_gtrz</p>
+                    <p>Una Corte de Rosas y Espinas</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 20%;"></div>
+                    </div>
+                    <p>Read 20%</p>
+                </div>
+            </div>
+            <div class="new-friends-section">
+                <h2>New Friends</h2>
+                <div class="new-friend-card">
+                    <img src="/images/iconoPerfil.png" alt="User Image">
+                    <p>"Almuuu_lpz" ha solicitado seguirte</p>
+                    <button class="accept" style="margin-right: 10px"><img src="/images/tick.png" class ="tick"></button>
+                    <button class="decline"><img class ="cross" src="/images/cross.png"></button>
+                </div>
+            </div>
+            <div class="leagues-section">
+                <h2>Ligas Internas</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Tu Posición</th>
+                        <th>Título de la Liga</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>"Lectores al poder"</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

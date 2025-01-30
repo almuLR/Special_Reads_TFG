@@ -192,19 +192,20 @@ body a:hover {
 /* Contenedor de búsqueda y botones */
 .search-and-buttons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 95%;
-    margin: 20px auto;
+    margin: 40px auto;
 }
 .search-container {
-    position: relative;
+    position: initial;
     width: 40%;
     border-radius: 50px;
     background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
     padding: 5px;
     display: flex;
     align-items: center;
+    margin-left: 40px;
 }
 
 .search-container::after, .search-container::before {
