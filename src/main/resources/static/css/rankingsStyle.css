@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Baloo Chettan 2", sans-serif;
-    background-color: rgba(251, 232, 170, 0.58);
+    background-color: rgba(237, 185, 143, 0.77);
     height: 100vh;
 }
 
@@ -28,7 +28,6 @@ body {
 
 .sidebar .logo {
     width: 140px;
-    height: 60px;
     margin-bottom: 60px;
 }
 
@@ -54,7 +53,7 @@ body {
 }
 
 .sidebar .menu li.active {
-    background-color: rgba(251, 232, 170, 0.58);
+    background-color: rgba(237, 185, 143, 0.77);
     color: #000000;
     font-weight: normal;
     font-size: 18px;
@@ -94,7 +93,7 @@ body {
 }
 
 .sidebar .menu li.active {
-    background-color: rgba(251, 232, 170, 0.58);
+    background-color: rgba(237, 185, 143, 0.77);
     color: #000000;
     font-weight: normal;
     font-size: 19px;
@@ -175,81 +174,208 @@ body a:hover {
 .logout-link:hover .arrow::before {
     right: 0;
 }
-
+/* Contenedor principal */
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: calc(100% - 300px);
+    justify-content: flex-start;
+    width: 100%;
     min-height: 100vh;
-    background-color: rgba(251, 232, 170, 0.58);
-    padding: 20px;
+    background-color: rgba(237, 185, 143, 0.77);
+    padding-top: 40px;
+}
+.rankings-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
 }
 .title {
     font-size: 2rem;
     font-weight: bold;
-    color: #333;
     text-align: center;
-    width: 100%;
+    margin-bottom: 20px;
 }
-
-.challenges-wrapper {
+.ranking-section {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 1200px;
+    width: 75%;
 }
 
-.challenges-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 800px;
+.ranking-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
 }
 
-.challenge {
+.ranking-card {
+    position: relative; /* Para posicionar el botón dentro del contenedor */
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
+    align-items: center;
+    align-content: center;
     text-align: center;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-.progress-bar {
-    width: 100%;
-    background: #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 80%;
+    height: 155px;
 }
 
-.progress {
-    height: 10px;
-    background: green;
+.ranking-card h3 {
+    margin: 0;
+    font-size: 2.1rem;
 }
 
-.challenge-image {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-grow: 1;
-    max-width: 300px;
+.ranking-card p {
+    margin: 5px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-.challenge-image img {
-    width: 100%;
-    max-width: 350px;
+.edit-icon {
+    float: right;
+    cursor: pointer;
 }
 
 @media (max-width: 1024px) {
-    .challenges-wrapper {
+    .rankings-container {
         flex-direction: column;
         align-items: center;
     }
 
-    .challenge-image {
-        margin-top: 20px;
-        justify-content: center;
+    .ranking-section {
+        width: 100%;
+        margin-bottom: 20px;
     }
+}
+.plusButton {
+    /* Config start */
+    --plus_sideLength: 2.5rem;
+    --plus_topRightTriangleSideLength: 0.9rem;
+    /* Config end */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    width: var(--plus_sideLength);
+    height: var(--plus_sideLength);
+    background-color: #000000;
+    overflow: hidden;
+    margin-top: 35px;
+}
+
+.plusButton::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover {
+    cursor: pointer;
+}
+
+.plusButton:hover::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton:focus-visible::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton>.plusIcon {
+    fill: white;
+    width: calc(var(--plus_sideLength) * 0.7);
+    height: calc(var(--plus_sideLength) * 0.7);
+    z-index: 1;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover>.plusIcon {
+    fill: black;
+    transform: rotate(180deg);
+}
+
+.plusButton:focus-visible>.plusIcon {
+    fill: black;
+    transform: rotate(180deg);
+}
+.editBtn {
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    right: 10px; /* Mueve el botón a la derecha */
+    top: 10px; /* Mueve el botón hacia arriba */
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(40, 40, 48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.123);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+    margin-bottom: 15px;
+}
+.editBtn::before {
+    content: "";
+    width: 200%;
+    height: 200%;
+    background-color: rgb(33, 33, 39);
+    position: absolute;
+    z-index: 1;
+    transform: scale(0);
+    transition: all 0.3s;
+    border-radius: 50%;
+    filter: blur(10px);
+}
+.editBtn:hover::before {
+    transform: scale(1);
+}
+.editBtn:hover {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.336);
+}
+
+.editBtn svg {
+    height: 17px;
+    fill: white;
+    z-index: 3;
+    transition: all 0.2s;
+    transform-origin: bottom;
+}
+.editBtn:hover svg {
+    transform: rotate(-15deg) translateX(5px);
+}
+.editBtn::after {
+    content: "";
+    width: 25px;
+    height: 1.5px;
+    position: absolute;
+    bottom: 19px;
+    left: -5px;
+    background-color: white;
+    border-radius: 2px;
+    z-index: 2;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-out;
+}
+.editBtn:hover::after {
+    transform: scaleX(1);
+    left: 0px;
+    transform-origin: right;
 }

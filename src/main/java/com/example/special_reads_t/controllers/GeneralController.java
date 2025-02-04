@@ -94,4 +94,14 @@ public class GeneralController {
     public String profileEditTemplate() {
         return "profileEdit";
     }
+
+    @GetMapping("/newRanking")
+    public String newRankingTemplate() {
+        return "newRanking";
+    }
+
+    @GetMapping("/editRanking")
+    public String editRankingTemplate() {
+        return "editRanking";
+    }
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Special Reads</title>
+  <link rel="stylesheet" href="/css/newRanking.css">
+  <link rel="shortcut icon" href="/images/img.png" />
+</head>
+<body>
+  <div class="container">
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <img src="/images/logo.png" alt="Special Reads Logo" class="logo">
+      <ul class="menu">
+        <li>
+          <a href="/indexUser">
+            <img src="/images/iconMenu/home1.png" alt="Home Icon"> Home
+          </a>
+        </li>
+        <li>
+          <a href="/iaReader">
+            <img src="/images/iconMenu/iareader1.png" alt="IA Reader Icon"> IA's Reader
+          </a>
+        </li>
+        <li>
+          <a href="/journal">
+            <img src="/images/iconMenu/journal1.png" alt="Journal Icon"> Reading Journal
+          </a>
+        </li>
+        <li>
+          <a href="/bookShelf">
+            <img src="/images/iconMenu/bookshelf1.png" alt="Bookshelf Icon"> Bookshelf
+          </a>
+        </li>
+        <li>
+          <a href="/list">
+            <img src="/images/iconMenu/list1.png" alt="Lists Icon"> Tus Listas
+          </a>
+        </li>
+        <li>
+          <a href="/friends">
+            <img src="/images/iconMenu/friends1.png" alt="Friends Icon"> Amigos
+          </a>
+        </li>
+        <li>
+          <a href="/challenge">
+            <img src="/images/iconMenu/challenge1.png" alt="Challenges Icon"> Challenges
+          </a>
+        </li>
+
+
+        <li class="active">
+          <a href="/ranking">
+            <img src="/images/iconMenu/ranking2.png" alt="Rankings Icon"> Rankings
+          </a>
+        </li>
+        <li>
+          <a href="/stats">
+            <img src="/images/iconMenu/estadisticas1.png" alt="Stats Icon"> Tus Estadísticas
+          </a>
+        </li>
+        <li>
+          <a href="/profile">
+            <img src="/images/iconMenu/profile1.png" alt="Profile Icon"> Perfil
+          </a>
+        </li>
+        <li>
+          <a href="/help">
+            <img src="/images/iconMenu/help1.png" alt="Help Icon"> Ayuda
+          </a>
+        </li>
+      </ul>
+      <a href="/cerrarSesion" class="logout-link">
+        Cerrar Sesión
+        <div class="arrow-wrapper">
+          <div class="arrow"></div>
+        </div>
+      </a>
+    </aside>
+
+    <!-- Contenedor principal -->
+    <div class="content">
+      <div class="ranking-container">
+        <h1 class="title">Editar Liga Interna</h1>
+          <div class="ranking-card">
+            <div class="ranking-form">
+              <p><strong>Título:</strong> <input class="title-gray" placeholder="Los increibles"></p>
+              <p><strong>Amigos:</strong></p>
+              <div class="friends-list">
+                <ul class="friends-select">
+                  <li><input type="checkbox" id="friend1"><label for="friend1"> Username 1</label></li>
+                  <li><input type="checkbox" id="friend2"><label for="friend2"> Username 2</label></li>
+                  <li><input type="checkbox" id="friend3"><label for="friend3"> Username 3</label></li>
+                  <li><input type="checkbox" id="friend4"><label for="friend4"> Username 4</label></li>
+                  <li><input type="checkbox" id="friend5"><label for="friend5"> Username 5</label></li>
+                </ul>
+              </div>
+              <p><strong>Libros a leer:</strong> <input class="books-count" placeholder="65"></p>
+            </div>
+            <div class="ranking-image">
+              <img src="/images/trophy.png" alt="Trophy Image">
+            </div>
+          </div>
+        <button class="create-league-button">Editar Liga</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
