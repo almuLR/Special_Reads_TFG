@@ -61,11 +61,6 @@ public class GeneralController {
         return "ranking";
     }
 
-    @GetMapping("/stats")
-    public String statsTemplate() {
-        return "stats";
-    }
-
     @GetMapping("/profile")
     public String profileTemplate() {
         return "profile";
@@ -103,5 +98,10 @@ public class GeneralController {
     @GetMapping("/editRanking")
     public String editRankingTemplate() {
         return "editRanking";
+    }
+
+    @GetMapping("/charts")
+    public String chartsTemplate() {
+        return "charts";
     }
 }

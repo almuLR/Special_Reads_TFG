@@ -1,0 +1,275 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Chettan 2", sans-serif;
+    background-color: rgba(112, 130, 248, 0.49);
+    height: 100vh;
+    overflow: hidden; /* Evita scroll en el body */
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    overflow: hidden; /* Evita el scroll */
+}
+/* Barra lateral */
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.sidebar .logo {
+    width: 140px;
+    margin-bottom: 60px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar .menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.sidebar .menu li:hover {
+    background-color: rgba(232, 229, 229, 0.72);
+    color: #000000;
+    border-radius: 5px;
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(112, 130, 248, 0.77);
+    color: #000000;
+    font-weight: normal;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .menu li img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos específicos para los enlaces de la barra lateral */
+.sidebar a {
+    text-decoration: none; /* Quitar subrayado en los enlaces */
+    color: inherit; /* Usar el color definido por la barra lateral */
+}
+
+.sidebar a:hover {
+    text-decoration: none; /* Mantener sin subrayado incluso al pasar el ratón */
+    color: #000; /* Opcional: Cambiar el color al pasar el ratón */
+}
+
+.sidebar .menu li.active a {
+    font-weight: bold; /* Resaltar el enlace activo */
+    color: #000; /* Color negro para el enlace activo */
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(112, 130, 248, 0.77);
+    color: #000000;
+    font-weight: normal;
+    font-size: 19px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a img {
+    vertical-align: middle; /* Asegurar alineación de imágenes dentro de los enlaces */
+}
+
+/* Enlaces globales fuera de la barra lateral */
+body a {
+    text-decoration: underline; /* Estilo predeterminado para enlaces globales */
+    color: blue; /* Color predeterminado para enlaces globales */
+}
+
+body a:hover {
+    color: darkblue; /* Color al pasar el ratón sobre enlaces globales */
+}
+.logout-link {
+    --primary-color: #ec4040;
+    --secondary-color: #fff;
+    --hover-color: rgb(17, 17, 17);
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 20px;
+    color: var(--secondary-color) !important; /* Forzar el color blanco */
+    padding: 1em 1.8em;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    text-decoration: none; /* Asegura que no haya subrayado */
+}
+
+/* Asegúrate de que el color en estado hover también sea blanco */
+.logout-link:hover {
+    background-color: var(--hover-color);
+    color: var(--secondary-color) !important; /* Forzar blanco al pasar el ratón */
+}
+
+.logout-link .arrow {
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+}
+
+.logout-link .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid var(--secondary-color);
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+
+.logout-link:hover {
+    background-color: var(--hover-color);
+}
+
+.logout-link:hover .arrow {
+    background: var(--secondary-color);
+}
+
+.logout-link:hover .arrow::before {
+    right: 0;
+}
+/* Contenedor principal */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 15px auto;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    max-width: 1100px;
+    height: auto;
+    max-height: calc(100vh - 30px); /* Ajusta altura con scroll */
+    overflow-y: auto;
+}
+
+.chart-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    grid-template-rows: repeat(2, auto); /* 2 filas */
+    gap: 20px; /* Espaciado entre gráficos */
+    width: 100%;
+    max-width: 1000px; /* Ajusta el ancho máximo */
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: center;
+    align-self: center;
+    margin: auto;
+    overflow-y: auto; /* Activa scroll si es necesario */
+    max-height: calc(100vh - 50px); /* Ajusta la altura máxima */
+}
+
+
+.chart-box {
+    display: flex;
+    flex-direction: column; /* Asegura que el título esté encima */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    padding: 10px;
+    height: auto; /* Ajusta la altura automáticamente */
+    width: 100%;
+    min-height: 350px; /* Asegura que los gráficos tengan un tamaño mínimo */
+}
+.chart-box h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px; /* Espacio entre el título y el gráfico */
+}
+canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 450px;
+    max-height: 400px;
+}
+.progress-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 0; /* Elimina el margen inferior */
+    background: rgba(255, 255, 255, 0);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0);
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.stat-box::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border-radius: 50%;
+    border: 3px solid rgba(112, 130, 248, 0.77);
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Special Reads</title>
+  <link rel="stylesheet" href="/css/chartStyle.css">
+  <link rel="shortcut icon" href="/images/img.png" />
+</head>
+<body>
+  <div class="container">
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <img src="/images/logo.png" alt="Special Reads Logo" class="logo">
+      <ul class="menu">
+        <li>
+          <a href="/indexUser">
+            <img src="/images/iconMenu/home1.png" alt="Home Icon"> Home
+          </a>
+        </li>
+        <li>
+          <a href="/iaReader">
+            <img src="/images/iconMenu/iareader1.png" alt="IA Reader Icon"> IA's Reader
+          </a>
+        </li>
+        <li>
+          <a href="/journal">
+            <img src="/images/iconMenu/journal1.png" alt="Journal Icon"> Reading Journal
+          </a>
+        </li>
+        <li>
+          <a href="/bookShelf">
+            <img src="/images/iconMenu/bookshelf1.png" alt="Bookshelf Icon"> Bookshelf
+          </a>
+        </li>
+        <li>
+          <a href="/list">
+            <img src="/images/iconMenu/list1.png" alt="Lists Icon"> Tus Listas
+          </a>
+        </li>
+        <li>
+          <a href="/friends">
+            <img src="/images/iconMenu/friends1.png" alt="Friends Icon"> Amigos
+          </a>
+        </li>
+        <li>
+          <a href="/challenge">
+            <img src="/images/iconMenu/challenge1.png" alt="Challenges Icon"> Challenges
+          </a>
+        </li>
+
+
+        <li>
+          <a href="/ranking">
+            <img src="/images/iconMenu/ranking1.png" alt="Rankings Icon"> Rankings
+          </a>
+        </li>
+        <li class="active">
+          <a href="/charts">
+            <img src="/images/iconMenu/estadisticas2.png" alt="Stats Icon"> Tus Estadísticas
+          </a>
+        </li>
+        <li>
+          <a href="/profile">
+            <img src="/images/iconMenu/profile1.png" alt="Profile Icon"> Perfil
+          </a>
+        </li>
+        <li>
+          <a href="/help">
+            <img src="/images/iconMenu/help1.png" alt="Help Icon"> Ayuda
+          </a>
+        </li>
+      </ul>
+      <a href="/cerrarSesion" class="logout-link">
+        Cerrar Sesión
+        <div class="arrow-wrapper">
+          <div class="arrow"></div>
+        </div>
+      </a>
+    </aside>
+
+    <!-- Contenedor principal -->
+    <div class="content">
+      <div class="chart-container">
+        <div class="chart-box">
+          <h3>Autores más leídos</h3>
+          <canvas id="authorsChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Géneros más leídos</h3>
+          <canvas id="genresChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Progreso de lectura</h3>
+          <canvas id="readingTimeChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Recuento general</h3>
+          <div class="progress-stats">
+            <div class="stat-box">Páginas<br>20,669</div>
+            <div class="stat-box">Capítulos<br>669</div>
+            <div class="stat-box">Libros<br>29</div>
+            <div class="stat-box">Pendientes<br>12</div>
+            <div class="stat-box">Challenges<br>18</div>
+            <div class="stat-box">Amigos<br>5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (document.getElementById('authorsChart')) {
+        const authorsCtx = document.getElementById('authorsChart').getContext('2d');
+        new Chart(authorsCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Autor 1', 'Autor 2', 'Autor 3', 'Autor 4', 'Autor 5'],
+            datasets: [{
+              data: [37, 19, 9, 21, 14],
+              backgroundColor: ['#4A90E2', '#1D67C1', '#E74C3C', '#B8A7D6', '#F7A9C4']
+            }]
+          }
+        });
+      }
+
+      if (document.getElementById('genresChart')) {
+        const genresCtx = document.getElementById('genresChart').getContext('2d');
+        new Chart(genresCtx, {
+          type: 'pie',
+          data: {
+            labels: ['Romance', 'Fantasía', 'Terror', 'Ciencia Ficción', 'Psicología'],
+            datasets: [{
+              data: [25, 20, 15, 25, 15],
+              backgroundColor: ['#4A90E2', '#E74C3C', '#1D67C1', '#B8A7D6', '#F7A9C4']
+            }]
+          }
+        });
+      }
+
+      if (document.getElementById('readingTimeChart')) {
+        const readingTimeCtx = document.getElementById('readingTimeChart').getContext('2d');
+        new Chart(readingTimeCtx, {
+          type: 'line',
+          data: {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            datasets: [{
+              label: 'Tiempo de Lectura',
+              data: [5, 8, 4, 10, 6, 9, 15, 10, 6, 5, 7, 6],
+              backgroundColor: 'rgba(74,144,226,0.5)',
+              borderColor: '#4A90E2',
+              fill: true
+            }]
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
