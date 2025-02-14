@@ -1,0 +1,277 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Baloo Chettan 2", sans-serif;
+    background-color: rgba(236, 237, 248, 0.49);
+    height: 100vh;
+    overflow: hidden; /* Evita scroll en el body */
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    overflow: hidden; /* Evita el scroll */
+}
+/* Barra lateral */
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.sidebar .logo {
+    width: 140px;
+    margin-bottom: 60px;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar .menu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.sidebar .menu li:hover {
+    background-color: rgba(232, 229, 229, 0.72);
+    color: #000000;
+    border-radius: 5px;
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(236, 237, 248, 0.49);
+    color: #000000;
+    font-weight: normal;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .menu li img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos específicos para los enlaces de la barra lateral */
+.sidebar a {
+    text-decoration: none; /* Quitar subrayado en los enlaces */
+    color: inherit; /* Usar el color definido por la barra lateral */
+}
+
+.sidebar a:hover {
+    text-decoration: none; /* Mantener sin subrayado incluso al pasar el ratón */
+    color: #000; /* Opcional: Cambiar el color al pasar el ratón */
+}
+
+.sidebar .menu li.active a {
+    font-weight: bold; /* Resaltar el enlace activo */
+    color: #000; /* Color negro para el enlace activo */
+}
+
+.sidebar .menu li.active {
+    background-color: rgba(236, 237, 248, 0.49);
+    color: #000000;
+    font-weight: normal;
+    font-size: 19px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a img {
+    vertical-align: middle; /* Asegurar alineación de imágenes dentro de los enlaces */
+}
+
+/* Enlaces globales fuera de la barra lateral */
+body a {
+    text-decoration: underline; /* Estilo predeterminado para enlaces globales */
+    color: blue; /* Color predeterminado para enlaces globales */
+}
+
+body a:hover {
+    color: darkblue; /* Color al pasar el ratón sobre enlaces globales */
+}
+.logout-link {
+    --primary-color: #ec4040;
+    --secondary-color: #fff;
+    --hover-color: rgb(17, 17, 17);
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 20px;
+    color: var(--secondary-color) !important; /* Forzar el color blanco */
+    padding: 1em 1.8em;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    text-decoration: none; /* Asegura que no haya subrayado */
+}
+
+/* Asegúrate de que el color en estado hover también sea blanco */
+.logout-link:hover {
+    background-color: var(--hover-color);
+    color: var(--secondary-color) !important; /* Forzar blanco al pasar el ratón */
+}
+
+.logout-link .arrow {
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+}
+
+.logout-link .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid var(--secondary-color);
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+}
+
+.logout-link:hover {
+    background-color: var(--hover-color);
+}
+
+.logout-link:hover .arrow {
+    background: var(--secondary-color);
+}
+
+.logout-link:hover .arrow::before {
+    right: 0;
+}
+/* Contenedor principal */
+.help-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 950px; /* Aumentado */
+    margin: auto;
+}
+
+/* Contenedor blanco más grande */
+.content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 850px; /* Ajustado */
+    height: auto;
+}
+
+/* Contenedor de la tabla */
+.help-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+/* Tabla de preguntas */
+.help-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.help-table th, .help-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.help-table th {
+    background: #e3e3e3;
+    font-weight: bold;
+}
+
+/* Botón eliminar */
+.delete-button {
+    background: #ec4040;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    background: #d73838;
+}
+
+/* Contenedor de input (Fuera del contenedor blanco, justo debajo) */
+.help-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 10px 12px;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 15px; /* Ajustado */
+}
+
+/* Campo de entrada */
+.help-input {
+    flex: 1;
+    border: none;
+    padding: 8px;
+    font-size: 14px;
+    outline: none;
+    background: transparent;
+}
+
+/* Botón de enviar */
+.send-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.send-button img {
+    width: 20px;
+    height: auto;
+}

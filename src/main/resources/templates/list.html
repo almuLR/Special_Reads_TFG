@@ -2,9 +2,163 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Special Reads</title>
+    <link rel="stylesheet" href="/css/listStyle.css">
+    <link rel="shortcut icon" href="/images/img.png" />
 </head>
 <body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <img src="/images/logo.png" alt="Special Reads Logo" class="logo">
+            <ul class="menu">
+                <li>
+                    <a href="/indexUser">
+                        <img src="/images/iconMenu/home1.png" alt="Home Icon"> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/iaReader">
+                        <img src="/images/iconMenu/iareader1.png" alt="IA Reader Icon"> IA's Reader
+                    </a>
+                </li>
+                <li>
+                    <a href="/journal">
+                        <img src="/images/iconMenu/journal1.png" alt="Journal Icon"> Reading Journal
+                    </a>
+                </li>
+                <li>
+                    <a href="/bookShelf">
+                        <img src="/images/iconMenu/bookshelf1.png" alt="Bookshelf Icon"> Bookshelf
+                    </a>
+                </li>
+                <li>
+                    <a href="/list">
+                        <img src="/images/iconMenu/list1.png" alt="Lists Icon"> Tus Listas
+                    </a>
+                </li>
+                <li>
+                    <a href="/friends">
+                        <img src="/images/iconMenu/friends1.png" alt="Friends Icon"> Amigos
+                    </a>
+                </li>
+                <li>
+                    <a href="/challenge">
+                        <img src="/images/iconMenu/challenge1.png" alt="Challenges Icon"> Challenges
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="/ranking">
+                        <img src="/images/iconMenu/ranking1.png" alt="Rankings Icon"> Rankings
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/charts">
+                        <img src="/images/iconMenu/estadisticas2.png" alt="Stats Icon"> Tus Estadísticas
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <img src="/images/iconMenu/profile1.png" alt="Profile Icon"> Perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="/help">
+                        <img src="/images/iconMenu/help1.png" alt="Help Icon"> Ayuda
+                    </a>
+                </li>
+            </ul>
+            <a href="/cerrarSesion" class="logout-link">
+                Cerrar Sesión
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+                </div>
+            </a>
+        </aside>
+        <div class="main-content">
+
+            <div class="list-container">
+                <h1 class="list-title">Próximas lecturas</h1>
+                <div class="books-list">
+                    <div class="column">
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                        <label><input type="checkbox"> Título y Autor</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones inferiores -->
+            <div class="bottom-buttons">
+                <button class="cssbuttons-io-button">
+                    <svg
+                            height="24"
+                            width="24"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
+                    </svg>
+                    <span>Add</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addButton = document.querySelector(".cssbuttons-io-button");
+            const bookList = document.querySelector(".books-list .column");
+            const inputField = document.createElement("input");
+            inputField.setAttribute("type", "text");
+            inputField.setAttribute("placeholder", "Añadir un nuevo libro...");
+            inputField.classList.add("add-book-input");
+            bookList.appendChild(inputField);
+
+            addButton.addEventListener("click", function() {
+                inputField.style.display = "block";
+                inputField.focus();
+            });
+
+            inputField.addEventListener("keypress", function(event) {
+                if (event.key === "Enter" && inputField.value.trim() !== "") {
+                    const newLabel = document.createElement("label");
+                    const newCheckbox = document.createElement("input");
+                    newCheckbox.setAttribute("type", "checkbox");
+                    newLabel.appendChild(newCheckbox);
+                    newLabel.appendChild(document.createTextNode(" " + inputField.value));
+                    bookList.appendChild(newLabel);
+                    inputField.value = "";
+                    inputField.style.display = "none";
+                }
+            });
+
+            bookList.addEventListener("change", function(event) {
+                if (event.target.type === "checkbox") {
+                    const label = event.target.parentElement;
+                    label.classList.add("checked");
+                    setTimeout(() => label.remove(), 1000); // Elimina después de 1 segundo
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
