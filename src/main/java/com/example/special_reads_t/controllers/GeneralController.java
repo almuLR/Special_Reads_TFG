@@ -70,6 +70,10 @@ public class GeneralController {
     public String helpTemplate() {
         return "help";
     }
+    @GetMapping("/helpAdmin")
+    public String helpAdminTemplate() {
+        return "helpAdmin";
+    }
 
     @GetMapping("/bookSearchs")
     public String SearchsTemplate() {

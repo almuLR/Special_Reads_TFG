@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>Special Reads</title>
+  <link rel="stylesheet" href="/css/helpStyle.css">
+  <link rel="shortcut icon" href="/images/img.png" />
+</head>
+<body>
+<div class="container">
+  <!-- Barra lateral -->
+  <aside class="sidebar">
+    <img src="/images/logo.png" alt="Special Reads Logo" class="logo">
+    <ul class="menu">
+      <li>
+        <a href="/indexUser">
+          <img src="/images/iconMenu/home1.png" alt="Home Icon"> Home
+        </a>
+      </li>
+      <li>
+        <a href="/iaReader">
+          <img src="/images/iconMenu/iareader1.png" alt="IA Reader Icon"> IA's Reader
+        </a>
+      </li>
+      <li>
+        <a href="/journal">
+          <img src="/images/iconMenu/journal1.png" alt="Journal Icon"> Reading Journal
+        </a>
+      </li>
+      <li>
+        <a href="/bookShelf">
+          <img src="/images/iconMenu/bookshelf1.png" alt="Bookshelf Icon"> Bookshelf
+        </a>
+      </li>
+      <li>
+        <a href="/list">
+          <img src="/images/iconMenu/list1.png" alt="Lists Icon"> Tus Listas
+        </a>
+      </li>
+      <li>
+        <a href="/friends">
+          <img src="/images/iconMenu/friends1.png" alt="Friends Icon"> Amigos
+        </a>
+      </li>
+      <li>
+        <a href="/challenge">
+          <img src="/images/iconMenu/challenge1.png" alt="Challenges Icon"> Challenges
+        </a>
+      </li>
+
+
+      <li>
+        <a href="/ranking">
+          <img src="/images/iconMenu/ranking1.png" alt="Rankings Icon"> Rankings
+        </a>
+      </li>
+      <li>
+        <a href="/charts">
+          <img src="/images/iconMenu/estadisticas1.png" alt="Stats Icon"> Tus Estadísticas
+        </a>
+      </li>
+      <li>
+        <a href="/profile">
+          <img src="/images/iconMenu/profile1.png" alt="Profile Icon"> Perfil
+        </a>
+      </li>
+      <li class="active">
+        <a href="/help">
+          <img src="/images/iconMenu/help2.png" alt="Help Icon"> Ayuda
+        </a>
+      </li>
+    </ul>
+    <a href="/cerrarSesion" class="logout-link">
+      Cerrar Sesión
+      <div class="arrow-wrapper">
+        <div class="arrow"></div>
+      </div>
+    </a>
+  </aside>
+
+  <!-- Contenedor principal -->
+  <div class="help-wrapper">
+    <div class="content">
+      <h2 class="help-title">Dudas pendientes:</h2>
+      <div class="help-container">
+        <!-- Tabla de preguntas -->
+        <div class="help-table-container">
+          <table class="help-table">
+            <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Pregunta 1</td>
+              <td>Descripción de la pregunta 1</td>
+              <td><button class="delete-button">Responder</button></td>
+            </tr>
+            <tr>
+              <td>Pregunta 2</td>
+              <td>Descripción de la pregunta 2</td>
+              <td><button class="delete-button">Responder</button></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input para nueva pregunta (Ahora debajo del contenedor blanco) -->
+    <div class="help-input-container">
+      <input type="text" placeholder="Introduce tu respuesta" class="help-input">
+      <button class="send-button">
+        <img src="/images/send-icon.png" alt="Enviar">
+      </button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
