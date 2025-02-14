@@ -192,80 +192,51 @@ body a:hover {
 /* Contenedor de búsqueda y botones */
 .search-and-buttons {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 95%;
-    margin: 40px auto;
-}
-.search-container {
-    position: initial;
-    width: 40%;
-    border-radius: 50px;
-    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
-    padding: 5px;
-    display: flex;
+    justify-content: space-between; /* Distribuye los elementos */
     align-items: center;
-    margin-left: 40px;
+    width: 95%;
+    margin: 10px;
 }
 
-.search-container::after, .search-container::before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    position: absolute;
-}
-
-.search-container::before {
-    top: -1px;
-    left: -1px;
-    background: linear-gradient(0deg, rgb(218, 232, 247) 0%, rgb(255, 255, 255) 100%);
-    z-index: -1;
-}
-
-.search-container::after {
-    bottom: -1px;
-    right: -1px;
-    background: linear-gradient(0deg, rgb(163, 206, 255) 0%, rgb(211, 232, 255) 100%);
-    box-shadow: rgba(79, 156, 232, 0.7019607843) 3px 3px 5px 0px, rgba(79, 156, 232, 0.7019607843) 5px 5px 20px 0px;
-    z-index: -2;
+.group {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    max-width: 190px;
 }
 
 .input {
-    padding: 10px;
     width: 100%;
-    background: linear-gradient(135deg, rgb(218, 232, 247) 0%, rgb(214, 229, 247) 100%);
-    border: none;
-    color: #9EBCD9;
-    font-size: 20px;
-    font-family: "Baloo Chettan 2", "sans-serif";
-    border-radius: 50px;
-}
-
-.input:focus {
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
     outline: none;
-    background: linear-gradient(135deg, rgb(239, 247, 255) 0%, rgb(214, 229, 247) 100%);
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: .3s ease;
 }
 
-
-
-.search__icon {
-    width: 50px;
-    aspect-ratio: 1;
-    border-left: 2px solid white;
-    border-top: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    border-radius: 50%;
-    padding-left: 12px;
-    margin-right: 10px;
+.input::placeholder {
+    color: #9e9ea7;
 }
 
-.search__icon:hover {
-    border-left: 3px solid white;
+.input:focus, input:hover {
+    outline: none;
+    border-color: rgba(234,76,137,0.4);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
 }
 
-.search__icon path {
-    fill: white;
+.icon {
+    position: absolute;
+    left: 1rem;
+    fill: #9e9ea7;
+    width: 1rem;
+    height: 1rem;
 }
 
 /* Ajuste del contenedor blanco (libro) */
@@ -281,6 +252,7 @@ body a:hover {
     overflow: hidden;
     margin: 0 auto; /* Centrar horizontalmente */
     margin-bottom: 0px; /* Añadir margen inferior para el espacio rosa */
+    margin-top: 0px;
 }
 
 
@@ -442,27 +414,64 @@ body a:hover {
 .navigation-buttons {
     display: flex;
     gap: 10px;
+    margin-left: auto; /* Empuja los botones a la derecha */
 }
 
 .prev-button,
 .next-button {
-    background-color: #00aaff;
+    background: linear-gradient(135deg, #00aaff, #0077cc); /* Degradado azul */
     color: white;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+    width: 50px; /* Tamaño ligeramente mayor */
+    height: 50px;
+    font-size: 22px; /* Aumenta el tamaño del icono */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Efecto de hover */
 .prev-button:hover,
 .next-button:hover {
-    background-color: #0686c1;
+    background: linear-gradient(135deg, #0077cc, #0055aa); /* Cambio de degradado */
+    transform: scale(1.1); /* Efecto de agrandamiento */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto pulsación */
+.prev-button:active,
+.next-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animación de onda al hacer clic */
+.prev-button::after,
+.next-button::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+.prev-button:active::after,
+.next-button:active::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 .modal {
     display: none; /* Oculto por defecto */
