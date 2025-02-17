@@ -22,10 +22,6 @@ public class GeneralController {
         return "login";
     }
 
-    @GetMapping("/signUp")
-    public String signUpTemplate() {
-        return "signUp";
-    }
 
     @GetMapping("/iaReader")
     public String iaReaderTemplate() {

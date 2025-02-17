@@ -26,4 +26,35 @@ public class UserService {
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    public UserDto registerUser(UserDto userDto) {
+        if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
+            throw new RuntimeException("Username is already in use");
+        }
+
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        user.setDateOfBirth(userDto.getDateOfBirth());
+        user.setDescription(userDto.getDescription());
+        user.setEncodedPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setRoles(List.of("USER"));
+        if (userDto.getFavoriteGenres() != null) {
+            user.setFavoriteGenres(userDto.getFavoriteGenres());
+        }
+        User savedUser = userRepository.save(user);
+        return convertToDto(savedUser);
+    }
+
+    private UserDto convertToDto(User user) {
+        UserDto dto = new UserDto();
+        dto.setUsername(user.getUsername());
+        dto.setEmail(user.getEmail());
+        dto.setDateOfBirth(user.getDateOfBirth());
+        dto.setDescription(user.getDescription());
+        dto.setFavoriteGenres(user.getFavoriteGenres());
+        return dto;
+    }
+
+
 }
