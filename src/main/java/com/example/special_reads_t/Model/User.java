@@ -2,7 +2,9 @@ package com.example.special_reads_t.Model;
 
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +20,11 @@ public class User {
 
     private String email;
 
-    private Date dateOfBirth;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
 
-    private String encodedPassword;
+    private String password;
 
     @Column(length = 100)
     private String description;
@@ -49,13 +53,6 @@ public class User {
 
 
     public User() {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.encodedPassword = encodedPassword;
-        this.roles = roles;
-        this.favoriteGenres = favoriteGenres;
     }
 
     public Long getId() {
@@ -82,20 +79,20 @@ public class User {
         this.email = email;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getEncodedPassword() {
-        return encodedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEncodedPassword(String encodedPassword) {
-        this.encodedPassword = encodedPassword;
+    public void setPassword(String encodedPassword) {
+        this.password = encodedPassword;
     }
 
     public String getDescription() {

@@ -22,183 +22,182 @@
     <script src="/js/modernizr.js"></script>
 </head>
 <body>
-<div class="background"></div>
-<header>
-    <h1>¡Sé un Reader más!</h1>
-    <h4>Rellena tus datos</h4>
-</header>
-<div class="form-container">
-    {{#errorMessage}}
-    <div class="error">{{errorMessage}}</div>
-    {{/errorMessage}}
-    <form action="/submitForm" method="post">
-        <!-- Campo Username -->
-        <div class="form-control">
-            <input required type="text" id="username" name="username" value="{{userDto.username}}">
-            <label>
-                <span style="transition-delay:350ms">U</span>
-                <span style="transition-delay:300ms">s</span>
-                <span style="transition-delay:250ms">u</span>
-                <span style="transition-delay:200ms">a</span>
-                <span style="transition-delay:150ms">r</span>
-                <span style="transition-delay:100ms">i</span>
-                <span style="transition-delay:50ms">o</span>
-            </label>
+    <div class="background"></div>
+    <header>
+        <h1>¡Sé un Reader más!</h1>
+        <h4>Rellena tus datos</h4>
+    </header>
+        <div class="form-container">
+            {{#errorMessage}}
+            <div class="error">{{errorMessage}}</div>
+            {{/errorMessage}}
+            <form action="/submitForm" method="post">
+                <!-- Campo Username -->
+                <div class="form-control">
+                    <input required type="text" id="username" name="username">
+                    <label>
+                        <span style="transition-delay:350ms">U</span>
+                        <span style="transition-delay:300ms">s</span>
+                        <span style="transition-delay:250ms">u</span>
+                        <span style="transition-delay:200ms">a</span>
+                        <span style="transition-delay:150ms">r</span>
+                        <span style="transition-delay:100ms">i</span>
+                        <span style="transition-delay:50ms">o</span>
+                    </label>
+                </div>
+
+                <!-- Campo Fecha nacimiento -->
+                <div class="form-control">
+                    <input required type="date" id="birthdate" name="dateOfBirth">
+                    <label>
+                        <span style="transition-delay:300ms">N</span>
+                        <span style="transition-delay:250ms">a</span>
+                        <span style="transition-delay:200ms">c</span>
+                        <span style="transition-delay:150ms">i</span>
+                        <span style="transition-delay:100ms">m</span>
+                        <span style="transition-delay:50ms">i</span>
+                        <span style="transition-delay:0ms">e</span>
+                        <span style="transition-delay:-50ms">n</span>
+                        <span style="transition-delay:-100ms">t</span>
+                        <span style="transition-delay:-150ms">o</span>
+                    </label>
+                </div>
+
+                <!-- Campo Fecha nacimiento -->
+                <div class="form-control">
+                    <input required type="email" id="email" name="email">
+                    <label>
+                        <span style="transition-delay:300ms">E</span>
+                        <span style="transition-delay:250ms">m</span>
+                        <span style="transition-delay:200ms">a</span>
+                        <span style="transition-delay:150ms">i</span>
+                        <span style="transition-delay:100ms">l</span>
+                    </label>
+                </div>
+
+                <!-- Campo Password -->
+                <div class="form-control">
+                    <input required type="password" id="password" name="password">
+                    <label>
+                        <span style="transition-delay:300ms">C</span>
+                        <span style="transition-delay:250ms">o</span>
+                        <span style="transition-delay:200ms">n</span>
+                        <span style="transition-delay:150ms">t</span>
+                        <span style="transition-delay:100ms">r</span>
+                        <span style="transition-delay:50ms">a</span>
+                        <span style="transition-delay:0ms">s</span>
+                        <span style="transition-delay:-50ms">e</span>
+                        <span style="transition-delay:-100ms">ñ</span>
+                        <span style="transition-delay:-150ms">a</span>
+                    </label>
+                </div>
+                <h4>¿Cuáles son tus géneros favoritos?</h4>
+                <div class="checkbox-wrapper-container">
+                    <div class="checkbox-wrapper">
+                        <input id="romance" name="favoriteGenres" type="checkbox" value="Romance">
+                        <label class="terms-label" for="romance">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                                <rect height="200" width="200"></rect>
+                                <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                            </svg>
+                            <span class="label-text">Romance</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input id="fantasia" name="favoriteGenres" type="checkbox" value="Fantasia">
+                        <label class="terms-label" for="fantasia">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                                <rect height="200" width="200"></rect>
+                                <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                            </svg>
+                            <span class="label-text">Fantasía</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input id="cienciaFicción" name="favoriteGenres" type="checkbox" value="CienciaFiccion">
+                        <label class="terms-label" for="cienciaFicción">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                                <rect height="200" width="200"></rect>
+                                <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                            </svg>
+                            <span class="label-text">Ciencia Ficción</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input id="psicologia" name="favoriteGenres" type="checkbox" value="Psicologia">
+                        <label class="terms-label" for="psicologia">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                                <rect height="200" width="200"></rect>
+                                <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                            </svg>
+                            <span class="label-text">Psicología</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input id="historia" name="favoriteGenres" type="checkbox" value="Historia">
+                        <label class="terms-label" for="historia">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                                <rect height="200" width="200"></rect>
+                                <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                            </svg>
+                            <span class="label-text">Historia</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input id="terror" name="favoriteGenres" type="checkbox" value="Terror">
+                        <label class="terms-label" for="terror">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                                <rect height="200" width="200"></rect>
+                                <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                            </svg>
+                            <span class="label-text">Terror</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input id="manga" name="favoriteGenres" type="checkbox" value="Manga">
+                        <label class="terms-label" for="manga">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                                <rect height="200" width="200"></rect>
+                                <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                            </svg>
+                            <span class="label-text">Manga</span>
+                        </label>
+                    </div>
+                </div>
+
+
+                <br>
+                <button class="custom-button" type="submit">
+                    <span>Unirme</span>
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 74 74"
+                            height="34"
+                            width="34"
+                    >
+                        <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37"></circle>
+                        <path
+                                fill="black"
+                                d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
+                        ></path>
+                    </svg>
+                </button>
+
+            </form>
         </div>
-
-        <!-- Campo Fecha nacimiento -->
-        <div class="form-control">
-            <input required type="date" id="birthdate" name="dateOfBirth" value="{{userDto.dateOfBirth}}">
-            <label>
-                <span style="transition-delay:300ms">N</span>
-                <span style="transition-delay:250ms">a</span>
-                <span style="transition-delay:200ms">c</span>
-                <span style="transition-delay:150ms">i</span>
-                <span style="transition-delay:100ms">m</span>
-                <span style="transition-delay:50ms">i</span>
-                <span style="transition-delay:0ms">e</span>
-                <span style="transition-delay:-50ms">n</span>
-                <span style="transition-delay:-100ms">t</span>
-                <span style="transition-delay:-150ms">o</span>
-            </label>
+    <div class="bottom-left-container">
+        <img src="/images/muñecosing.png" alt="Descripción de la imagen" class="bottom-left-image">
+        <div class="text-and-button">
+            <p>¿Ya tienes cuenta?</p>
+            <a class="buttonLogin" href="/login">
+                <img src="/images/avatar.png" alt="Hand Icon" />
+                <span>Login</span>
+            </a>
         </div>
-
-        <!-- Campo Fecha nacimiento -->
-        <div class="form-control">
-            <input required type="email" id="email" name="email" value="{{userDto.email}}">
-            <label>
-                <span style="transition-delay:300ms">E</span>
-                <span style="transition-delay:250ms">m</span>
-                <span style="transition-delay:200ms">a</span>
-                <span style="transition-delay:150ms">i</span>
-                <span style="transition-delay:100ms">l</span>
-            </label>
-        </div>
-
-        <!-- Campo Password -->
-        <div class="form-control">
-            <input required type="password" id="password" name="password">
-            <label>
-                <span style="transition-delay:300ms">C</span>
-                <span style="transition-delay:250ms">o</span>
-                <span style="transition-delay:200ms">n</span>
-                <span style="transition-delay:150ms">t</span>
-                <span style="transition-delay:100ms">r</span>
-                <span style="transition-delay:50ms">a</span>
-                <span style="transition-delay:0ms">s</span>
-                <span style="transition-delay:-50ms">e</span>
-                <span style="transition-delay:-100ms">ñ</span>
-                <span style="transition-delay:-150ms">a</span>
-            </label>
-        </div>
-        <h4>¿Cuáles son tus géneros favoritos?</h4>
-        <div class="checkbox-wrapper-container">
-            <div class="checkbox-wrapper">
-                <input id="romance" name="favoriteGenres" type="checkbox" value="Romance">
-                <label class="terms-label" for="romance">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                        <rect height="200" width="200"></rect>
-                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                    </svg>
-                    <span class="label-text">Romance</span>
-                </label>
-            </div>
-            <div class="checkbox-wrapper">
-                <input id="fantasia" name="favoriteGenres" type="checkbox" value="Fantasia">
-                <label class="terms-label" for="fantasia">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                        <rect height="200" width="200"></rect>
-                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                    </svg>
-                    <span class="label-text">Fantasía</span>
-                </label>
-            </div>
-            <div class="checkbox-wrapper">
-                <input id="cienciaFicción" name="favoriteGenres" type="checkbox" value="CienciaFiccion">
-                <label class="terms-label" for="cienciaFicción">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                        <rect height="200" width="200"></rect>
-                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                    </svg>
-                    <span class="label-text">Ciencia Ficción</span>
-                </label>
-            </div>
-            <div class="checkbox-wrapper">
-                <input id="psicologia" name="favoriteGenres" type="checkbox" value="Psicologia">
-                <label class="terms-label" for="psicologia">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                        <rect height="200" width="200"></rect>
-                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                    </svg>
-                    <span class="label-text">Psicología</span>
-                </label>
-            </div>
-            <div class="checkbox-wrapper">
-                <input id="historia" name="favoriteGenres" type="checkbox" value="Historia">
-                <label class="terms-label" for="historia">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                        <rect height="200" width="200"></rect>
-                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                    </svg>
-                    <span class="label-text">Historia</span>
-                </label>
-            </div>
-            <div class="checkbox-wrapper">
-                <input id="terror" name="favoriteGenres" type="checkbox" value="Terror">
-                <label class="terms-label" for="terror">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                        <rect height="200" width="200"></rect>
-                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                    </svg>
-                    <span class="label-text">Terror</span>
-                </label>
-            </div>
-            <div class="checkbox-wrapper">
-                <input id="manga" name="favoriteGenres" type="checkbox" value="Manga">
-                <label class="terms-label" for="manga">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                        <rect height="200" width="200"></rect>
-                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                    </svg>
-                    <span class="label-text">Manga</span>
-                </label>
-            </div>
-        </div>
-
-
-        <br>
-        <a href="/unirme" class="custom-button">
-            <span>Unirme</span>
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 74 74"
-                    height="34"
-                    width="34"
-            >
-                <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37"></circle>
-                <path
-                        fill="black"
-                        d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
-                ></path>
-            </svg>
-        </a>
-
-
-    </form>
-</div>
-<div class="bottom-left-container">
-    <img src="/images/muñecosing.png" alt="Descripción de la imagen" class="bottom-left-image">
-    <div class="text-and-button">
-        <p>¿Ya tienes cuenta?</p>
-        <a class="buttonLogin" href="/login">
-            <img src="/images/avatar.png" alt="Hand Icon" />
-            <span>Login</span>
-        </a>
     </div>
-</div>
-<div class="right-image">
-    <img src="/images/muñecosaluda.png" alt="Descripción de la imagen">
-</div>
+    <div class="right-image">
+        <img src="/images/muñecosaluda.png" alt="Descripción de la imagen">
+    </div>
 </body>
 </html>
