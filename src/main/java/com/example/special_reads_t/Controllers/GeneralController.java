@@ -1,10 +1,18 @@
 package com.example.special_reads_t.Controllers;
 
+import com.example.special_reads_t.Model.User;
+import com.example.special_reads_t.Repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GeneralController {
+
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/")
     public String index() {
@@ -13,7 +21,12 @@ public class GeneralController {
 
 
     @GetMapping("/indexUser")
-    public String indexUserTemplate() {
+    public String indexUserTemplate(Model model, HttpServletRequest request) {
+        String username = request.getUserPrincipal().getName();
+        User user = userRepository.findByUsername(username).orElseThrow();
+
+        model.addAttribute("userame", user.getUsername());
+        model.addAttribute("admin", request.isUserInRole("ADMIN"));
         return "indexUser";
     }
 
@@ -22,6 +35,11 @@ public class GeneralController {
         return "login";
     }
 
+    @GetMapping("/loginerror")
+    public String loginErrorTemplate() { return "loginerror"; }
+
+    @GetMapping("/logout")
+    public String logoutTemplate() { return "logout"; }
 
     @GetMapping("/iaReader")
     public String iaReaderTemplate() {
