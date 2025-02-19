@@ -99,31 +99,34 @@
                     </div>
                     <span>Send</span>
                 </button>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+
             </form>
+
         </footer>
 
     </div>
 </div>
-
 <script>
-    const chatContainer = document.getElementById('chat-container');
-    const userInput = document.getElementById('user-input');
-    const sendButton = document.getElementById('send-button');
-
-    function addMessage(content, isBot) {
-        const messageDiv = document.createElement('div');
-        messageDiv.textContent = content;
-        messageDiv.className = isBot ? 'bot-message' : 'user-message';
-        chatContainer.appendChild(messageDiv);
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-
-    sendButton.addEventListener('click', () => {
-        const userMessage = userInput.value.trim();
+    const chatForm = document.getElementById('chat-form');
+    chatForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita el envío tradicional
+        console.log("Formulario enviado");
+        const userMessage = document.getElementById('user-input').value.trim();
         if (userMessage) {
-            addMessage(userMessage, false);
-            addMessage('Thinking...', true);
-            userInput.value = '';
+            fetch('/api/chat/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.response);
+                    // Aquí podrías actualizar el DOM para mostrar la respuesta del bot
+                })
+                .catch(error => console.error('Error:', error));
         }
     });
 </script>

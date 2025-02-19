@@ -31,7 +31,7 @@
             {{#errorMessage}}
             <div class="error">{{errorMessage}}</div>
             {{/errorMessage}}
-            <form action="/submitForm" method="post">
+            <form action="/signUp" method="post">
                 <!-- Campo Username -->
                 <div class="form-control">
                     <input required type="text" id="username" name="username">
@@ -183,7 +183,7 @@
                         ></path>
                     </svg>
                 </button>
-
+                <input type="hidden" name="_csrf" value="{{token}}"/>
             </form>
         </div>
     <div class="bottom-left-container">

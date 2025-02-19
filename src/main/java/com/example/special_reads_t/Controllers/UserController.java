@@ -33,7 +33,7 @@ public class UserController {
         return "signUp";
     }
 
-    @PostMapping("/submitForm")
+    @PostMapping("/signUp")
     public String registerUser(User user) {
         System.out.println("Entrando en registerUser");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
