@@ -274,11 +274,13 @@ body a:hover {
 
 /* Imagen de la portada */
 .cover {
-    width: 150px;
+    width: 120px;
     height: 200px;
     object-fit: cover;
     border-radius: 4px;
     margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
 }
 
 /* Información del libro */

@@ -51,4 +51,10 @@ public class BookService {
 
         return Collections.emptyList();
     }
+
+    public void testApiResponse(String title) {
+        String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
+        String jsonResponse = restTemplate.getForObject(apiUrl, String.class);
+        System.out.println("Respuesta cruda de la API: " + jsonResponse);
+    }
 }

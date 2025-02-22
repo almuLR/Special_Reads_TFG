@@ -3,6 +3,7 @@ package com.example.special_reads_t.Controllers;
 import com.example.special_reads_t.Model.Book;
 import com.example.special_reads_t.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,5 +22,11 @@ public class BookController {
         List<Book> books = bookService.SearchBooksFromApi(title);
         model.addAttribute("books", books);
         return "bookSearchs";
+    }
+
+    @GetMapping("/apiResponse")
+    public ResponseEntity<String> getApiResponse(@RequestParam String title) {
+        bookService.testApiResponse(title);
+        return ResponseEntity.ok("Revisa la consola para ver la respuesta de la API");
     }
 }

@@ -1,12 +1,17 @@
 package com.example.special_reads_t.Model.dto;
 
 import com.example.special_reads_t.Model.Book;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GoogleBooksResponse {
 
     private int totalResults;
+
+    @JsonProperty("items")
     private List<GoogleBookResult> results;
 
     public int getTotalResults() {
