@@ -43,9 +43,13 @@ public class BookService {
                 book.setPageCount(info.getTotalPages());
                 if (info.getImageLinks() != null) {
                     book.setCoverImageUrl(info.getImageLinks().getThumbnail());
+                } else {
+                    book.setCoverImageUrl("/images/alasNegras.jpeg");
                 }
+
                 return book;
             }).collect(Collectors.toList());
+
 
         }
 
