@@ -1,4 +1,4 @@
-package com.example.special_reads_t.Model;
+package com.example.special_reads_t.Model.dto;
 
 import java.util.List;
 

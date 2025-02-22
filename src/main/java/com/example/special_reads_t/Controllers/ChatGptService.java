@@ -1,6 +1,9 @@
 package com.example.special_reads_t.Controllers;
 
 
+import com.theokanning.openai.OpenAiService;
+import com.theokanning.openai.completion.chat.ChatCompletionRequest;
+import com.theokanning.openai.completion.chat.ChatMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -16,57 +19,33 @@ import java.util.Map;
 
 @Service
 public class ChatGptService {
+
     @Value("${openai.api.key}")
     private String openaiApiKey;
 
-    private final WebClient webClient;
-
-    public ChatGptService(WebClient.Builder webClientBuilder) {
-        // Se usa la URL base de la API de OpenAI
-        this.webClient = webClientBuilder.baseUrl("https://api.openai.com/v1").build();
-    }
-
     public String getChatResponse(String userMessage) {
-        // Preparamos el cuerpo de la solicitud
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("model", "gpt-3.5-turbo");
+        try {
+            OpenAiService service = new OpenAiService(openaiApiKey, 60);
 
-        List<Map<String, String>> messages = new ArrayList<>();
-        messages.add(Map.of("role", "system", "content", "Eres un experto en literatura que responde preguntas sobre libros y autores."));
-        messages.add(Map.of("role", "user", "content", userMessage));
-        requestBody.put("messages", messages);
+            List<ChatMessage> messages = List.of(
+                    new ChatMessage("system", "Eres un experto en literatura que responde preguntas sobre libros y autores."),
+                    new ChatMessage("user", userMessage)
+            );
 
-        int maxRetries = 3;
-        int retryCount = 0;
-        while (retryCount < maxRetries) {
-            try {
-                Mono<Map> responseMono = this.webClient.post()
-                        .uri("/chat/completions")
-                        .header("Authorization", "Bearer " + openaiApiKey)
-                        .header("Content-Type", "application/json")
-                        .body(BodyInserters.fromValue(requestBody))
-                        .retrieve()
-                        .bodyToMono(Map.class);
+            ChatCompletionRequest request = ChatCompletionRequest.builder()
+                    .model("gpt-3.5-turbo")
+                    .messages(messages)
+                    .build();
 
-                Map<String, Object> responseMap = responseMono.block();
-                if (responseMap != null && responseMap.containsKey("choices")) {
-                    List<Map<String, Object>> choices = (List<Map<String, Object>>) responseMap.get("choices");
-                    if (!choices.isEmpty()) {
-                        Map<String, Object> message = (Map<String, Object>) choices.get(0).get("message");
-                        return ((String) message.get("content")).trim();
-                    }
-                }
-                break; // Solicitud exitosa
-            } catch (WebClientResponseException.TooManyRequests ex) {
-                retryCount++;
-                try {
-                    // Espera incremental: 2 segundos * número de reintentos
-                    Thread.sleep(2000 * retryCount);
-                } catch (InterruptedException ie) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
+            var response = service.createChatCompletion(request);
+            if (response.getChoices() != null && !response.getChoices().isEmpty()) {
+                return response.getChoices().get(0).getMessage().getContent().trim();
             }
+        } catch (Exception ex) {
+            // Aquí registramos el error y devolvemos un mensaje de error
+            System.err.println("Error al llamar a OpenAI: " + ex.getMessage());
+            // O puedes usar un logger
+            return "Error al obtener respuesta (" + ex.getMessage() + ")";
         }
         return "No se obtuvo respuesta";
     }

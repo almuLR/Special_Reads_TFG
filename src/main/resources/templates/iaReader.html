@@ -100,20 +100,41 @@
                     <span>Send</span>
                 </button>
                 <input type="hidden" name="_csrf" value="{{token}}"/>
-
             </form>
-
         </footer>
 
     </div>
 </div>
 <script>
-    const chatForm = document.getElementById('chat-form');
-    chatForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío tradicional
-        console.log("Formulario enviado");
-        const userMessage = document.getElementById('user-input').value.trim();
-        if (userMessage) {
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatForm = document.getElementById('chat-form');
+        const chatContainer = document.getElementById('chat-container');
+
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            console.log("Formulario enviado");
+            const userInput = document.getElementById('user-input');
+            const userMessage = userInput.value.trim();
+            if (!userMessage) return;
+
+            // Agrega la burbuja del usuario
+            const userBubble = document.createElement('div');
+            userBubble.classList.add('user-message');
+            userBubble.textContent = userMessage;
+            chatContainer.appendChild(userBubble);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Limpia el input
+            userInput.value = '';
+
+            // Agrega una burbuja provisional para el bot
+            const botBubble = document.createElement('div');
+            botBubble.classList.add('bot-message', 'thinking');
+            botBubble.textContent = 'Thinking';
+            chatContainer.appendChild(botBubble);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Envía la petición
             fetch('/api/chat/send', {
                 method: 'POST',
                 headers: {
@@ -123,11 +144,17 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.response);
-                    // Aquí podrías actualizar el DOM para mostrar la respuesta del bot
+                    console.log("Respuesta del bot:", data.response);
+                    botBubble.classList.remove('thinking');
+                    botBubble.textContent = data.response;
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
                 })
-                .catch(error => console.error('Error:', error));
-        }
+                .catch(error => {
+                    console.error('Error:', error);
+                    botBubble.classList.remove('thinking');
+                    botBubble.textContent = 'Error al obtener respuesta';
+                });
+        });
     });
 </script>
 </body>

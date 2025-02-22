@@ -309,6 +309,16 @@ footer button:hover svg {
     max-width: 60%;
     align-self: flex-end;
 }
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.thinking::after {
+    content: '...';
+    animation: blink 1.5s infinite;
+}
 .container {
     display: flex;
     width: 100%;

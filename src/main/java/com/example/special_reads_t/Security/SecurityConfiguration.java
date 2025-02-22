@@ -62,14 +62,9 @@ public class SecurityConfiguration {
 
         http
                 .securityMatcher("/api/**")
-                .exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
-
-        http
                 .authorizeHttpRequests(authorize -> authorize
-                        // PRIVATE ENDPOINTS
-                        .requestMatchers(HttpMethod.POST, "/api/chat/**").permitAll()
-
-                        // PUBLIC ENDPOINTS
+                        .requestMatchers("/api/chat/**").permitAll()
+                        .requestMatchers("/api/book/**").permitAll()
                         .anyRequest().permitAll()
                 );
 
@@ -126,6 +121,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/ranking").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/review").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/helpAdmin").hasAnyRole("ADMIN")
+                        .requestMatchers("/book/search").hasAnyRole("USER", "ADMIN")
 
                 )
                 .formLogin(formLogin -> formLogin
