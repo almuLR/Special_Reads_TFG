@@ -105,10 +105,12 @@
 
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const chatForm = document.getElementById('chat-form');
         const chatContainer = document.getElementById('chat-container');
+        const converter = new showdown.Converter();
 
         chatForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -144,9 +146,14 @@
             })
                 .then(response => response.json())
                 .then(data => {
+                    const markdownText = data.response;
+                    const htmlContent = converter.makeHtml(markdownText);
                     console.log("Respuesta del bot:", data.response);
+
                     botBubble.classList.remove('thinking');
-                    botBubble.textContent = data.response;
+
+                    botBubble.innerHTML = htmlContent;
+
                     chatContainer.scrollTop = chatContainer.scrollHeight;
                 })
                 .catch(error => {

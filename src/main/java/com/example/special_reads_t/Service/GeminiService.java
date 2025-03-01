@@ -32,12 +32,6 @@ public class GeminiService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        // Preparar el cuerpo de la petición según el ejemplo de curl:
-        // {
-        //   "contents": [{
-        //     "parts": [{"text": "Explain how AI works"}]
-        //   }]
-        // }
 
         Map<String, Object> textMap = new HashMap<>();
         textMap.put("text", prompt);

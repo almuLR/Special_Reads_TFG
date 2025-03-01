@@ -192,20 +192,22 @@ body a:hover {
 /* Contenedor del chatbot */
 #chat-container {
     flex-grow: 1;
-    width: 100%; /* Ancho completo */
-    max-width: 900px; /* Límite del ancho */
-    height: 50%; /* Reducir la altura del cuadro de chatbot */
-    background-color: #ffffff; /* Fondo blanco */
-    border: 1px solid #ddd; /* Borde alrededor */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 900px;
+    height: 50%;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinear mensajes al inicio */
-    align-items: center; /* Centrar mensajes horizontalmente */
-    margin-bottom: 10px; /* Reducir margen con el footer */
-    overflow-y: auto; /* Habilitar scroll para mensajes largos */
+    justify-content: flex-start;
+    align-items: flex-start; /* Importante para alinear los mensajes al inicio */
+    margin-bottom: 10px;
+    overflow-y: auto;
+    border-radius: 10px; /* Bordes redondeados para el contenedor */
 }
+
 footer {
     display: flex;
     align-items: center; /* Alinear el botón y el área de texto verticalmente */
@@ -292,23 +294,55 @@ footer button:hover svg {
     transform: rotate(45deg);
 }
 .bot-message {
-    background-color: #e5e7eb;
-    color: #1f2937;
-    padding: 10px;
-    border-radius: 5px;
+    position: relative; /* Necesario para la flecha (pseudo-elemento) */
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 16px;
     margin-bottom: 10px;
     max-width: 60%;
+    align-self: flex-start; /* Alinea a la izquierda */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.bot-message::after {
+    content: "";
+    position: absolute;
+    top: 10px; /* Ajusta según donde quieras que aparezca la flecha */
+    left: -10px; /* Flecha a la izquierda */
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: #f0f0f0; /* Color del fondo de la burbuja */
+    border-left: 0;
+    border-bottom: 0;
 }
 
 .user-message {
-    background-color: #2563eb;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
+    position: relative;
+    background-color: #2563eb; /* Color de fondo de la burbuja */
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 16px;
     margin-bottom: 10px;
     max-width: 60%;
-    align-self: flex-end;
+    align-self: flex-end; /* Alinea a la derecha */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.user-message::after {
+    content: "";
+    position: absolute;
+    top: 50%;             /* Ubicación vertical */
+    right: -7px;          /* Ajusta la flecha hacia fuera de la burbuja */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    /* Flecha usando bordes transparentes y un borde del color de la burbuja */
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid #2563eb; /* Mismo color que el fondo */
+}
+
 @keyframes blink {
     0% { opacity: 0.2; }
     20% { opacity: 1; }
@@ -318,6 +352,8 @@ footer button:hover svg {
 .thinking::after {
     content: '...';
     animation: blink 1.5s infinite;
+    margin-left: 5px;
+    color: #333; /* Ajusta si quieres que los puntos de "pensando" tengan otro color */
 }
 .container {
     display: flex;
@@ -362,4 +398,24 @@ footer button:hover svg {
     font-size: 0.875rem;
     margin-top: 0.5rem;
     color: #8d8d8d;
+}
+
+.bot-message strong {
+    font-weight: bold;
+    color: #000; /* O el color que prefieras para negritas */
+}
+
+.bot-message em {
+    font-style: italic;
+    color: #555;
+}
+
+/* Para listas en la burbuja del bot */
+.bot-message ul {
+    margin: 0.5em 0;
+    padding-left: 1.2em;
+}
+
+.bot-message li {
+    margin-bottom: 0.3em;
 }
