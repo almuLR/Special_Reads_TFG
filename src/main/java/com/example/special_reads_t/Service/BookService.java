@@ -24,10 +24,11 @@ public class BookService {
     private RestTemplate restTemplate;
 
     public List<Book> SearchBooksFromApi(String title) {
-        String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
+        String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title + "&maxResults=40&startIndex=0";
 
         ResponseEntity<GoogleBooksResponse> response = restTemplate.getForEntity(apiUrl, GoogleBooksResponse.class);
         GoogleBooksResponse googleBooksResponse = response.getBody();
+
 
         if (googleBooksResponse != null && googleBooksResponse.getResults() != null) {
             return googleBooksResponse.getResults().stream().map(result -> {
@@ -36,6 +37,8 @@ public class BookService {
                 book.setTitle(info.getTitle());
                 if (info.getAuthors() != null && !info.getAuthors().isEmpty()) {
                     book.setAuthor(info.getAuthors().get(0));
+                } else {
+                    book.setAuthor("Unknown");
                 }
                 book.setPublisher(info.getPublisher());
                 book.setPublishedDate(info.getPublisherDate());
@@ -44,7 +47,7 @@ public class BookService {
                 if (info.getImageLinks() != null) {
                     book.setCoverImageUrl(info.getImageLinks().getThumbnail());
                 } else {
-                    book.setCoverImageUrl("/images/alasNegras.jpeg");
+                    book.setCoverImageUrl("/images/bookDefault.jpg");
                 }
 
                 return book;
