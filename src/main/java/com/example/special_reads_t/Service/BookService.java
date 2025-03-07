@@ -45,7 +45,7 @@ public class BookService {
                 book.setPublisher(info.getPublisher());
                 book.setPublishedDate(info.getPublishedDate());
                 book.setSynopsis(info.getDescription());
-                book.setPageCount(info.getPageCount());
+                book.setPageCount(info.getPageCount() != null ? info.getPageCount() : 0);
                 if (info.getCategories() != null && !info.getCategories().isEmpty()) {
                     book.setGenres(info.getCategories());
                 }else {
@@ -86,7 +86,7 @@ public class BookService {
             book.setPublishedDate(info.getPublishedDate());
             book.setSynopsis(info.getDescription());
             System.out.println("Páginas recibidas de la API: " + info.getPageCount());
-            book.setPageCount(info.getPageCount());
+            book.setPageCount(info.getPageCount() != null ? info.getPageCount() : 0);
             if (info.getImageLinks() != null) {
                 book.setCoverImageUrl(info.getImageLinks().getThumbnail());
             }
