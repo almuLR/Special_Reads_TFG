@@ -1,6 +1,7 @@
 package com.example.special_reads_t.Service;
 
 import com.example.special_reads_t.Model.Book;
+import com.example.special_reads_t.Model.dto.GoogleBookResult;
 import com.example.special_reads_t.Model.dto.GoogleBooksResponse;
 import com.example.special_reads_t.Model.dto.VolumeInfo;
 import com.example.special_reads_t.Repository.BookRepository;
@@ -34,6 +35,7 @@ public class BookService {
             return googleBooksResponse.getResults().stream().map(result -> {
                 VolumeInfo info = result.getVolumeInfo();
                 Book book = new Book();
+                book.setGoogleBookId(result.getGoogleBookId());
                 book.setTitle(info.getTitle());
                 if (info.getAuthors() != null && !info.getAuthors().isEmpty()) {
                     book.setAuthor(info.getAuthors().get(0));
@@ -41,9 +43,14 @@ public class BookService {
                     book.setAuthor("Unknown");
                 }
                 book.setPublisher(info.getPublisher());
-                book.setPublishedDate(info.getPublisherDate());
+                book.setPublishedDate(info.getPublishedDate());
                 book.setSynopsis(info.getDescription());
-                book.setPageCount(info.getTotalPages());
+                book.setPageCount(info.getPageCount());
+                if (info.getCategories() != null && !info.getCategories().isEmpty()) {
+                    book.setGenres(info.getCategories());
+                }else {
+                    book.setGenres(Collections.singletonList("Unknown"));
+                }
                 if (info.getImageLinks() != null) {
                     book.setCoverImageUrl(info.getImageLinks().getThumbnail());
                 } else {
@@ -59,6 +66,35 @@ public class BookService {
         return Collections.emptyList();
     }
 
+    public Book detailsBook(String googleBookId) {
+        // Construye la URL usando el ID del libro
+        String apiUrl = "https://www.googleapis.com/books/v1/volumes/" + googleBookId;
+        // Realiza la petición y mapea la respuesta a un objeto GoogleBookItem
+        ResponseEntity<GoogleBookResult> response = restTemplate.getForEntity(apiUrl, GoogleBookResult.class);
+        GoogleBookResult result = response.getBody();
+
+        if (result != null && result.getVolumeInfo() != null) {
+            VolumeInfo info = result.getVolumeInfo();
+            Book book = new Book();
+            book.setTitle(info.getTitle());
+            // Asigna el ID de la API al campo googleBookId
+            book.setGoogleBookId(result.getGoogleBookId());
+            if (info.getAuthors() != null && !info.getAuthors().isEmpty()) {
+                book.setAuthor(info.getAuthors().get(0));
+            }
+            book.setPublisher(info.getPublisher());
+            book.setPublishedDate(info.getPublishedDate());
+            book.setSynopsis(info.getDescription());
+            System.out.println("Páginas recibidas de la API: " + info.getPageCount());
+            book.setPageCount(info.getPageCount());
+            if (info.getImageLinks() != null) {
+                book.setCoverImageUrl(info.getImageLinks().getThumbnail());
+            }
+            return book;
+        }
+
+        return null;
+    }
     public void testApiResponse(String title) {
         String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
         String jsonResponse = restTemplate.getForObject(apiUrl, String.class);

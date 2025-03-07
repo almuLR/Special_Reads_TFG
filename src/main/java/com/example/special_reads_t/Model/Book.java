@@ -13,11 +13,13 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String googleBookId;
+
     private String title;
 
     private String author;
 
-    private String genre;
+    private List<String> genres;
     @Column(length = 5000)
     private String synopsis;
 
@@ -44,6 +46,14 @@ public class Book {
         this.id = id;
     }
 
+    public String getGoogleBookId() {
+        return googleBookId;
+    }
+
+    public void setGoogleBookId(String googleBookId) {
+        this.googleBookId = googleBookId;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -60,12 +70,12 @@ public class Book {
         this.author = author;
     }
 
-    public String getGenre() {
-        return genre;
+    public List<String> getGenres() {
+        return genres;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 
     public String getSynopsis() {

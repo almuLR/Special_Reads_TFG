@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -22,6 +23,13 @@ public class BookController {
         List<Book> books = bookService.SearchBooksFromApi(title);
         model.addAttribute("books", books);
         return "bookSearchs";
+    }
+
+    @GetMapping("/detailsBook/{googleBookId}")
+    public String detailsBook(@PathVariable("googleBookId") String googleBookId, Model model) {
+        Book bookDetails = bookService.detailsBook(googleBookId);
+        model.addAttribute("book", bookDetails);
+        return "bookDetailsView";
     }
 
     @GetMapping("/apiResponse")

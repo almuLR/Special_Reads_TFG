@@ -123,6 +123,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/helpAdmin").hasAnyRole("ADMIN")
                         .requestMatchers("/book/search").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/apiResponse").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/detailsBook/**").hasAnyRole("USER", "ADMIN")
 
                 )
                 .formLogin(formLogin -> formLogin

@@ -96,7 +96,7 @@ public class GeneralController {
 
     @GetMapping("/detailsBook")
     public String detailsBookTemplate() {
-        return "detailsBook";
+        return "bookDetailsView";
     }
     @GetMapping("/review")
     public String ReviewBookTemplate() {

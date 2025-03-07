@@ -6,10 +6,11 @@ public class VolumeInfo {
     private String title;
     private List<String> authors;
     private String publisher;
-    private String publisherDate;
+    private String publishedDate;
     private String description;
-    private int totalPages;
+    private Integer pageCount;
     private ImageLinks imageLinks;
+    private List<String> categories;
 
     public String getTitle() {
         return title;
@@ -35,12 +36,12 @@ public class VolumeInfo {
         this.publisher = publisher;
     }
 
-    public String getPublisherDate() {
-        return publisherDate;
+    public String getPublishedDate() {
+        return publishedDate;
     }
 
-    public void setPublisherDate(String publisherDate) {
-        this.publisherDate = publisherDate;
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
     public String getDescription() {
@@ -51,12 +52,12 @@ public class VolumeInfo {
         this.description = description;
     }
 
-    public int getTotalPages() {
-        return totalPages;
+    public Integer getPageCount() {
+        return pageCount;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
     }
 
     public ImageLinks getImageLinks() {
@@ -65,5 +66,13 @@ public class VolumeInfo {
 
     public void setImageLinks(ImageLinks imageLinks) {
         this.imageLinks = imageLinks;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 }
