@@ -87,6 +87,11 @@ public class BookService {
             book.setSynopsis(info.getDescription());
             System.out.println("Páginas recibidas de la API: " + info.getPageCount());
             book.setPageCount(info.getPageCount() != null ? info.getPageCount() : 0);
+            if (info.getCategories() != null && !info.getCategories().isEmpty()) {
+                book.setGenres(info.getCategories());
+            } else {
+                book.setGenres(Collections.singletonList("Unknown"));
+            }
             if (info.getImageLinks() != null) {
                 book.setCoverImageUrl(info.getImageLinks().getThumbnail());
             }

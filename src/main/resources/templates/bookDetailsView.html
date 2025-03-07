@@ -121,9 +121,7 @@
                     </div>-->
                     <p><strong>Editorial: </strong>{{book.publisher}}</p>
                     <p><strong>Número de páginas: </strong>{{book.pageCount}}</p>
-                    {{#book.genres}}
-                    <p><strong>Categoría: </strong>{{.}}</p>
-                    {{/book.genres}}
+                    <p><strong>Categoría: </strong>{{#book.genres}} {{.}} {{/book.genres}}</p>
                     <p><strong>Fecha de publicación: </strong>{{book.publishedDate}}</p>
                     <p><strong>Sinópsis: </strong></p>
                     <p>{{{book.synopsis}}}</p>
