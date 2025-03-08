@@ -105,4 +105,8 @@ public class BookService {
         String jsonResponse = restTemplate.getForObject(apiUrl, String.class);
         System.out.println("Respuesta cruda de la API: " + jsonResponse);
     }
+
+    public Book save(Book book) {
+        return bookRepository.save(book);
+    }
 }

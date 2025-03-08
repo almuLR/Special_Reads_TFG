@@ -1,0 +1,61 @@
+package com.example.special_reads_t.Service;
+
+
+import com.example.special_reads_t.Model.Book;
+import com.example.special_reads_t.Model.JournalEntry;
+import com.example.special_reads_t.Model.User;
+import com.example.special_reads_t.Repository.JournalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class JournalService {
+
+    @Autowired
+    private JournalRepository journalRepository;
+
+    @Autowired
+    private BookService bookService;
+
+    @Autowired
+    private UserService userService;
+
+    public JournalEntry addBookToJournal(Book book) {
+        if (book.getId() == null) {
+            book = bookService.save(book);
+        }
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            throw new IllegalStateException("No se encontró el usuario actual");
+        }
+
+        JournalEntry journalEntry = new JournalEntry();
+        journalEntry.setBook(book);
+        journalEntry.setUser(currentUser);
+        journalEntry.setProgress(0);
+        journalEntry.setStatus("Leyendo");
+        journalEntry.setStartDate(LocalDateTime.now());
+        return journalRepository.save(journalEntry);
+    }
+
+    public JournalEntry findById(Long id) {
+        Optional<JournalEntry> journalEntry = journalRepository.findById(id);
+        return journalEntry.orElse(null);
+    }
+
+    public JournalEntry updateJournalEntry(JournalEntry journalEntry) {
+        return journalRepository.save(journalEntry);
+    }
+
+    public List<JournalEntry> getAllJournalEntriesForUser() {
+        return journalRepository.findAll();
+    }
+
+    public JournalEntry save(JournalEntry entry) {
+        return journalRepository.save(entry);
+    }
+}

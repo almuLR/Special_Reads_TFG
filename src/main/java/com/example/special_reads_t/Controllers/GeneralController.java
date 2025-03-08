@@ -46,10 +46,7 @@ public class GeneralController {
         return "iaReader";
     }
 
-    @GetMapping("/journal")
-    public String journalTemplate() {
-        return "journal";
-    }
+
     @GetMapping("/bookShelf")
     public String bookshelfTemplate() {
         return "bookShelf";

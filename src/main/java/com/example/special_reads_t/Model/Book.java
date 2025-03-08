@@ -25,6 +25,7 @@ public class Book {
 
     private int pageCount;
 
+    @Column(name = "cover_image_url", length = 512)
     private String coverImageUrl;
 
     private String sagaTitle;

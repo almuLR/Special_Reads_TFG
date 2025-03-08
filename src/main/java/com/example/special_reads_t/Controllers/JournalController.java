@@ -1,0 +1,77 @@
+package com.example.special_reads_t.Controllers;
+
+
+import com.example.special_reads_t.Model.Book;
+import com.example.special_reads_t.Model.JournalEntry;
+import com.example.special_reads_t.Service.BookService;
+import com.example.special_reads_t.Service.JournalService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+
+public class JournalController {
+
+    @Autowired
+    private BookService bookService;
+
+    @Autowired
+    private JournalService journalService;
+
+    @PostMapping("/journal/add/{googleBookId}")
+    public String addBookToJournal(@PathVariable("googleBookId") String googleBookId) {
+        Book book = bookService.detailsBook(googleBookId);
+        if (book != null) {
+            JournalEntry entry = journalService.addBookToJournal(book);
+            return "redirect:/journal?entryId=" + entry.getId();
+        }
+        return "redirect:/journal";
+    }
+
+    @PostMapping("/journal/updateProgress")
+    public String updateProgress(@RequestParam("journalEntryId") Long journalEntryId, @RequestParam("progressType") String progressType, @RequestParam("progressValue") int progressValue) {
+        JournalEntry entry = journalService.findById(journalEntryId);
+        if (entry != null) {
+            if ("pages".equalsIgnoreCase(progressType)) {
+                int totalPages = entry.getBook().getPageCount();
+                if (totalPages > 0) {
+                    int percentage = (int) ((progressValue / (double)totalPages) * 100);
+                    entry.setProgress(percentage);
+                }
+            } else if ("percentage".equalsIgnoreCase(progressType)) {
+                entry.setProgress(progressValue);
+            }
+            entry.setStatus("Leyendo");
+            journalService.updateJournalEntry(entry);
+        }
+        return "redirect:/journal";
+    }
+
+    @GetMapping("/journal")
+    public String showjournal(Model model) {
+        List<JournalEntry> entries = journalService.getAllJournalEntriesForUser();
+
+        List<JournalEntry> leftJournalEntries = new ArrayList<>();
+        List<JournalEntry> rightJournalEntries = new ArrayList<>();
+        for (int i = 0; i < entries.size(); i++) {
+            if (i % 2 == 0) {
+                leftJournalEntries.add(entries.get(i));
+            } else {
+                rightJournalEntries.add(entries.get(i));
+            }
+        }
+        model.addAttribute("leftJournalEntries", leftJournalEntries);
+        model.addAttribute("rightJournalEntries", rightJournalEntries);
+
+        return "journal";
+    }
+
+}
