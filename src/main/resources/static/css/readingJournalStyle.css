@@ -656,3 +656,17 @@ body a:hover {
     gap: 10px;
     margin: 15px 0;
 }
+/* Estado Pendiente: rojo */
+.progress-bar.progress-red {
+    background-color: #e73131;
+}
+
+/* Estado Leyendo / Retomar lectura: verde */
+.progress-bar.progress-green {
+    background-color: rgba(65, 230, 97, 0.8);
+}
+
+/* Otros estados, por ejemplo, Terminado: azul */
+.progress-bar.progress-blue {
+    background-color: #00bbff;
+}

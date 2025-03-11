@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const title = this.getAttribute("data-title");
             const progress = this.getAttribute("data-progress");
 
-            document.querySelector(".modal-content h2").innerText = `Progreso de lectura: ${title}`;
             progressInput.value = progress + "%";
 
             modal.style.display = "block";

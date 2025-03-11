@@ -101,7 +101,7 @@
             <div class="page left">
                 {{#leftJournalEntries}}
                 <!-- Libros lado izquierdo -->
-                <div class="book" onclick="openModal('{{id}}')">
+                <div class="book" onclick="openModal('{{id}}', '{{status}}')">
                     <div class="cover">
                         <img src="{{book.coverImageUrl}}" alt="Portada del libro">
                     </div>
@@ -109,7 +109,9 @@
                         <div class="progress" style="width: [[${book.progress}]]%;" th:text="${book.progress + '%'}"></div>
                     </div>-->
                     <div class="progress">
-                        <div class="progress-bar" style="width: {{progress}}%;">{{progress}}%</div>
+                        <div class="progress-bar {{cssClass}}" style="width: {{progress}}%;">
+                            {{progress}}{{^progress}}0{{/progress}}%
+                        </div>
                     </div>
                     <form action="/rate/{bookId}" method="post">
                         <div class="rating">
@@ -186,7 +188,7 @@
             <div class="page right">
                 {{#rightJournalEntries}}
                     <!-- Libros lado derecho -->
-                    <div class="book" onclick="openModal('{{id}}')">
+                    <div class="book" onclick="openModal('{{id}}', '{{status}}')">
                         <div class="cover">
                             <img src="{{book.coverImageUrl}}" alt="Portada del libro">
                         </div>
@@ -194,7 +196,9 @@
                             <div class="progress" style="width: [[${book.progress}]]%;" th:text="${book.progress + '%'}"></div>
                         </div>-->
                         <div class="progress">
-                            <div class="progress-bar" style="width: {{progress}}%;">{{progress}}%</div>
+                            <div class="progress-bar {{cssClass}}" style="width: {{progress}}%;">
+                                {{progress}}{{^progress}}0{{/progress}}%
+                            </div>
                         </div>
                         <form action="/rate/{bookId}" method="post">
                             <div class="rating">
@@ -283,8 +287,9 @@
                 <input type="number" id="progressValue" name="progressValue" placeholder="Ingresa el valor" required>
             </div>
             <div class="modal-buttons">
-                <button type="submit" class="pending-button">Pendiente</button>
-                <button type="submit" class="read-button">Terminado</button>
+                <button type="submit" name="status" id="pendienteButton" value="Pendiente" class="pending-button" style="display: none;">Pendiente</button>
+                <button type="submit" name="status" id="leyendoButton" value="Leyendo" class="pending-button" style="display: none;">Retomar lectura</button>
+                <button type="submit" name="status" value="Terminado" class="read-button">Terminado</button>
             </div>
             <input type="hidden" name="_csrf" value="{{token}}"/>
         </form>
@@ -292,8 +297,20 @@
 </div>
 <script>
     // Funciones para abrir y cerrar el modal
-    function openModal(journalEntryId) {
+    function openModal(journalEntryId, status) {
         document.getElementById('journalEntryId').value = journalEntryId;
+
+        if (status === "Pendiente") {
+            document.getElementById('leyendoButton').style.display = 'inline-block';
+            document.getElementById('pendienteButton').style.display = 'none';
+        } else if (status === "Leyendo") {
+            document.getElementById('leyendoButton').style.display = 'none';
+            document.getElementById('pendienteButton').style.display = 'inline-block';
+        }else {
+            document.getElementById('leyendoButton').style.display = 'none';
+            document.getElementById('pendienteButton').style.display = 'none';
+        }
+
         document.getElementById('readingProgressModal').style.display = 'block';
     }
     function closeModal() {

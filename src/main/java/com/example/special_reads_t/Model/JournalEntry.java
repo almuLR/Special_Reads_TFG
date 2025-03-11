@@ -30,6 +30,9 @@ public class JournalEntry {
 
     private LocalDateTime finishDate;
 
+    @Transient
+    private String cssClass;
+
     public Long getId() {
         return id;
     }
@@ -93,4 +96,13 @@ public class JournalEntry {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public String getCssClass() {
+        return cssClass;
+    }
+
+    public void setCssClass(String cssClass) {
+        this.cssClass = cssClass;
+    }
+
 }

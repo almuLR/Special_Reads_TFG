@@ -37,7 +37,9 @@ public class JournalController {
     }
 
     @PostMapping("/journal/updateProgress")
-    public String updateProgress(@RequestParam("journalEntryId") Long journalEntryId, @RequestParam("progressType") String progressType, @RequestParam("progressValue") int progressValue) {
+    public String updateProgress(@RequestParam("journalEntryId") Long journalEntryId, @RequestParam("progressType") String progressType,
+                                 @RequestParam("progressValue") int progressValue, @RequestParam("status") String status) {
+
         JournalEntry entry = journalService.findById(journalEntryId);
         if (entry != null) {
             if ("pages".equalsIgnoreCase(progressType)) {
@@ -49,7 +51,7 @@ public class JournalController {
             } else if ("percentage".equalsIgnoreCase(progressType)) {
                 entry.setProgress(progressValue);
             }
-            entry.setStatus("Leyendo");
+            entry.setStatus(status);
             journalService.updateJournalEntry(entry);
         }
         return "redirect:/journal";
@@ -68,9 +70,17 @@ public class JournalController {
                 rightJournalEntries.add(entries.get(i));
             }
         }
+        for (JournalEntry entry : entries) {
+            if ("Pendiente".equalsIgnoreCase(entry.getStatus())) {
+                entry.setCssClass("progress-red");
+            } else if ("Leyendo".equalsIgnoreCase(entry.getStatus())) {
+                entry.setCssClass("progress-green");
+            } else if ("Terminado".equalsIgnoreCase(entry.getStatus())) {
+                entry.setCssClass("progress-blue");
+            }
+        }
         model.addAttribute("leftJournalEntries", leftJournalEntries);
         model.addAttribute("rightJournalEntries", rightJournalEntries);
-
         return "journal";
     }
 
