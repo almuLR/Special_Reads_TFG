@@ -61,10 +61,13 @@ public class JournalController {
     public String showjournal(Model model) {
         List<JournalEntry> entries = journalService.getAllJournalEntriesForUser();
 
+        int maxTotal = 18;
+        int maxLeft = 9;
+
         List<JournalEntry> leftJournalEntries = new ArrayList<>();
         List<JournalEntry> rightJournalEntries = new ArrayList<>();
-        for (int i = 0; i < entries.size(); i++) {
-            if (i % 2 == 0) {
+        for (int i = 0; i < entries.size() && i < maxTotal; i++) {
+            if (i < maxLeft) {
                 leftJournalEntries.add(entries.get(i));
             } else {
                 rightJournalEntries.add(entries.get(i));
