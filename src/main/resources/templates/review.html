@@ -83,17 +83,21 @@
             <div class="book-container">
                 <div class="page left">
                     <div class="left-content">
+                        {{#book}}
+                        {{#entry}}
                         <div class="book-cover">
-                            <img src="/images/alasNegras.jpeg" alt="Portada del libro">
+                            <img src="{{coverImageUrl}}" alt="Portada del libro">
                         </div>
                         <div class="book-info">
-                            <h2>Título del Libro</h2>
-                            <p><strong>Autor:</strong> Nombre del Autor</p>
-                            <p><strong>Inicio:</strong> 10/14/2024</p>
-                            <p><strong>Fin:</strong> 10/14/2024</p>
-                            <p><strong>Nº Páginas:</strong> 350</p>
-                            <p><strong>Categoría:</strong> Fantasía</p>
+                            <h2>{{title}}</h2>
+                            <p><strong>Autor:</strong> {{author}}</p>
+                            <p><strong>Inicio:</strong> {{startDateFormatted}}</p>
+                            <p><strong>Fin:</strong> {{finishDateFormatted}}</p>
+                            <p><strong>Nº Páginas:</strong> {{pageCount}}</p>
+                            <p><strong>Categoría:</strong> {{genre}}</p>
                         </div>
+                        {{/entry}}
+                        {{/book}}
                     </div>
                     <div style="align-self: flex-start">
                         <div class="rating">
@@ -119,8 +123,8 @@
                             </label>
                         </div>
                     </div>
-                    <p><strong>Calificación:</strong><input type="text"/></p>
-                    <p><strong>Formato:</strong></p>
+                    <h3><strong>Calificación:</strong><input type="text"/></h3>
+                    <h3><strong>Formato:</strong></h3>
                     <div class="format">
                         <input type="radio" id="audioBook" name="format" value="audio">
                         <label for="audioBook">
@@ -140,7 +144,7 @@
                             <span>Papel</span>
                         </label>
                     </div>
-                    <p><strong>Plot Twist:</strong></p>
+                    <h3><strong>Plot Twist:</strong></h3>
                     <div style="align-self: flex-start">
                         <div class="plot-twist">
                             <input type="radio" id="twist1" name="plotTwist" value="1">
@@ -159,7 +163,7 @@
                             <label for="twist5"></label>
                         </div>
                     </div>
-                    <p><strong>Spicy:</strong></p>
+                    <h3><strong>Spicy:</strong></h3>
                     <div style="align-self: flex-start">
                         <div class="spicy">
                             <input type="radio" id="spicy1" name="spicy" value="1">
@@ -178,7 +182,7 @@
                             <label for="spicy5"></label>
                         </div>
                     </div>
-                    <p><strong>Humor:</strong></p>
+                    <h3><strong>Humor:</strong></h3>
                     <div style="align-self: flex-start">
                         <div class="funny">
                             <input type="radio" id="funny1" name="funny" value="1">
@@ -197,7 +201,7 @@
                             <label for="funny5"></label>
                         </div>
                     </div>
-                    <p><strong>Mood:</strong></p>
+                    <h3><strong>Mood:</strong></h3>
                     <div class="mood">
                         <input type="checkbox" id="love">
                         <label for="love"></label>
@@ -220,10 +224,10 @@
 
                 <!-- Página Derecha -->
                 <div class="page right">
-                    <p><strong>Personaje Favorito:</strong></p><input type="text"/>
+                    <h3><strong>Personaje Favorito:</strong></h3><input type="text"/>
 
                     <!-- POV (Punto de vista) -->
-                    <p><strong>Punto de vista:</strong></p>
+                    <h3><strong>Punto de vista:</strong></h3>
                     <div class="pov" style="gap: 40px">
                         <input type="radio" id="1persona" name="format" value="1">
                         <label for="1persona">
@@ -244,10 +248,10 @@
                         </label>
                     </div>
 
-                    <p><strong>Si pudieras definir el libro con una palabra sería:</strong> <input type="text"/></p>
-                    <p><strong>Mi frase favorita del libro ha sido:</strong></p><input type="text"/>
+                    <h3><strong>Si pudieras definir el libro con una palabra sería:</strong> <input type="text"/></h3>
+                    <h3><strong>Mi frase favorita del libro ha sido:</strong></h3><input type="text"/>
 
-                    <p><strong>¿Volverías a leer o recomendarías este libro?</strong></p>
+                    <h3><strong>¿Volverías a leer o recomendarías este libro?</strong></h3>
                     <div class="recomendation" style="gap: 40px">
                         <input type="radio" id="yes" name="recomendation" value="1">
                         <label for="yes">
@@ -262,7 +266,7 @@
                         </label>
                     </div>
 
-                    <p><strong>Reseña del libro:</strong></p>
+                    <h3><strong>Reseña del libro:</strong></h3>
                     <textarea class="review-text" placeholder="Escribe tu opinión aquí..."></textarea>
                     <button class="button">Terminado</button>
                 </div>

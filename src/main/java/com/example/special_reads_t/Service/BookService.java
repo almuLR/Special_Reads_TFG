@@ -1,11 +1,13 @@
 package com.example.special_reads_t.Service;
 
 import com.example.special_reads_t.Model.Book;
+import com.example.special_reads_t.Model.JournalEntry;
 import com.example.special_reads_t.Model.dto.GoogleBookResult;
 import com.example.special_reads_t.Model.dto.GoogleBooksResponse;
 import com.example.special_reads_t.Model.dto.VolumeInfo;
 import com.example.special_reads_t.Repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.OpAnd;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -108,5 +111,10 @@ public class BookService {
 
     public Book save(Book book) {
         return bookRepository.save(book);
+    }
+
+    public Book findById(Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        return book.orElse(null);
     }
 }

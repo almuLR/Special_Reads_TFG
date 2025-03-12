@@ -289,9 +289,11 @@
             <div class="modal-buttons">
                 <button type="submit" name="status" id="pendienteButton" value="Pendiente" class="pending-button" style="display: none;">Pendiente</button>
                 <button type="submit" name="status" id="leyendoButton" value="Leyendo" class="pending-button" style="display: none;">Retomar lectura</button>
-                <button type="submit" name="status" value="Terminado" class="read-button">Terminado</button>
             </div>
             <input type="hidden" name="_csrf" value="{{token}}"/>
+        </form>
+        <form id ="reviewForm" action="/review/{id}">
+            <button type="submit" name="status" value="Terminado" class="read-button">Terminado</button>
         </form>
     </div>
 </div>
@@ -299,6 +301,9 @@
     // Funciones para abrir y cerrar el modal
     function openModal(journalEntryId, status) {
         document.getElementById('journalEntryId').value = journalEntryId;
+
+        var reviewForm = document.getElementById('reviewForm');
+        reviewForm.action = "/review/" + journalEntryId;
 
         if (status === "Pendiente") {
             document.getElementById('leyendoButton').style.display = 'inline-block';

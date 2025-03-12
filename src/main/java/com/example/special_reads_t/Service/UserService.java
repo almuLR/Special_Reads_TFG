@@ -33,7 +33,7 @@ public class UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()
                 || authentication instanceof AnonymousAuthenticationToken) {
-            return null; // O lanza una excepción, según tu necesidad
+            return null;
         }
         String username = authentication.getName();
         return userRepository.findByUsername(username)

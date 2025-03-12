@@ -222,7 +222,7 @@ body a:hover {
 }
 
 .book-cover img {
-    width: 220px;
+    width: 240px;
     height: auto;
     object-fit: cover;
     border-radius: 8px;
@@ -343,8 +343,8 @@ body a:hover {
 
 .plot-twist label {
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -372,8 +372,8 @@ body a:hover {
 
 .spicy label {
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -401,8 +401,8 @@ body a:hover {
 
 .funny label {
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
