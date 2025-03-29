@@ -80,197 +80,200 @@
             </a>
         </aside>
         <div class="content">
-            <div class="book-container">
-                <div class="page left">
-                    <div class="left-content">
-                        {{#book}}
-                        {{#entry}}
-                        <div class="book-cover">
-                            <img src="{{coverImageUrl}}" alt="Portada del libro">
+            <form action="/review/save" method="post">
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+                <input type="hidden" name="bookId" value="{{book.id}}"/>
+                <div class="book-container">
+                    <div class="page left">
+                        <div class="left-content">
+                            {{#book}}
+                            {{#entry}}
+                            <div class="book-cover">
+                                <img src="{{coverImageUrl}}" alt="Portada del libro">
+                            </div>
+                            <div class="book-info">
+                                <h2>{{title}}</h2>
+                                <p><strong>Autor:</strong> {{author}}</p>
+                                <p><strong>Inicio:</strong> {{startDateFormatted}}</p>
+                                <p><strong>Fin:</strong> {{finishDateFormatted}}</p>
+                                <p><strong>Nº Páginas:</strong> {{pageCount}}</p>
+                                <p><strong>Categoría:</strong> {{genre}}</p>
+                            </div>
+                            {{/entry}}
+                            {{/book}}
                         </div>
-                        <div class="book-info">
-                            <h2>{{title}}</h2>
-                            <p><strong>Autor:</strong> {{author}}</p>
-                            <p><strong>Inicio:</strong> {{startDateFormatted}}</p>
-                            <p><strong>Fin:</strong> {{finishDateFormatted}}</p>
-                            <p><strong>Nº Páginas:</strong> {{pageCount}}</p>
-                            <p><strong>Categoría:</strong> {{genre}}</p>
+                        <div style="align-self: flex-start">
+                            <div class="rating">
+                                <input type="radio" id="star-1" name="starRating" value="1">
+                                <label for="star-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                </label>
+                                <input type="radio" id="star-2" name="starRating" value="2">
+                                <label for="star-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                </label>
+                                <input type="radio" id="star-3" name="starRating" value="3">
+                                <label for="star-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                </label>
+                                <input type="radio" id="star-4" name="starRating" value="4">
+                                <label for="star-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                </label>
+                                <input type="radio" id="star-5" name="starRating" value="5">
+                                <label for="star-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                </label>
+                            </div>
                         </div>
-                        {{/entry}}
-                        {{/book}}
-                    </div>
-                    <div style="align-self: flex-start">
-                        <div class="rating">
-                            <input type="radio" id="star-1" name="star-radio" value="star-1">
-                            <label for="star-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                        <h3><strong>Calificación:</strong><input name="decimalRating" type="number" step="0.01" required/></h3>
+                        <h3><strong>Formato:</strong></h3>
+                        <div class="format">
+                            <input type="radio" id="audioBook" name="format" value="audio">
+                            <label for="audioBook">
+                                <img src="/images/audio_format.png" alt="Audio">
+                                <span>Audio</span>
                             </label>
-                            <input type="radio" id="star-2" name="star-radio" value="star-1">
-                            <label for="star-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+
+                            <input type="radio" id="ebook" name="format" value="ebook">
+                            <label for="ebook">
+                                <img src="/images/ebook_format.png" alt="Ebook">
+                                <span>Ebook</span>
                             </label>
-                            <input type="radio" id="star-3" name="star-radio" value="star-1">
-                            <label for="star-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
-                            </label>
-                            <input type="radio" id="star-4" name="star-radio" value="star-1">
-                            <label for="star-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
-                            </label>
-                            <input type="radio" id="star-5" name="star-radio" value="star-1">
-                            <label for="star-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+
+                            <input type="radio" id="book" name="format" value="book">
+                            <label for="book">
+                                <img src="/images/book_format.png" alt="Papel">
+                                <span>Papel</span>
                             </label>
                         </div>
-                    </div>
-                    <h3><strong>Calificación:</strong><input type="text"/></h3>
-                    <h3><strong>Formato:</strong></h3>
-                    <div class="format">
-                        <input type="radio" id="audioBook" name="format" value="audio">
-                        <label for="audioBook">
-                            <img src="/images/audio_format.png" alt="Audio">
-                            <span>Audio</span>
-                        </label>
+                        <h3><strong>Plot Twist:</strong></h3>
+                        <div style="align-self: flex-start">
+                            <div class="plot-twist">
+                                <input type="radio" id="twist1" name="plotTwist" value="1">
+                                <label for="twist1"></label>
 
-                        <input type="radio" id="ebook" name="format" value="ebook">
-                        <label for="ebook">
-                            <img src="/images/ebook_format.png" alt="Ebook">
-                            <span>Ebook</span>
-                        </label>
+                                <input type="radio" id="twist2" name="plotTwist" value="2">
+                                <label for="twist2"></label>
 
-                        <input type="radio" id="book" name="format" value="book">
-                        <label for="book">
-                            <img src="/images/book_format.png" alt="Papel">
-                            <span>Papel</span>
-                        </label>
-                    </div>
-                    <h3><strong>Plot Twist:</strong></h3>
-                    <div style="align-self: flex-start">
-                        <div class="plot-twist">
-                            <input type="radio" id="twist1" name="plotTwist" value="1">
-                            <label for="twist1"></label>
+                                <input type="radio" id="twist3" name="plotTwist" value="3">
+                                <label for="twist3"></label>
 
-                            <input type="radio" id="twist2" name="plotTwist" value="2">
-                            <label for="twist2"></label>
+                                <input type="radio" id="twist4" name="plotTwist" value="4">
+                                <label for="twist4"></label>
 
-                            <input type="radio" id="twist3" name="plotTwist" value="3">
-                            <label for="twist3"></label>
+                                <input type="radio" id="twist5" name="plotTwist" value="5">
+                                <label for="twist5"></label>
+                            </div>
+                        </div>
+                        <h3><strong>Spicy:</strong></h3>
+                        <div style="align-self: flex-start">
+                            <div class="spicy">
+                                <input type="radio" id="spicy1" name="spicy" value="1">
+                                <label for="spicy1"></label>
 
-                            <input type="radio" id="twist4" name="plotTwist" value="4">
-                            <label for="twist4"></label>
+                                <input type="radio" id="spicy2" name="spicy" value="2">
+                                <label for="spicy2"></label>
 
-                            <input type="radio" id="twist5" name="plotTwist" value="5">
-                            <label for="twist5"></label>
+                                <input type="radio" id="spicy3" name="spicy" value="3">
+                                <label for="spicy3"></label>
+
+                                <input type="radio" id="spicy4" name="spicy" value="4">
+                                <label for="spicy4"></label>
+
+                                <input type="radio" id="spicy5" name="spicy" value="5">
+                                <label for="spicy5"></label>
+                            </div>
+                        </div>
+                        <h3><strong>Humor:</strong></h3>
+                        <div style="align-self: flex-start">
+                            <div class="funny">
+                                <input type="radio" id="funny1" name="funny" value="1">
+                                <label for="funny1"></label>
+
+                                <input type="radio" id="funny2" name="funny" value="2">
+                                <label for="funny2"></label>
+
+                                <input type="radio" id="funny3" name="funny" value="3">
+                                <label for="funny3"></label>
+
+                                <input type="radio" id="funny4" name="funny" value="4">
+                                <label for="funny4"></label>
+
+                                <input type="radio" id="funny5" name="funny" value="5">
+                                <label for="funny5"></label>
+                            </div>
+                        </div>
+                        <h3><strong>Mood:</strong></h3>
+                        <div class="mood">
+                            <input type="checkbox" id="love" name="love" value="true">
+                            <label for="love"></label>
+
+                            <input type="checkbox" id="pain" name="pain" value="true">
+                            <label for="pain"></label>
+
+                            <input type="checkbox" id="anger" name="anger" value="true">
+                            <label for="anger"></label>
+
+                            <input type="checkbox" id="xd" name="xd" value="true">
+                            <label for="xd"></label>
+
+                            <input type="checkbox" id="neutral" name="neutral" value="true">
+                            <label for="neutral"></label>
                         </div>
                     </div>
-                    <h3><strong>Spicy:</strong></h3>
-                    <div style="align-self: flex-start">
-                        <div class="spicy">
-                            <input type="radio" id="spicy1" name="spicy" value="1">
-                            <label for="spicy1"></label>
 
-                            <input type="radio" id="spicy2" name="spicy" value="2">
-                            <label for="spicy2"></label>
+                    <!-- Página Derecha -->
+                    <div class="page right">
+                        <h3><strong>Personaje Favorito:</strong></h3><input type="text" name="favoriteCharacter"/>
 
-                            <input type="radio" id="spicy3" name="spicy" value="3">
-                            <label for="spicy3"></label>
+                        <!-- POV (Punto de vista) -->
+                        <h3><strong>Punto de vista:</strong></h3>
+                        <div class="pov" style="gap: 40px">
+                            <input type="radio" id="1persona" name="pointOfView" value="1">
+                            <label for="1persona">
+                                <img src="/images/1persona.png" alt="1persona">
+                                <span>1ª</span>
+                            </label>
 
-                            <input type="radio" id="spicy4" name="spicy" value="4">
-                            <label for="spicy4"></label>
+                            <input type="radio" id="2persona" name="pointOfView" value="2">
+                            <label for="2persona">
+                                <img src="/images/3persona.png" alt="2persona">
+                                <span>2ª</span>
+                            </label>
 
-                            <input type="radio" id="spicy5" name="spicy" value="5">
-                            <label for="spicy5"></label>
+                            <input type="radio" id="3persona" name="pointOfView" value="3">
+                            <label for="3persona">
+                                <img src="/images/2persona.png" alt="3persona">
+                                <span>3ª</span>
+                            </label>
                         </div>
-                    </div>
-                    <h3><strong>Humor:</strong></h3>
-                    <div style="align-self: flex-start">
-                        <div class="funny">
-                            <input type="radio" id="funny1" name="funny" value="1">
-                            <label for="funny1"></label>
 
-                            <input type="radio" id="funny2" name="funny" value="2">
-                            <label for="funny2"></label>
+                        <h3><strong>Si pudieras definir el libro con una palabra sería:</strong> <input type="text" name="oneWord"/></h3>
+                        <h3><strong>Mi frase favorita del libro ha sido:</strong></h3><input type="text" name="favoriteQuote"/>
 
-                            <input type="radio" id="funny3" name="funny" value="3">
-                            <label for="funny3"></label>
+                        <h3><strong>¿Volverías a leer o recomendarías este libro?</strong></h3>
+                        <div class="recomendation" style="gap: 40px">
+                            <input type="radio" id="yes" name="recommend" value="true">
+                            <label for="yes">
+                                <img src="/images/tick_green.png" alt="yes">
+                                <span>Sí</span>
+                            </label>
 
-                            <input type="radio" id="funny4" name="funny" value="4">
-                            <label for="funny4"></label>
-
-                            <input type="radio" id="funny5" name="funny" value="5">
-                            <label for="funny5"></label>
+                            <input type="radio" id="no" name="recommend" value="false">
+                            <label for="no">
+                                <img src="/images/cross_red.png" alt="No">
+                                <span>No</span>
+                            </label>
                         </div>
-                    </div>
-                    <h3><strong>Mood:</strong></h3>
-                    <div class="mood">
-                        <input type="checkbox" id="love">
-                        <label for="love"></label>
 
-                        <input type="checkbox" id="pain">
-                        <label for="pain"></label>
-
-                        <input type="checkbox" id="anger">
-                        <label for="anger"></label>
-
-                        <input type="checkbox" id="xd">
-                        <label for="xd"></label>
-
-                        <input type="checkbox" id="neutral">
-                        <label for="neutral"></label>
+                        <h3><strong>Reseña del libro:</strong></h3>
+                        <textarea class="review-text" name="reviewText" placeholder="Escribe tu opinión aquí..."></textarea>
+                        <button class="button" type="submit">Terminado</button>
                     </div>
                 </div>
-
-                <!-- Marcador de página -->
-
-                <!-- Página Derecha -->
-                <div class="page right">
-                    <h3><strong>Personaje Favorito:</strong></h3><input type="text"/>
-
-                    <!-- POV (Punto de vista) -->
-                    <h3><strong>Punto de vista:</strong></h3>
-                    <div class="pov" style="gap: 40px">
-                        <input type="radio" id="1persona" name="format" value="1">
-                        <label for="1persona">
-                            <img src="/images/1persona.png" alt="Audio">
-                            <span>1ª</span>
-                        </label>
-
-                        <input type="radio" id="2persona" name="format" value="2">
-                        <label for="2persona">
-                            <img src="/images/3persona.png" alt="Ebook">
-                            <span>2ª</span>
-                        </label>
-
-                        <input type="radio" id="3persona" name="format" value="3">
-                        <label for="3persona">
-                            <img src="/images/2persona.png" alt="Papel">
-                            <span>3ª</span>
-                        </label>
-                    </div>
-
-                    <h3><strong>Si pudieras definir el libro con una palabra sería:</strong> <input type="text"/></h3>
-                    <h3><strong>Mi frase favorita del libro ha sido:</strong></h3><input type="text"/>
-
-                    <h3><strong>¿Volverías a leer o recomendarías este libro?</strong></h3>
-                    <div class="recomendation" style="gap: 40px">
-                        <input type="radio" id="yes" name="recomendation" value="1">
-                        <label for="yes">
-                            <img src="/images/tick_green.png" alt="yes">
-                            <span>Sí</span>
-                        </label>
-
-                        <input type="radio" id="no" name="recomendation" value="2">
-                        <label for="no">
-                            <img src="/images/cross_red.png" alt="No">
-                            <span>No</span>
-                        </label>
-                    </div>
-
-                    <h3><strong>Reseña del libro:</strong></h3>
-                    <textarea class="review-text" placeholder="Escribe tu opinión aquí..."></textarea>
-                    <button class="button">Terminado</button>
-                </div>
-            </div>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+            </form>
         </div>
 
 

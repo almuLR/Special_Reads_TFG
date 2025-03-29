@@ -24,16 +24,25 @@ public class Review {
 
     private String favoriteCharacter;
     private String pointOfView;
-    private String oneWordDescription;
+    private String oneWord;
     private String favoriteQuote;
-    private boolean recommended;
+    private boolean recommend;
     @Column(length = 5000)
     private String reviewText;
     //1..5
-    private int rating;
+    private int starRating;
     //puntuacion decimal
     @Column(name = "decimal_arting", precision = 4, scale = 2)
     private BigDecimal decimalRating;
+    private String format;
+    private int plotTwist;        // 1..5
+    private int spicy;            // 1..5
+    private int funny;            // 1..5
+    private boolean love;
+    private boolean pain;
+    private boolean anger;
+    private boolean xd;
+    private boolean neutral;
     private LocalDateTime createdAt;
 
     public void prePersist() {
@@ -80,13 +89,7 @@ public class Review {
         this.pointOfView = pointOfView;
     }
 
-    public String getOneWordDescription() {
-        return oneWordDescription;
-    }
 
-    public void setOneWordDescription(String oneWordDescription) {
-        this.oneWordDescription = oneWordDescription;
-    }
 
     public String getFavoriteQuote() {
         return favoriteQuote;
@@ -96,13 +99,7 @@ public class Review {
         this.favoriteQuote = favoriteQuote;
     }
 
-    public boolean isRecommended() {
-        return recommended;
-    }
 
-    public void setRecommended(boolean recommended) {
-        this.recommended = recommended;
-    }
 
     public String getReviewText() {
         return reviewText;
@@ -112,13 +109,6 @@ public class Review {
         this.reviewText = reviewText;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 
     public BigDecimal getDecimalRating() {
         return decimalRating;
@@ -134,5 +124,102 @@ public class Review {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getStarRating() {
+
+        return starRating;
+    }
+
+    public void setStarRating(int starRating) {
+        this.starRating = starRating;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public int getPlotTwist() {
+        return plotTwist;
+    }
+
+    public void setPlotTwist(int plotTwist) {
+        this.plotTwist = plotTwist;
+    }
+
+    public int getSpicy() {
+        return spicy;
+    }
+
+    public void setSpicy(int spicy) {
+        this.spicy = spicy;
+    }
+
+    public int getFunny() {
+        return funny;
+    }
+
+    public void setFunny(int funny) {
+        this.funny = funny;
+    }
+
+    public boolean isLove() {
+        return love;
+    }
+
+    public void setLove(boolean love) {
+        this.love = love;
+    }
+
+    public boolean isPain() {
+        return pain;
+    }
+
+    public void setPain(boolean pain) {
+        this.pain = pain;
+    }
+
+    public boolean isAnger() {
+        return anger;
+    }
+
+    public void setAnger(boolean anger) {
+        this.anger = anger;
+    }
+
+    public boolean isXd() {
+        return xd;
+    }
+
+    public void setXd(boolean xd) {
+        this.xd = xd;
+    }
+
+    public boolean isNeutral() {
+        return neutral;
+    }
+
+    public void setNeutral(boolean neutral) {
+        this.neutral = neutral;
+    }
+
+    public String getOneWord() {
+        return oneWord;
+    }
+
+    public void setOneWord(String oneWord) {
+        this.oneWord = oneWord;
+    }
+
+    public boolean isRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(boolean recommend) {
+        this.recommend = recommend;
     }
 }
