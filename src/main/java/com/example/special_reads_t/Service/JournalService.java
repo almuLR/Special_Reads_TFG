@@ -6,6 +6,8 @@ import com.example.special_reads_t.Model.JournalEntry;
 import com.example.special_reads_t.Model.User;
 import com.example.special_reads_t.Repository.JournalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -62,5 +64,16 @@ public class JournalService {
     public JournalEntry findByBookAndUser(Book book, User user) {
         Optional<JournalEntry> journalEntry = journalRepository.findByBookAndUser(book, user);
         return journalEntry.orElse(null);
+    }
+
+    public Page<JournalEntry> getAllEntriesForUser(User user, int page) {
+        // PageRequest.of(<númeroPágina>, <tamañoPágina>)
+        // En tu caso, si sigues usando 18 para 9+9, lo pones como tamaño de página.
+        return journalRepository.findByUser(user, PageRequest.of(page, 18));
+    }
+
+
+    public Page<JournalEntry> getFinishedEntriesForUser(User user, int page) {
+        return journalRepository.findByUserAndStatus(user, "Terminado", PageRequest.of(page, 21));
     }
 }

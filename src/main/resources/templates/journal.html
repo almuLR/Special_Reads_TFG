@@ -90,9 +90,20 @@
                 </div>
             </form>
             <div class="navigation-buttons">
-                <button class="prev-button"><</button>
-                <button class="next-button">></button>
+                <button class="journal-nav-button prev-button"
+                        onclick="location.href='/journal?page={{prevPage}}'"
+                        {{^hasPrevious}}disabled{{/hasPrevious}}>
+                &lt;
+                </button>
+                <button class="journal-nav-button next-button"
+                        onclick="location.href='/journal?page={{nextPage}}'"
+                        {{^hasNext}}disabled{{/hasNext}}>
+                &gt;
+                </button>
             </div>
+
+
+
         </div>
 
 

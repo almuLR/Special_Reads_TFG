@@ -126,6 +126,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/detailsBook/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/journal/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/review/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/bookShelf/**").hasAnyRole("USER", "ADMIN")
 
                 )
                 .formLogin(formLogin -> formLogin

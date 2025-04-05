@@ -81,39 +81,48 @@
 
     <!-- Contenido principal -->
     <main class="bookshelf">
+        <div class="navigation-buttons" style="align-self: flex-end; margin-bottom: 10px;">
+            <a href="/bookShelf?page={{prevPage}}" class="prev-button {{^hasPrevious}}disabled{{/hasPrevious}}"><</a>
+            <a href="/bookShelf?page={{nextPage}}" class="next-button {{^hasNext}}disabled{{/hasNext}}">></a>
+        </div>
         <h1>Tu Bookshelf</h1>
         <div class="bookshelf-container">
             <!-- Repisas y Libros -->
             <div class="books-row">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
+                {{#row1}}
+                    {{#this}}
+                    <!-- Si 'this' NO es null, mostramos la portada real -->
+                    <img src="{{book.coverImageUrl}}" alt="{{book.title}}" class="book-image">
+                    {{/this}}
+                    {{^this}}
+                    <!-- Si 'this' es null, mostramos el placeholder -->
+                    <img src="/images/placeholder-book.png" alt="Libro" class="book-image" type="hidden">
+                    {{/this}}
+                {{/row1}}
             </div>
 
             <div class="shelf-bar"></div>
             <div class="books-row">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
+                {{#row2}}
+                    {{#this}}
+                        <img src="{{book.coverImageUrl}}" alt="{{book.title}}" class="book-image">
+                    {{/this}}
+                    {{^this}}
+                        <img src="/images/placeholder-book.png" alt="Libro" class="book-image" type="hidden">
+                    {{/this}}
+                {{/row2}}
             </div>
 
             <div class="shelf-bar"></div>
             <div class="books-row">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
-                <img src="placeholder-book.png" alt="Libro" class="book-image">
+                {{#row3}}
+                    {{#this}}
+                        <img src="{{book.coverImageUrl}}" alt="{{book.title}}" class="book-image">
+                    {{/this}}
+                    {{^this}}
+                        <img src="/images/placeholder-book.png" alt="Libro" class="book-image" type="hidden">
+                    {{/this}}
+                {{/row3}}
             </div>
 
             <div class="shelf-bar"></div>

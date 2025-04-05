@@ -272,3 +272,92 @@ body a {
 body a:hover {
     color: darkblue; /* Color oscuro al pasar el ratón sobre enlaces normales */
 }
+/* Botones de navegación */
+.navigation-buttons {
+    display: flex;
+    gap: 30px; /* Espaciado entre botones */
+    margin-top: 15px; /* Reducir espacio entre el contenedor blanco y los botones */
+
+}
+
+/* Botones de navegación */
+.navigation-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto; /* Empuja los botones a la derecha */
+}
+
+.prev-button,
+.next-button {
+    background: linear-gradient(135deg, #00aaff, #0077cc); /* Degradado azul */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px; /* Tamaño ligeramente mayor */
+    height: 50px;
+    font-size: 22px; /* Aumenta el tamaño del icono */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de hover */
+.prev-button:hover,
+.next-button:hover {
+    background: linear-gradient(135deg, #0077cc, #0055aa); /* Cambio de degradado */
+    transform: scale(1.1); /* Efecto de agrandamiento */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto pulsación */
+.prev-button:active,
+.next-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animación de onda al hacer clic */
+.prev-button::after,
+.next-button::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+.prev-button:active::after,
+.next-button:active::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.navigation-buttons a {
+    text-decoration: none;
+}
+.navigation-buttons a:hover,
+.navigation-buttons a:visited,
+.navigation-buttons a:active {
+    text-decoration: none;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    text-decoration: none;
+}

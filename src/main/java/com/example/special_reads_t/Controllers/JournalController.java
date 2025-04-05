@@ -3,10 +3,13 @@ package com.example.special_reads_t.Controllers;
 
 import com.example.special_reads_t.Model.Book;
 import com.example.special_reads_t.Model.JournalEntry;
+import com.example.special_reads_t.Model.User;
 import com.example.special_reads_t.Service.BookService;
 import com.example.special_reads_t.Service.JournalService;
+import com.example.special_reads_t.Service.UserService;
 import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +29,9 @@ public class JournalController {
 
     @Autowired
     private JournalService journalService;
+
+    @Autowired
+    private UserService userService;
 
 
     @PostMapping("/journal/add/{googleBookId}")
@@ -60,20 +66,26 @@ public class JournalController {
     }
 
     @GetMapping("/journal")
-    public String showjournal(Model model) {
-        List<JournalEntry> entries = journalService.getAllJournalEntriesForUser();
+    public String showjournal(Model model, @RequestParam(defaultValue = "0") int page) {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
 
-        int maxTotal = 18;
-        int maxLeft = 9;
+        Page<JournalEntry> pageResult = journalService.getAllEntriesForUser(currentUser, page);
+        List<JournalEntry> entries = pageResult.getContent();
+
 
         List<JournalEntry> leftJournalEntries = new ArrayList<>();
         List<JournalEntry> rightJournalEntries = new ArrayList<>();
-        for (int i = 0; i < entries.size() && i < maxTotal; i++) {
-            if (i < maxLeft) {
-                leftJournalEntries.add(entries.get(i));
-            } else {
-                rightJournalEntries.add(entries.get(i));
-            }
+
+
+        int slotsPerSide = 9;
+        for (int i = 0; i < slotsPerSide && i < entries.size(); i++) {
+            leftJournalEntries.add(entries.get(i));
+        }
+        for (int i = slotsPerSide; i < 2 * slotsPerSide && i < entries.size(); i++) {
+            rightJournalEntries.add(entries.get(i));
         }
         for (JournalEntry entry : entries) {
             if ("Pendiente".equalsIgnoreCase(entry.getStatus())) {
@@ -88,6 +100,14 @@ public class JournalController {
         }
         model.addAttribute("leftJournalEntries", leftJournalEntries);
         model.addAttribute("rightJournalEntries", rightJournalEntries);
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", pageResult.getTotalPages());
+        model.addAttribute("hasPrevious", page > 0);
+        model.addAttribute("hasNext", page < pageResult.getTotalPages() - 1);
+        model.addAttribute("prevPage", page - 1);
+        model.addAttribute("nextPage", page + 1);
+
         return "journal";
     }
 
