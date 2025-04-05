@@ -58,4 +58,9 @@ public class JournalService {
     public JournalEntry save(JournalEntry entry) {
         return journalRepository.save(entry);
     }
+
+    public JournalEntry findByBookAndUser(Book book, User user) {
+        Optional<JournalEntry> journalEntry = journalRepository.findByBookAndUser(book, user);
+        return journalEntry.orElse(null);
+    }
 }

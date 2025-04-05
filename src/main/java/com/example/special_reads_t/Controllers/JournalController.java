@@ -5,6 +5,7 @@ import com.example.special_reads_t.Model.Book;
 import com.example.special_reads_t.Model.JournalEntry;
 import com.example.special_reads_t.Service.BookService;
 import com.example.special_reads_t.Service.JournalService;
+import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ public class JournalController {
 
     @Autowired
     private JournalService journalService;
+
 
     @PostMapping("/journal/add/{googleBookId}")
     public String addBookToJournal(@PathVariable("googleBookId") String googleBookId) {
@@ -80,6 +82,8 @@ public class JournalController {
                 entry.setCssClass("progress-green");
             } else if ("Terminado".equalsIgnoreCase(entry.getStatus())) {
                 entry.setCssClass("progress-blue");
+            } else {
+                entry.setCssClass("");
             }
         }
         model.addAttribute("leftJournalEntries", leftJournalEntries);

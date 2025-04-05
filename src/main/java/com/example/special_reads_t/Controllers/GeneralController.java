@@ -47,10 +47,7 @@ public class GeneralController {
     }
 
 
-    @GetMapping("/bookShelf")
-    public String bookshelfTemplate() {
-        return "bookShelf";
-    }
+
 
     @GetMapping("/list")
     public String listTemplate() {

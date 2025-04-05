@@ -65,6 +65,14 @@ public class JournalEntry {
         this.rating = rating;
     }
 
+    @Transient
+    public boolean isFinished() {
+        return "Terminado".equalsIgnoreCase(this.status);
+    }
+    public boolean getFinished() {
+        return isFinished();
+    }
+
     public String getStatus() {
         return status;
     }
@@ -104,5 +112,31 @@ public class JournalEntry {
     public void setCssClass(String cssClass) {
         this.cssClass = cssClass;
     }
+
+    @Transient
+    public boolean isStar1() {
+        return rating == 5;
+    }
+
+    @Transient
+    public boolean isStar2() {
+        return rating == 4;
+    }
+
+    @Transient
+    public boolean isStar3() {
+        return rating == 3;
+    }
+
+    @Transient
+    public boolean isStar4() {
+        return rating == 2;
+    }
+
+    @Transient
+    public boolean isStar5() {
+        return rating == 1;
+    }
+
 
 }

@@ -87,7 +87,6 @@ public class ReviewController {
     ) {
         Book book = bookService.findById(bookId);
         if (book == null) {
-            // Manejar el caso de que no exista el libro
             return "redirect:/journal";
         }
 
@@ -119,10 +118,18 @@ public class ReviewController {
         review.setReviewText(reviewText);
         review.setUser(currentUser);
 
-        // 3. Guardar la reseña (usando tu servicio y repositorio)
         reviewService.save(review);
 
-        // 4. Redirigir a donde desees (por ejemplo, al journal)
+        JournalEntry journalEntry = journalService.findByBookAndUser(book, currentUser);
+        if(journalEntry != null) {
+            journalEntry.setStatus("Terminado");
+            journalEntry.setProgress(100);
+            journalEntry.setRating(starRating);
+            journalEntry.setFinishDate(LocalDateTime.now());
+            journalService.updateJournalEntry(journalEntry);
+        }
+
+
         return "redirect:/journal";
     }
 }
