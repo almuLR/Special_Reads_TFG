@@ -43,8 +43,20 @@ public class Review {
     private boolean anger;
     private boolean xd;
     private boolean neutral;
-    private LocalDateTime createdAt;
 
+    private LocalDateTime createdAt;
+    @Transient
+    private String formattedDate;
+
+    public String getFormattedDate() {
+        return formattedDate;
+    }
+
+    public void setFormattedDate(String formattedDate) {
+        this.formattedDate = formattedDate;
+    }
+
+    @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
@@ -221,5 +233,30 @@ public class Review {
 
     public void setRecommend(boolean recommend) {
         this.recommend = recommend;
+    }
+
+    @Transient
+    public boolean isStar1() {
+        return starRating == 5;
+    }
+
+    @Transient
+    public boolean isStar2() {
+        return starRating == 4;
+    }
+
+    @Transient
+    public boolean isStar3() {
+        return starRating == 3;
+    }
+
+    @Transient
+    public boolean isStar4() {
+        return starRating == 2;
+    }
+
+    @Transient
+    public boolean isStar5() {
+        return starRating == 1;
     }
 }

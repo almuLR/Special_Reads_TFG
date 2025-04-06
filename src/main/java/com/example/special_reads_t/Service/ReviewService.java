@@ -5,6 +5,8 @@ import com.example.special_reads_t.Repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
 
@@ -13,5 +15,9 @@ public class ReviewService {
 
     public Review save(Review review) {
         return reviewRepository.save(review);
+    }
+
+    public List<Review> findByBook_GoogleBookId(String googleBookId) {
+        return reviewRepository.findByBook_GoogleBookId(googleBookId);
     }
 }

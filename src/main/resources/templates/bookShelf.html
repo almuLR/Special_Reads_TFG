@@ -95,8 +95,7 @@
                     <img src="{{book.coverImageUrl}}" alt="{{book.title}}" class="book-image">
                     {{/this}}
                     {{^this}}
-                    <!-- Si 'this' es null, mostramos el placeholder -->
-                    <img src="/images/placeholder-book.png" alt="Libro" class="book-image" type="hidden">
+                        <img src="/images/placeholder-book.png" alt="Libro" class="book-image placeholder">
                     {{/this}}
                 {{/row1}}
             </div>
@@ -108,7 +107,7 @@
                         <img src="{{book.coverImageUrl}}" alt="{{book.title}}" class="book-image">
                     {{/this}}
                     {{^this}}
-                        <img src="/images/placeholder-book.png" alt="Libro" class="book-image" type="hidden">
+                <img src="/images/placeholder-book.png" alt="Libro" class="book-image placeholder">
                     {{/this}}
                 {{/row2}}
             </div>
@@ -120,7 +119,7 @@
                         <img src="{{book.coverImageUrl}}" alt="{{book.title}}" class="book-image">
                     {{/this}}
                     {{^this}}
-                        <img src="/images/placeholder-book.png" alt="Libro" class="book-image" type="hidden">
+                <img src="/images/placeholder-book.png" alt="Libro" class="book-image placeholder">
                     {{/this}}
                 {{/row3}}
             </div>

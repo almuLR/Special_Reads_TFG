@@ -117,6 +117,7 @@ public class ReviewController {
         review.setRecommend(recommend);
         review.setReviewText(reviewText);
         review.setUser(currentUser);
+        review.setCreatedAt(LocalDateTime.now());
 
         reviewService.save(review);
 

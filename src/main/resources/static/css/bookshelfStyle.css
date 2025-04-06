@@ -361,3 +361,6 @@ body a:hover {
     opacity: 0.5;
     text-decoration: none;
 }
+.placeholder {
+    visibility: hidden; /* Mantiene el espacio en el layout, pero no se ve */
+}
