@@ -107,7 +107,7 @@ public class User {
         return profilePhotoUrl;
     }
 
-    public void setPofilePhotoUrl(String profilePhotoUrl) {
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
         this.profilePhotoUrl = profilePhotoUrl;
     }
 

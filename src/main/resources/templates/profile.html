@@ -83,18 +83,18 @@
             <div class="profile-container">
                 <div class="profile-left">
                     <div class="profile-photo">
-                        <img src="/images/iconoPerfil.png" alt="Foto de perfil">
+                        <img src="{{profilePhotoUrl}}" alt="Foto de perfil">
                     </div>
                     <div class="profile-info">
-                        <p><strong>Nombre de usuario:</strong> Almuuu_lpz</p>
-                        <p><strong>Email:</strong> a.lopezro.2021@gmail.com</p>
-                        <p><strong>Fecha de Nacimiento:</strong> 4/07/2003</p>
-                        <p><strong>Descripción:</strong> Romantasy en vena, y si hay Enemys to Lovers ahí es!</p>
+                        <p><strong>Nombre de usuario:</strong> {{currentUsername}}</p>
+                        <p><strong>Email:</strong> {{currentEmail}}</p>
+                        <p><strong>Fecha de Nacimiento:</strong> {{currentDateBirth}}</p>
+                        <p><strong>Descripción:</strong> {{currentDescription}}</p>
                         <p><strong>Géneros Favoritos:</strong></p>
                         <div class="tag-container">
-                            <span class="tag">Romance</span>
-                            <span class="tag">Fantasía</span>
-                            <span class="tag">Psicología</span>
+                            {{#genres}}
+                            <span class="tag">{{.}}</span>
+                            {{/genres}}
                         </div>
                     </div>
                     <div style="align-self: flex-start">

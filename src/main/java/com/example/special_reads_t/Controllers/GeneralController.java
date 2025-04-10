@@ -46,9 +46,6 @@ public class GeneralController {
         return "iaReader";
     }
 
-
-
-
     @GetMapping("/list")
     public String listTemplate() {
         return "list";
@@ -67,11 +64,6 @@ public class GeneralController {
     @GetMapping("/ranking")
     public String rankingTemplate() {
         return "ranking";
-    }
-
-    @GetMapping("/profile")
-    public String profileTemplate() {
-        return "profile";
     }
 
     @GetMapping("/help")
@@ -95,11 +87,6 @@ public class GeneralController {
     @GetMapping("/review")
     public String ReviewBookTemplate() {
         return "review";
-    }
-
-    @GetMapping("/profileEdit")
-    public String profileEditTemplate() {
-        return "profileEdit";
     }
 
     @GetMapping("/newRanking")

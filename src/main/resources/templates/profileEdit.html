@@ -81,102 +81,44 @@
   <div class="content">
     <!-- Contenido del perfil -->
     <div class="profile-container">
-      <form action="/guardarPerfil" method="POST" enctype="multipart/form-data">
+      <form action="/saveProfile" method="POST" enctype="multipart/form-data">
         <div class="profile-left">
           <div class="profile-photo">
-            <img id="profile-image" src="/images/iconoPerfil.png" alt="Foto de perfil">
+            <img id="profile-image" src="{{profilePhotoUrl}}" alt="Foto de perfil">
           </div>
           <input type="file" id="profile-picture" name="profilePicture" accept="image/*" hidden>
           <button type="button" class="Btn" onclick="document.getElementById('profile-picture').click()">Cambiar Foto</button>
           <div class="profile-info">
             <label for="username"><strong>Nombre de usuario:</strong></label>
-            <input type="text" id="username" name="username" value="Almuuu_lpz">
+            <input type="text" id="username" name="username" value={{currentUsername}}>
 
             <label for="email"><strong>Email:</strong></label>
-            <input type="email" id="email" name="email" value="a.lopezro.2021@gmail.com">
+            <input type="email" id="email" name="email" value={{currentEmail}}>
 
             <label for="birthdate"><strong>Fecha de Nacimiento:</strong></label>
-            <input type="date" id="birthdate" name="birthdate" value="2003-07-04">
+            <input type="date" id="birthdate" name="birthdate" value={{currentDateBirth}}>
 
             <label for="description"><strong>Descripción:</strong></label>
-            <textarea id="description" name="description">Romantasy en vena, y si hay Enemys to Lovers ahí es!</textarea>
+            <textarea id="description" name="description">{{currentDescription}}</textarea>
 
             <label><strong>Géneros Favoritos:</strong></label>
             <div class="checkbox-wrapper-container">
+              {{#genres}}
               <div class="checkbox-wrapper">
-                <input id="romance" name="checkbox" type="checkbox" checked>
-                <label class="terms-label" for="romance">
+                <input type="checkbox" id="{{value}}" name="favoriteGenres" value="{{value}}" {{#selected}}checked{{/selected}}>
+                <label class="terms-label" for="{{value}}">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
                     <rect height="200" width="200"></rect>
                     <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
                   </svg>
-                  <span class="label-text">Romance</span>
+                  <span class="label-text">{{label}}</span>
                 </label>
               </div>
-              <div class="checkbox-wrapper">
-                <input id="fantasia" name="checkbox" type="checkbox" checked>
-                <label class="terms-label" for="fantasia">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                    <rect height="200" width="200"></rect>
-                    <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                  </svg>
-                  <span class="label-text">Fantasía</span>
-                </label>
-              </div>
-              <div class="checkbox-wrapper">
-                <input id="cienciaFicción" name="checkbox" type="checkbox">
-                <label class="terms-label" for="cienciaFicción">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                    <rect height="200" width="200"></rect>
-                    <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                  </svg>
-                  <span class="label-text">Ciencia Ficción</span>
-                </label>
-              </div>
-              <div class="checkbox-wrapper">
-                <input id="psicologia" name="checkbox" type="checkbox" checked>
-                <label class="terms-label" for="psicologia">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                    <rect height="200" width="200"></rect>
-                    <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                  </svg>
-                  <span class="label-text">Psicología</span>
-                </label>
-              </div>
-              <div class="checkbox-wrapper">
-                <input id="historia" name="checkbox" type="checkbox">
-                <label class="terms-label" for="historia">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                    <rect height="200" width="200"></rect>
-                    <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                  </svg>
-                  <span class="label-text">Historia</span>
-                </label>
-              </div>
-              <div class="checkbox-wrapper">
-                <input id="terror" name="checkbox" type="checkbox">
-                <label class="terms-label" for="terror">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                    <rect height="200" width="200"></rect>
-                    <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                  </svg>
-                  <span class="label-text">Terror</span>
-                </label>
-              </div>
-              <div class="checkbox-wrapper">
-                <input id="manga" name="checkbox" type="checkbox">
-                <label class="terms-label" for="manga">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
-                    <rect height="200" width="200"></rect>
-                    <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
-                  </svg>
-                  <span class="label-text">Manga</span>
-                </label>
-              </div>
+              {{/genres}}
             </div>
           </div>
         </div>
-        <a class="save">
+        <button type="submit" class="save">
           <div class="svg-wrapper-1">
             <div class="svg-wrapper">
               <svg
@@ -193,7 +135,8 @@
             </div>
           </div>
           <span>Save</span>
-        </a>
+        </button>
+        <input type="hidden" name="_csrf" value="{{token}}"/>
       </form>
       <div class="profile-right">
         <img src="/images/hombreProfile.png" alt="Profile Illustration">
@@ -201,5 +144,17 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById('profile-picture').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('profile-image').src = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
 </body>
 </html>
