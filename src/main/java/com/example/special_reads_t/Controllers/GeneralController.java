@@ -20,16 +20,6 @@ public class GeneralController {
     }
 
 
-    @GetMapping("/indexUser")
-    public String indexUserTemplate(Model model, HttpServletRequest request) {
-        String username = request.getUserPrincipal().getName();
-        User user = userRepository.findByUsername(username).orElseThrow();
-
-        model.addAttribute("userame", user.getUsername());
-        model.addAttribute("admin", request.isUserInRole("ADMIN"));
-        return "indexUser";
-    }
-
     @GetMapping("/login")
     public String loginTemplate() {
         return "login";
