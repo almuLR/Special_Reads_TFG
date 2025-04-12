@@ -17,4 +17,5 @@ public interface JournalRepository extends JpaRepository<JournalEntry, Long> {
     Optional<JournalEntry> findByBookAndUser(Book book, User user);
     Page<JournalEntry> findByUser(User user, Pageable pageable);
     Page<JournalEntry> findByUserAndStatus(User user, String status, Pageable pageable);
+    List<JournalEntry> findByUserAndStatusIgnoreCase(User user, String status);
 }
