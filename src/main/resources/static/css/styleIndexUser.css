@@ -12826,9 +12826,6 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
-  max-height: 400px;
-  overflow-y: auto;
-
 }
 
 .card-title {
