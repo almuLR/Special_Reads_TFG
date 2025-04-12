@@ -76,4 +76,8 @@ public class JournalService {
     public Page<JournalEntry> getFinishedEntriesForUser(User user, int page) {
         return journalRepository.findByUserAndStatus(user, "Terminado", PageRequest.of(page, 21));
     }
+
+    public List<JournalEntry> getReadingEntriesForUser(User user) {
+        return journalRepository.findByUserAndStatusIgnoreCase(user, "Leyendo");
+    }
 }
