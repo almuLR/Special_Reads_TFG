@@ -55,6 +55,7 @@ public class JournalController {
                 if (totalPages > 0) {
                     int percentage = (int) ((progressValue / (double)totalPages) * 100);
                     entry.setProgress(percentage);
+
                 }
             } else if ("percentage".equalsIgnoreCase(progressType)) {
                 entry.setProgress(progressValue);

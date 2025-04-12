@@ -65,6 +65,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/chat/**").permitAll()
                         .requestMatchers("/api/book/**").permitAll()
+                        .requestMatchers("/api/users/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/friends/**").permitAll()
                         .anyRequest().permitAll()
                 );
 
@@ -78,7 +80,7 @@ public class SecurityConfiguration {
         http.httpBasic(httpBasic -> httpBasic.disable());
 
         // Stateless session
-        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
         // Add JWT Token filter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

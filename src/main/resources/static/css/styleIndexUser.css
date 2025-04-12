@@ -25728,4 +25728,51 @@ body a:hover {
     opacity: 0;
     display: none;
   }
+}progress,
+ .progress-stacked {
+   display: flex; /* Usar Flexbox */
+   justify-content: normal; /* Comenzar desde el inicio */
+   height: 20px; /* Altura fija */
+   width: 100%; /* Usar todo el ancho disponible */
+   background-color: #e0e0e0; /* Fondo gris claro */
+   border-radius: 25px; /* Bordes redondeados */
+   overflow: hidden; /* Asegurar que el contenido no desborde */
+   position: relative; /* Asegurar posición relativa para el contenido interno */
+ }
+
+.progress-bar {
+  display: flex; /* Flexbox para el contenido */
+  justify-content: center; /* Centrar horizontalmente el texto */
+  align-items: center; /* Centrar verticalmente */
+  background-color: rgba(65, 230, 97, 0.8); /* Fondo verde */
+  height: 100%; /* Usar toda la altura disponible */
+  width: 70%; /* Ejemplo de progreso del 70% */
+  color: black; /* Color del texto */
+  text-align: center; /* Centrar el texto */
+  line-height: 20px; /* Alinear el texto en la altura de la barra */
+  border-radius: 25px 0 0 25px; /* Bordes redondeados solo en el inicio */
+  transition: width 0.6s ease; /* Animación suave */
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar {
+    transition: none;
+    align-items: center;
+  }
+}
+
+.progress-bar-striped {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: var(--bs-progress-height) var(--bs-progress-height);
+}
+
+.progress-stacked > .progress {
+  overflow: visible;
+}
+
+.progress-stacked > .progress > .progress-bar {
+  width: 100%;
+  align-items: center;
+}
+.progress-bar.progress-green {
+  background-color: rgba(65, 230, 97, 0.8);
 }

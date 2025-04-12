@@ -83,33 +83,25 @@
         <div class="content">
             <div class="search-and-buttons" style="margin-left: 130px">
                 <div class="search-container">
-                    <input class="input" type="text" placeholder="Introduce el login...">
+                    <input class="input" id="searchInput" type="text" placeholder="Buscar un usuario...">
                     <svg viewBox="0 0 24 24" class="search__icon">
                         <g>
                             <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
                         </g>
                     </svg>
+                    <div class="search-results" id="searchResults">
+
+                    </div>
                 </div>
             </div>
             <div class="friends-section">
                 <h2>Your Friends</h2>
-                <div class="friend-card">
-                    <img src="/images/iconoPerfil.png" alt="User Image">
-                    <p>Pepa_gtrz</p>
-                    <p>Una Corte de Rosas y Espinas</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 20%;"></div>
-                    </div>
-                    <p>Read 20%</p>
-                </div>
+                <div id="acceptedFriends"></div>
             </div>
             <div class="new-friends-section">
                 <h2>New Friends</h2>
-                <div class="new-friend-card">
-                    <img src="/images/iconoPerfil.png" alt="User Image">
-                    <p>"Almuuu_lpz" ha solicitado seguirte</p>
-                    <button class="accept" style="margin-right: 10px"><img src="/images/tick.png" class ="tick"></button>
-                    <button class="decline"><img class ="cross" src="/images/cross.png"></button>
+                <div class="new-friend-card" id="newFriendRequests">
+
                 </div>
             </div>
             <div class="leagues-section">
@@ -131,5 +123,245 @@
             </div>
         </div>
     </div>
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', async function() {
+        const query = searchInput.value.trim();
+
+        if (query.length === 0) {
+            searchResults.style.display = 'none';
+            searchResults.innerHTML = '';
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/users/?username=${encodeURIComponent(query)}`);
+            if (!response.ok) throw new Error("Error en la búsqueda");
+
+            const users = await response.json();
+
+            let html = '<ul>';
+            users.forEach(user => {
+                html += `
+        <li style="display: flex; justify-content: space-between; align-items: center;" >
+            <span>${user.username}</span>
+            <button class="animated-button" onclick="enviarSolicitud(${user.id})">
+                <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                </svg>
+                <span class="text">F R I E N D</span>
+                <span class="circle"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                </svg>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+            </button>
+        </li>`;
+            });
+            html += '</ul>';
+            searchResults.innerHTML = html;
+            searchResults.style.display = 'block';
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    function enviarSolicitud(friendId) {
+        fetch('/api/friends/request', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            credentials: 'include',  // Importa para enviar la cookie de sesión
+            body: `friendId=${friendId}`
+        })
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        throw new Error("No autorizado. Por favor inicia sesión de nuevo.");
+                    }
+                    return response.text().then(text => {
+                        throw new Error(text || `Error ${response.status}`);
+                    });
+                }
+                return response.text();
+            })
+            .then(message => {
+                alert(message || "Solicitud enviada con éxito");
+                searchInput.value = '';
+                searchResults.style.display = 'none';
+            })
+            .catch(error => {
+                console.error("Error en la solicitud:", error);
+                alert(error.message);
+                if (error.message.includes("inicia sesión")) {
+                    window.location.href = '/login';
+                }
+            });
+    }
+
+    async function loadNewFriendRequests() {
+        try {
+            // Llamamos a nuestro nuevo endpoint
+            const response = await fetch('/api/friends/requests', {
+                method: 'GET',
+                credentials: 'include'  // Importante si usas autenticación basada en sesión
+            });
+            if (!response.ok) {
+                throw new Error('Error fetching friend requests');
+            }
+
+            const requests = await response.json();
+            const container = document.getElementById('newFriendRequests');
+            container.innerHTML = ''; // Limpiamos para volver a pintar
+
+            requests.forEach(req => {
+                const card = document.createElement('div');
+                card.classList.add('new-friend-card');
+
+// Imagen
+                const img = document.createElement('img');
+                img.src = "/images/iconoPerfil.png";
+                card.appendChild(img);
+
+// Texto
+                const p = document.createElement('p');
+                p.textContent = `"${req.friendName}" ha solicitado seguirte`;
+                card.appendChild(p);
+
+// CONTENEDOR PARA LOS BOTONES
+                const buttonContainer = document.createElement('div');
+                buttonContainer.classList.add('button-container');
+
+// BOTÓN ACEPTAR
+                const acceptButton = document.createElement('button');
+                acceptButton.classList.add('accept');
+                acceptButton.innerHTML = `<img src="/images/tick.png" alt="Aceptar"> Aceptar`;
+                acceptButton.addEventListener('click', () => acceptFriendRequest(req.id));
+                buttonContainer.appendChild(acceptButton);  // <--- dentro de 'buttonContainer'
+
+// BOTÓN DENEGAR
+                const declineButton = document.createElement('button');
+                declineButton.classList.add('decline');
+                declineButton.innerHTML = `<img src="/images/cross.png" alt="Denegar"> Denegar`;
+                declineButton.addEventListener('click', () => declineFriendRequest(req.id));
+                buttonContainer.appendChild(declineButton); // <--- dentro de 'buttonContainer'
+
+// Al final, insertamos 'buttonContainer' en la tarjeta
+                card.appendChild(buttonContainer);
+
+// Insertamos la tarjeta completa en el contenedor principal
+                container.appendChild(card);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    // Llamamos a la función al cargar la página
+    loadNewFriendRequests();
+
+    // Métodos para aceptar o rechazar la solicitud
+    async function acceptFriendRequest(friendId) {
+        try {
+            const response = await fetch('/api/friends/accept', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                credentials: 'include',
+                body: `friendId=${friendId}`
+            });
+            if (!response.ok) {
+                throw new Error('Error al aceptar la solicitud');
+            }
+            // Recargar la lista
+            loadNewFriendRequests();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function declineFriendRequest(friendId) {
+        try {
+            const response = await fetch('/api/friends/decline', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                credentials: 'include',
+                body: `friendId=${friendId}`
+            });
+            if (!response.ok) {
+                throw new Error('Error al rechazar la solicitud');
+            }
+            // Recargar la lista
+            loadNewFriendRequests();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function loadAcceptedFriends() {
+        try {
+            const response = await fetch('/api/friends/accept', {
+                method: 'GET',
+                credentials: 'include'
+            });
+            if (!response.ok) {
+                throw new Error('Error al cargar tus amigos');
+            }
+            const friends = await response.json();
+            const container = document.getElementById('acceptedFriends');
+            container.innerHTML = ''; // Limpiar contenido actual
+
+            friends.forEach(friend => {
+                // Contenedor principal (tarjeta)
+                const card = document.createElement('div');
+                card.classList.add('friend-card');
+
+                // Imagen a la izquierda
+                const img = document.createElement('img');
+                img.src = friend.profilePhotoUrl ? friend.profilePhotoUrl : "/images/iconoPerfil.png";
+                card.appendChild(img);
+
+                // Contenedor para el texto (nombre, libro, barra)
+                const infoDiv = document.createElement('div');
+                infoDiv.classList.add('friend-info');
+
+                // Nombre
+                const nameParagraph = document.createElement('p');
+                nameParagraph.textContent = friend.friendName;
+                infoDiv.appendChild(nameParagraph);
+
+                // Libro
+                const bookParagraph = document.createElement('p');
+                bookParagraph.textContent = friend.bookTitle;
+                infoDiv.appendChild(bookParagraph);
+
+                // Barra de progreso
+                const progressContainer = document.createElement('div');
+                progressContainer.classList.add('progress');
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('progress-bar');
+                // Ancho y texto según el valor de 'progress'
+                progressBar.style.width = friend.progress + '%';
+                progressBar.textContent = friend.progress + '%';
+                progressContainer.appendChild(progressBar);
+                infoDiv.appendChild(progressContainer);
+
+                // Añadimos 'infoDiv' a la tarjeta
+                card.appendChild(infoDiv);
+
+                // Finalmente, insertamos la tarjeta en el contenedor principal (#acceptedFriends)
+                container.appendChild(card);
+            });
+
+        } catch (error) {
+            console.error("Error al cargar amigos aceptados:", error);
+        }
+    }
+
+    // Llamar al cargar la página o cuando actualices la lista
+    loadAcceptedFriends();
+</script>
 </body>
 </html>

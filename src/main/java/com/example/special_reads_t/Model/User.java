@@ -37,20 +37,14 @@ public class User {
     @ElementCollection (fetch = FetchType.EAGER)
     private List<String> favoriteGenres;
 
-    @ManyToMany
-    @JoinTable(
-            name = "USER_FRIENDS",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "friend_id")
-    )
-    private List<User> friends;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<BookProgress> bookProgresses;
-
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Review> reviews;
 
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Friend> friends;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<JournalEntry> journalEntries;
 
     public User() {
     }
@@ -127,27 +121,27 @@ public class User {
         this.favoriteGenres = favoriteGenres;
     }
 
-    public List<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
-    }
-
-    public List<BookProgress> getBookProgresses() {
-        return bookProgresses;
-    }
-
-    public void setBookProgresses(List<BookProgress> bookProgresses) {
-        this.bookProgresses = bookProgresses;
-    }
-
     public List<Review> getReviews() {
         return reviews;
     }
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Friend> friends) {
+        this.friends = friends;
+    }
+
+    public List<JournalEntry> getJournalEntries() {
+        return journalEntries;
+    }
+
+    public void setJournalEntries(List<JournalEntry> journalEntries) {
+        this.journalEntries = journalEntries;
     }
 }

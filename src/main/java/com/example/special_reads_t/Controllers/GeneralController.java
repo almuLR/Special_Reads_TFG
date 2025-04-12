@@ -51,11 +51,6 @@ public class GeneralController {
         return "list";
     }
 
-    @GetMapping("/friends")
-    public String friendsTemplate() {
-        return "friends";
-    }
-
     @GetMapping("/challenge")
     public String challengeTemplate() {
         return "challenge";

@@ -4,13 +4,23 @@ import java.util.Date;
 import java.util.List;
 
 public class UserDto {
+    private Long id;
     private String username;
     private String email;
     private String password;
     private Date dateOfBirth;
     private String description;
     private List<String> favoriteGenres;
+    private String profilePhotoUrl;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -58,5 +68,13 @@ public class UserDto {
 
     public void setFavoriteGenres(List<String> favoriteGenres) {
         this.favoriteGenres = favoriteGenres;
+    }
+
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
+    }
+
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
     }
 }
