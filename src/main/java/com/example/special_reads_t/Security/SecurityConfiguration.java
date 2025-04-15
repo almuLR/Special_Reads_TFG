@@ -111,7 +111,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/challenge").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/charts").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/detailsBook").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/editRanking").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/editRanking/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/friends").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/help").hasAnyRole("USER")
                         .requestMatchers("/iaReader").hasAnyRole("USER", "ADMIN")

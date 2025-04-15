@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Special Reads</title>
@@ -82,26 +82,34 @@
     <div class="content">
         <div class="ranking-container">
             <h1 class="title">Nueva Liga Interna</h1>
-            <div class="ranking-card">
-                <div class="ranking-form">
-                    <p><strong>Título:</strong> <input class="title-gray"></p>
-                    <p><strong>Amigos:</strong></p>
-                    <div class="friends-list">
-                        <ul class="friends-select">
-                            <li><input type="checkbox" id="friend1"><label for="friend1"> Username 1</label></li>
-                            <li><input type="checkbox" id="friend2"><label for="friend2"> Username 2</label></li>
-                            <li><input type="checkbox" id="friend3"><label for="friend3"> Username 3</label></li>
-                            <li><input type="checkbox" id="friend4"><label for="friend4"> Username 4</label></li>
-                            <li><input type="checkbox" id="friend5"><label for="friend5"> Username 5</label></li>
-                        </ul>
+            <form action="/newRanking" method="post">
+                <div class="ranking-card">
+                    <div class="ranking-form">
+                        <p><strong>Título:</strong>
+                            <input type="text" name="title" class="title-gray" required>
+                        </p>
+                        <p><strong>Amigos:</strong></p>
+                        <div class="friends-list">
+                            <ul class="friends-select">
+                                {{#friends}}
+                                <li>
+                                    <input type="checkbox" name="participantIds" value="{{id}}" id="friend{{id}}">
+                                    <label for="friend{{id}}">{{username}}</label>
+                                </li>
+                                {{/friends}}
+                            </ul>
+                        </div>
+                        <p><strong>Libros a leer:</strong>
+                            <input type="number" name="booksGoal" class="books-count" required>
+                        </p>
                     </div>
-                    <p><strong>Libros a leer:</strong> <input class="books-count"></p>
+                    <div class="ranking-image">
+                        <img src="/images/trophy.png" alt="Trophy Image">
+                    </div>
                 </div>
-                <div class="ranking-image">
-                    <img src="/images/trophy.png" alt="Trophy Image">
-                </div>
-            </div>
-            <button class="create-league-button">Crear Liga</button>
+                <button type="submit" class="create-league-button">Crear Liga</button>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+            </form>
         </div>
     </div>
 </div>

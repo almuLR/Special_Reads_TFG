@@ -32,7 +32,7 @@ public class DatabaseUsersLoader {
             user.setPassword(passwordEncoder.encode("pass"));
             user.setDescription("Usuario de prueba");
             user.setRoles(Arrays.asList("USER"));
-            user.setFavoriteGenres(Arrays.asList("Fantasía", "Aventura"));
+            user.setFavoriteGenres(Arrays.asList("Fantasia", "Aventura"));
             userRepository.save(user);
 
             // Usuario administrador
@@ -43,7 +43,7 @@ public class DatabaseUsersLoader {
             admin.setPassword(passwordEncoder.encode("adminpass"));
             admin.setDescription("Administrador del sistema");
             admin.setRoles(Arrays.asList("USER", "ADMIN"));
-            admin.setFavoriteGenres(Arrays.asList("Ciencia Ficción", "Histórico"));
+            admin.setFavoriteGenres(Arrays.asList("CienciaFiccion", "Historico"));
             userRepository.save(admin);
         }
     }

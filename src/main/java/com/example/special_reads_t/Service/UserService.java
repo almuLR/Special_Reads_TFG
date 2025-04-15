@@ -1,5 +1,6 @@
 package com.example.special_reads_t.Service;
 
+import com.example.special_reads_t.Model.Friend;
 import com.example.special_reads_t.Model.User;
 import com.example.special_reads_t.Repository.FriendRepository;
 import com.example.special_reads_t.Repository.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -49,6 +51,31 @@ public class UserService {
 
     public List<User> findUsersByUsername(String username) {
         return userRepository.findByUsernameContainingIgnoreCase(username);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public List<User> getUsersByCountry(String country) {
+        return userRepository.findByCountry(country);
+    }
+
+    public List<User> getUsersByIds(List<Long> ids) {
+        return userRepository.findAllById(ids);
+    }
+
+    public List<User> getFriendsOf(User currentUser) {
+        List<Friend> friendships = friendRepository.findAcceptedFriendsForUser(currentUser);
+        List<User> friends = new ArrayList<>();
+        for(Friend f : friendships) {
+            if(f.getOwner().equals(currentUser)) {
+                friends.add(f.getFriend());
+            } else {
+                friends.add(f.getOwner());
+            }
+        }
+        return friends;
     }
 
     public List<User> findUsersAvaibleForFriendShip(String username, User currentUser) {

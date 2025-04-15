@@ -108,6 +108,7 @@
                 <h2>Ligas Internas</h2>
                 <table>
                     <thead>
+                    {{#internalLeagues}}
                     <tr>
                         <th>Tu Posición</th>
                         <th>Título de la Liga</th>
@@ -115,9 +116,10 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>1º</td>
-                        <td>"Lectores al poder"</td>
+                        <td>{{position}}º</td>
+                        <td>{{title}}</td>
                     </tr>
+                    {{/internalLeagues}}
                     </tbody>
                 </table>
             </div>

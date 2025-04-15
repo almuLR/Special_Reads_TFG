@@ -46,11 +46,6 @@ public class GeneralController {
         return "challenge";
     }
 
-    @GetMapping("/ranking")
-    public String rankingTemplate() {
-        return "ranking";
-    }
-
     @GetMapping("/help")
     public String helpTemplate() {
         return "help";
@@ -72,16 +67,6 @@ public class GeneralController {
     @GetMapping("/review")
     public String ReviewBookTemplate() {
         return "review";
-    }
-
-    @GetMapping("/newRanking")
-    public String newRankingTemplate() {
-        return "newRanking";
-    }
-
-    @GetMapping("/editRanking")
-    public String editRankingTemplate() {
-        return "editRanking";
     }
 
     @GetMapping("/charts")

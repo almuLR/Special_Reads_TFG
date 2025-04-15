@@ -67,8 +67,6 @@ public class JournalService {
     }
 
     public Page<JournalEntry> getAllEntriesForUser(User user, int page) {
-        // PageRequest.of(<númeroPágina>, <tamañoPágina>)
-        // En tu caso, si sigues usando 18 para 9+9, lo pones como tamaño de página.
         return journalRepository.findByUser(user, PageRequest.of(page, 18));
     }
 

@@ -18,6 +18,7 @@ public class User {
     @Column(unique = true)
     private String username;
 
+    @Column
     private String email;
 
     @Temporal(TemporalType.DATE)
@@ -30,6 +31,8 @@ public class User {
     private String description;
 
     private String profilePhotoUrl;
+
+    private String country;
 
     @ElementCollection (fetch = FetchType.EAGER)
     private List<String> roles;
@@ -143,5 +146,13 @@ public class User {
 
     public void setJournalEntries(List<JournalEntry> journalEntries) {
         this.journalEntries = journalEntries;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
