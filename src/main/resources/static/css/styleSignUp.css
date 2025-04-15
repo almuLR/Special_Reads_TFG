@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh; /* Asegura que el fondo cubra toda la ventana */
+    min-height: 100vh; /* Asegura que el fondo cubra toda la ventana */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -892,7 +892,6 @@ h5.widget-title {
 /* Ajuste para la barra de navegación fija */
 .site-header {
     position: fixed;
-    top: 0;
     left: 0;
     width: 100%;
     z-index: 9999;
@@ -969,6 +968,7 @@ h5.widget-title {
     max-width: 800px;
     width: 90%; /* Permite que se ajuste al tamaño de la pantalla */
     text-align: center;
+    margin-bottom: 45px;
 
     display: flex;
     flex-direction: column;
@@ -1030,4 +1030,44 @@ h4 {
 /* Contenedor de los títulos */
 header {
     text-align: center;
+}
+
+.cyberpunk-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #30cfd0;
+    border-radius: 5px;
+    background-color: transparent;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.cyberpunk-checkbox:before {
+    content: "";
+    background-color: #30cfd0;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.cyberpunk-checkbox:checked:before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.cyberpunk-checkbox-label {
+    font-size: 14px;
+    color: #101010;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
 }

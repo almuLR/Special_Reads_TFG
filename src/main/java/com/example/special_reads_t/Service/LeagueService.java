@@ -85,7 +85,28 @@ public class LeagueService {
 
     public List<League> getDefaultsLeagues(User currentUser) {
         List<League> defaultsLeagues = leagueRepository.findByLeagueType(LeagueType.DEFAULT);
-        if (defaultsLeagues == null || defaultsLeagues.isEmpty()) {
+        if (defaultsLeagues != null && defaultsLeagues.isEmpty()) {
+            for (League league : defaultsLeagues) {
+                if ("Liga Mundial".equals(league.getTitle())) {
+                    List<User> allUsers = userService.getAllUsers();
+                    league.setParticipants(allUsers);
+                } else if ("Liga Nacional".equals(league.getTitle())) {
+                    if (currentUser.getCountry().equals("España")) {
+                        List<User> spanishUsers = userService.getUsersByCountry("España");
+                        league.setParticipants(spanishUsers);
+                    } else {
+                        List<User> portuguesUsers = userService.getUsersByCountry("Portugal");
+                        league.setParticipants(portuguesUsers);
+                    }
+                } else if ("Liga Internacional".equals(league.getTitle())) {
+                    List<User> interUsers = new ArrayList<>(userService.getUsersByCountry("España"));
+                    interUsers.addAll(userService.getUsersByCountry("Portugal"));
+                    league.setParticipants(interUsers);
+                }
+                leagueRepository.save(league);
+            }
+            return defaultsLeagues;
+        }
             defaultsLeagues = new ArrayList<>();
 
             League mundial = new League();
@@ -123,7 +144,8 @@ public class LeagueService {
             internacional.setParticipants(interUsers);
             internacional = leagueRepository.save(internacional);
             defaultsLeagues.add(internacional);
-        }
+
+
         return defaultsLeagues;
     }
 
@@ -136,13 +158,16 @@ public class LeagueService {
         List<LeagueDto> defaultsLeaguesDtos = new ArrayList<>();
         for (League league : defaultsLeagues) {
             List<RankingDto> ranking = calculateRanking(league);
-            int position = 0;
+            int position = -1;
             for ( int i = 0; i < ranking.size(); i++ ) {
                 RankingDto r = ranking.get(i);
                 if (r.getUserName().equals(currentUser.getUsername())) {
                     position = i + 1;
                     break;
                 }
+            }
+            if (position == -1) {
+                position = ranking.size();
             }
             int totalReaders = league.getParticipants() != null ? league.getParticipants().size() : 0;
             defaultsLeaguesDtos.add(new LeagueDto(league.getId(), league.getTitle(), position, totalReaders));

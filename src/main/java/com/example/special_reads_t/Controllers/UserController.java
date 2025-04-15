@@ -43,6 +43,7 @@ public class UserController {
     @PostMapping("/signUp")
     public String registerUser(User user) {
         System.out.println("Entrando en registerUser");
+        System.out.println("País: " + user.getCountry());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singletonList("USER"));
         //user.setFavoriteGenres(user.getFavoriteGenres());
