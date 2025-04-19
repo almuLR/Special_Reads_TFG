@@ -271,5 +271,5 @@ canvas {
     bottom: 3px;
     border-radius: 50%;
     border: 3px solid rgba(112, 130, 248, 0.77);
-    clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
