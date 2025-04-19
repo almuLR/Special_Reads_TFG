@@ -59,13 +59,9 @@ public class GeneralController {
     public String detailsBookTemplate() {
         return "bookDetailsView";
     }
+
     @GetMapping("/review")
     public String ReviewBookTemplate() {
         return "review";
-    }
-
-    @GetMapping("/charts")
-    public String chartsTemplate() {
-        return "charts";
     }
 }

@@ -96,12 +96,12 @@
         <div class="chart-box">
           <h3>Recuento general</h3>
           <div class="progress-stats">
-            <div class="stat-box">Páginas<br>20,669</div>
-            <div class="stat-box">Capítulos<br>669</div>
-            <div class="stat-box">Libros<br>29</div>
-            <div class="stat-box">Pendientes<br>12</div>
-            <div class="stat-box">Challenges<br>18</div>
-            <div class="stat-box">Amigos<br>5</div>
+            <div class="stat-box">Páginas<br>{{totPages}}</div>
+            <div class="stat-box">Leyendo<br>{{totReading}}</div>
+            <div class="stat-box">Terminados<br>{{totBooks}}</div>
+            <div class="stat-box">Pendientes<br>{{totPending}}</div>
+            <div class="stat-box">Challenges<br>{{totChallenges}}</div>
+            <div class="stat-box">Amigos<br>{{totFriends}}</div>
           </div>
         </div>
       </div>
@@ -109,50 +109,51 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (document.getElementById('authorsChart')) {
-        const authorsCtx = document.getElementById('authorsChart').getContext('2d');
-        new Chart(authorsCtx, {
-          type: 'doughnut',
-          data: {
-            labels: ['Autor 1', 'Autor 2', 'Autor 3', 'Autor 4', 'Autor 5'],
-            datasets: [{
-              data: [37, 19, 9, 21, 14],
-              backgroundColor: ['#4A90E2', '#1D67C1', '#E74C3C', '#B8A7D6', '#F7A9C4']
-            }]
-          }
-        });
-      }
+    // 1) Parseamos los JSON crudos que inyectamos en el modelo
+    const authorsList = {{{authorsJson}}};
+    const genresList  = {{{genresJson}}};
+    const monthlyList = {{{monthlyJson}}};
 
-      if (document.getElementById('genresChart')) {
-        const genresCtx = document.getElementById('genresChart').getContext('2d');
-        new Chart(genresCtx, {
-          type: 'pie',
-          data: {
-            labels: ['Romance', 'Fantasía', 'Terror', 'Ciencia Ficción', 'Psicología'],
-            datasets: [{
-              data: [25, 20, 15, 25, 15],
-              backgroundColor: ['#4A90E2', '#E74C3C', '#1D67C1', '#B8A7D6', '#F7A9C4']
-            }]
-          }
-        });
-      }
+    // 2) Extraemos etiquetas y valores
+    const authorsLabels = authorsList.map(a => a.name);
+    const authorsData   = authorsList.map(a => a.value);
 
-      if (document.getElementById('readingTimeChart')) {
-        const readingTimeCtx = document.getElementById('readingTimeChart').getContext('2d');
-        new Chart(readingTimeCtx, {
-          type: 'line',
-          data: {
-            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            datasets: [{
-              label: 'Tiempo de Lectura',
-              data: [5, 8, 4, 10, 6, 9, 15, 10, 6, 5, 7, 6],
-              backgroundColor: 'rgba(74,144,226,0.5)',
-              borderColor: '#4A90E2',
-              fill: true
-            }]
-          }
-        });
+    const genresLabels  = genresList.map(g => g.name);
+    const genresData    = genresList.map(g => g.value);
+
+    const monthLabels   = monthlyList.map(m => m.month);
+    const monthData     = monthlyList.map(m => m.count);
+
+    // 3) Inicializamos Chart.js como antes
+
+    // Donut: Autores
+    new Chart(document.getElementById('authorsChart').getContext('2d'), {
+      type: 'doughnut',
+      data: { labels: authorsLabels, datasets: [{ data: authorsData, backgroundColor: ['#4A90E2','#1D67C1','#E74C3C','#B8A7D6','#F7A9C4'] }] }
+    });
+
+    // Pie: Géneros
+    new Chart(document.getElementById('genresChart').getContext('2d'), {
+      type: 'pie',
+      data: { labels: genresLabels, datasets: [{ data: genresData, backgroundColor: ['#4A90E2','#E74C3C','#1D67C1','#B8A7D6','#F7A9C4'] }] }
+    });
+
+    // Line: Progreso mensual
+    new Chart(document.getElementById('readingTimeChart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: monthLabels,
+        datasets: [{
+          label: 'Libros terminados',
+          data: monthData,
+          backgroundColor: 'rgba(74,144,226,0.3)',
+          borderColor: '#4A90E2',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
       }
     });
   </script>
