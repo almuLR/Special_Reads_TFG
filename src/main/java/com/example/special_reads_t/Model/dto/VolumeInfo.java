@@ -12,6 +12,7 @@ public class VolumeInfo {
     private ImageLinks imageLinks;
     private List<String> categories;
 
+
     public String getTitle() {
         return title;
     }

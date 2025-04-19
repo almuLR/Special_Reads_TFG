@@ -83,36 +83,13 @@
         <div class="content">
             <h1 class="title">Tus Challenges</h1>
             <div class="challenges-container">
+                {{#challenges}}
                 <div class="challenge">
-                    <h2>100 Libros leídos</h2>
-                    <div class="progress-bar"><div class="progress" style="width: 28%;"></div></div>
-                    <p>28</p>
+                    <h2>{{title}}</h2>
+                    <div class="progress-bar"><div class="progress" style="width: {{percent}}%;"></div></div>
+                    <p>{{current}}</p>
                 </div>
-                <div class="challenge">
-                    <h2>12 Libros leídos</h2>
-                    <div class="progress-bar"><div class="progress" style="width: 28%;"></div></div>
-                    <p>28</p>
-                </div>
-                <div class="challenge">
-                    <h2>10.000 capítulos</h2>
-                    <div class="progress-bar"><div class="progress" style="width: 5.6%;"></div></div>
-                    <p>560</p>
-                </div>
-                <div class="challenge">
-                    <h2>100 Libros leídos</h2>
-                    <div class="progress-bar"><div class="progress" style="width: 28%;"></div></div>
-                    <p>28</p>
-                </div>
-                <div class="challenge">
-                    <h2>10.000 páginas</h2>
-                    <div class="progress-bar"><div class="progress" style="width: 98.98%;"></div></div>
-                    <p>9.898</p>
-                </div>
-                <div class="challenge">
-                    <h2>100 Libros leídos</h2>
-                    <div class="progress-bar"><div class="progress" style="width: 28%;"></div></div>
-                    <p>28</p>
-                </div>
+                {{/challenges}}
             </div>
             <div class="challenge-image" style="align-self: flex-end">
                 <img src="/images/calendar.png" alt="Calendar Challenge">

@@ -41,11 +41,6 @@ public class GeneralController {
         return "list";
     }
 
-    @GetMapping("/challenge")
-    public String challengeTemplate() {
-        return "challenge";
-    }
-
     @GetMapping("/help")
     public String helpTemplate() {
         return "help";

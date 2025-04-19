@@ -22,4 +22,6 @@ public interface JournalRepository extends JpaRepository<JournalEntry, Long> {
     Long countByUserAndStatusAndFinishDate(User user, String status, LocalDateTime finishDate);
     Long countByUserAndStatus(User user, String status);
     Long countByUserAndStatusAndFinishDateGreaterThanEqual(User user, String status, LocalDateTime date);
+    List<JournalEntry> findByUserAndStatus(User user, String status);
+
 }

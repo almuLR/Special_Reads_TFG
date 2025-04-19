@@ -25,6 +25,8 @@ public class Book {
 
     private int pageCount;
 
+    private int chapterCount = 0;
+
     @Column(name = "cover_image_url", length = 512)
     private String coverImageUrl;
 
@@ -93,6 +95,13 @@ public class Book {
 
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
+    }
+
+    public int getChapterCount() {
+        return chapterCount;
+    }
+    public void setChapterCount(int chapterCount) {
+        this.chapterCount = chapterCount;
     }
 
     public String getCoverImageUrl() {
