@@ -1,14 +1,21 @@
 package com.example.special_reads_t.Controllers;
 
+import com.example.special_reads_t.Model.Book;
 import com.example.special_reads_t.Model.JournalEntry;
+import com.example.special_reads_t.Model.Review;
 import com.example.special_reads_t.Model.User;
 import com.example.special_reads_t.Service.JournalService;
+import com.example.special_reads_t.Service.RecommendationService;
 import com.example.special_reads_t.Service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -21,16 +28,34 @@ public class IndexUserController {
     @Autowired
     private JournalService journalService;
 
+    @Autowired
+    private RecommendationService recommendationService;
+
     @GetMapping("/indexUser")
     public String indexUserTemplate(Model model, HttpServletRequest request) {
-        String username = request.getUserPrincipal().getName();
-        User user = userService.findByUsername(username).orElseThrow();
+        User user = userService.getCurrentUser();
 
         List<JournalEntry> currentlyReadingEntries = journalService.getReadingEntriesForUser(user);
 
+        List<Review> recs = recommendationService.getRecommendationsFor(user, 8);
+        model.addAttribute("recs", recs);
+
         model.addAttribute("readingEntries", currentlyReadingEntries);
+        model.addAttribute("readingEntries", currentlyReadingEntries);
+
+        List<JournalEntry> wishlist  = journalService.getWishlistEntries(user);
+        model.addAttribute("wishlistEntries", wishlist);
+
         model.addAttribute("userame", user.getUsername());
         model.addAttribute("admin", request.isUserInRole("ADMIN"));
         return "indexUser";
+    }
+
+    @PostMapping("/indexUser/wishlist/add")
+    @ResponseBody
+    public ResponseEntity<?> saveToWishlist(@RequestParam("bookId") Long bookId) {
+        User me = userService.getCurrentUser();
+        journalService.addToWishlist(me, bookId);
+        return ResponseEntity.ok().build();
     }
 }

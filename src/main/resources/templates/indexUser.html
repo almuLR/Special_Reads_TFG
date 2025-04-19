@@ -18,6 +18,7 @@
   <link rel="shortcut icon" href="/images/img.png" />
 </head>
 <body>
+<input type="hidden" id="csrfToken" name="_csrf" value="{{token}}"/>
 <!-- partial -->
 <div class="container-fluid page-body-wrapper">
   <aside class="sidebar">
@@ -232,15 +233,22 @@
                   </tr>
                   </thead>
                   <tbody>
+                  {{#recs}}
                   <tr>
-                    <td class="ps-0">Alas de Hierro</td>
+                    <td class="ps-0">{{book.title}}</td>
                     <td>
-                      <p class="mb-0"><span class="font-weight-bold me-2">62</span>(6,2)</p>
+                      <p class="mb-0"><span class="font-weight-bold me-2"></span>({{decimalRating}})</p>
                     </td>
-                    <td class="text-muted">3</td>
+                    <td class="text-muted" style="align-self: center">
+                      {{#star1}}1{{/star1}}
+                      {{#star2}}2{{/star2}}
+                      {{#star3}}3{{/star3}}
+                      {{#star4}}4{{/star4}}
+                      {{#star5}}5{{/star5}}
+                    </td>
                     <td>
                       <div class="heart-container" title="Like">
-                        <input type="checkbox" class="checkbox" >
+                        <input type="checkbox" class="checkbox" data-book-id="{{book.id}}" onchange="saveRecommendation(this)">
                         <div class="svg-container">
                           <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
@@ -260,174 +268,10 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="ps-0">Harry Potter y la piedra filosofal</td>
-                    <td>
-                      <p class="mb-0"><span class="font-weight-bold me-2">54</span>(5.4)</p>
-                    </td>
-                    <td class="text-muted">2</td>
-                    <td>
-                      <div class="heart-container" title="Like">
-                        <input type="checkbox" class="checkbox" >
-                        <div class="svg-container">
-                          <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                          </svg>
-                          <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                          </svg>
-                          <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="10,10 20,20"></polygon>
-                            <polygon points="10,50 20,50"></polygon>
-                            <polygon points="20,80 30,70"></polygon>
-                            <polygon points="90,10 80,20"></polygon>
-                            <polygon points="90,50 80,50"></polygon>
-                            <polygon points="80,80 70,70"></polygon>
-                          </svg>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ps-0">Una corte de Rosas y Espinas</td>
-                    <td>
-                      <p class="mb-0"><span class="font-weight-bold me-2">63</span>(6.3)</p>
-                    </td>
-                    <td class="text-muted">3</td>
-                    <td>
-                      <div class="heart-container" title="Like">
-                        <input type="checkbox" class="checkbox">
-                        <div class="svg-container">
-                          <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                          </svg>
-                          <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                          </svg>
-                          <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="10,10 20,20"></polygon>
-                            <polygon points="10,50 20,50"></polygon>
-                            <polygon points="20,80 30,70"></polygon>
-                            <polygon points="90,10 80,20"></polygon>
-                            <polygon points="90,50 80,50"></polygon>
-                            <polygon points="80,80 70,70"></polygon>
-                          </svg>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ps-0">Morder el polvo</td>
-                    <td>
-                      <p class="mb-0"><span class="font-weight-bold me-2">82</span>(8.2)</p>
-                    </td>
-                    <td class="text-muted">4</td>
-                    <td>
-                      <div class="heart-container" title="Like">
-                        <input type="checkbox" class="checkbox">
-                        <div class="svg-container">
-                          <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                          </svg>
-                          <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                          </svg>
-                          <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="10,10 20,20"></polygon>
-                            <polygon points="10,50 20,50"></polygon>
-                            <polygon points="20,80 30,70"></polygon>
-                            <polygon points="90,10 80,20"></polygon>
-                            <polygon points="90,50 80,50"></polygon>
-                            <polygon points="80,80 70,70"></polygon>
-                          </svg>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ps-0">Trono de cristal</td>
-                    <td>
-                      <p class="mb-0"><span class="font-weight-bold me-2">75</span>(7.5)</p>
-                    </td>
-                    <td class="text-muted">4</td>
-                    <td>
-                      <div class="heart-container" title="Like">
-                        <input type="checkbox" class="checkbox">
-                        <div class="svg-container">
-                          <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                          </svg>
-                          <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                          </svg>
-                          <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="10,10 20,20"></polygon>
-                            <polygon points="10,50 20,50"></polygon>
-                            <polygon points="20,80 30,70"></polygon>
-                            <polygon points="90,10 80,20"></polygon>
-                            <polygon points="90,50 80,50"></polygon>
-                            <polygon points="80,80 70,70"></polygon>
-                          </svg>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ps-0">Culpa Tuya</td>
-                    <td>
-                      <p class="mb-0"><span class="font-weight-bold me-2">42</span>(4.2)</p>
-                    </td>
-                    <td class="text-muted">2</td>
-                    <td>
-                      <div class="heart-container" title="Like">
-                        <input type="checkbox" class="checkbox" >
-                        <div class="svg-container">
-                          <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                          </svg>
-                          <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                          </svg>
-                          <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="10,10 20,20"></polygon>
-                            <polygon points="10,50 20,50"></polygon>
-                            <polygon points="20,80 30,70"></polygon>
-                            <polygon points="90,10 80,20"></polygon>
-                            <polygon points="90,50 80,50"></polygon>
-                            <polygon points="80,80 70,70"></polygon>
-                          </svg>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ps-0 pb-0">La voz de Archer</td>
-                    <td class="pb-0">
-                      <p class="mb-0"><span class="font-weight-bold me-2">95</span>(9.5)</p>
-                    </td>
-                    <td class="pb-0">5</td>
-                    <td>
-                      <div class="heart-container" title="Like">
-                        <input type="checkbox" class="checkbox">
-                        <div class="svg-container">
-                          <svg viewBox="0 0 24 24" class="svg-outline" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"></path>
-                          </svg>
-                          <svg viewBox="0 0 24 24" class="svg-filled" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"></path>
-                          </svg>
-                          <svg class="svg-celebrate" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="10,10 20,20"></polygon>
-                            <polygon points="10,50 20,50"></polygon>
-                            <polygon points="20,80 30,70"></polygon>
-                            <polygon points="90,10 80,20"></polygon>
-                            <polygon points="90,50 80,50"></polygon>
-                            <polygon points="80,80 70,70"></polygon>
-                          </svg>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+                  {{/recs}}
+                  {{^recs}}
+                    <tr><td colspan="4" class="text-center">No hay recomendaciones disponibles</td></tr>
+                  {{/recs}}
                   </tbody>
                 </table>
               </div>
@@ -442,41 +286,18 @@
               <h4 class="card-title">Próximas Lecturas</h4>
               <div class="list-wrapper pt-2">
                 <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
+                  {{#wishlistEntries}}
                   <li>
                     <div class="form-check form-check-flat">
                       <label class="form-check-label">
-                        <input class="checkbox" type="checkbox"> Alas de Hierro </label>
+                        <input class="checkbox" type="checkbox" checked> {{book.title}} </label>
                     </div>
-                    <i class="remove ti-close"></i>
+                    <i class="remove ti-close" onclick="removeFromWishlist({{book.id}}, this)"></i>
                   </li>
-                  <li class="completed">
-                    <div class="form-check form-check-flat">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox" checked> Alas de Onix </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-flat">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox"> Fearless </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                  <li class="completed">
-                    <div class="form-check form-check-flat">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox" checked> Reckless </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-flat">
-                      <label class="form-check-label">
-                        <input class="checkbox" type="checkbox"> Culpa Mía </label>
-                    </div>
-                    <i class="remove ti-close"></i>
-                  </li>
+                  {{/wishlistEntries}}
+                  {{^wishlistEntries}}
+                  <li class="text-center text-muted">No hay próximas lecturas</li>
+                  {{/wishlistEntries}}
                 </ul>
               </div>
               <div class="add-items d-flex mb-0 mt-2">
@@ -558,6 +379,39 @@
 <!-- page-body-wrapper ends -->
 </div>
 <script>
+  const csrfToken = document.getElementById('csrfToken').value;
+
+  function saveRecommendation(el) {
+    const bookId = el.getAttribute('data-book-id');
+    fetch('/indexUser/wishlist/add?bookId=' + bookId, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'X-CSRF-TOKEN': csrfToken
+      }
+    })
+            .then(res => {
+              if (!res.ok) throw new Error('Error guardando el libro');
+              // recarga la página (o actualiza sólo la lista)
+              location.reload();
+            })
+            .catch(console.error);
+  }
+
+  function removeFromWishlist(bookId, btn) {
+    fetch('/indexUser/wishlist/remove?bookId=' + bookId, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'X-CSRF-TOKEN': csrfToken
+      }
+    })
+            .then(res => {
+              if (!res.ok) throw new Error('Error eliminando el libro');
+              btn.closest('li').remove();
+            })
+            .catch(console.error);
+  }
   async function loadAcceptedFriends() {
     try {
       const response = await fetch('/api/friends/accept', {

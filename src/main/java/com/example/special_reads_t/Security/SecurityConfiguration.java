@@ -129,6 +129,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/journal/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/review/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/bookShelf/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/indexUser/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/profileEdit").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/saveProfile").hasAnyRole("USER", "ADMIN")
 
