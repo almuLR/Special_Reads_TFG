@@ -7,6 +7,7 @@ import com.example.special_reads_t.Model.User;
 import com.example.special_reads_t.Service.JournalService;
 import com.example.special_reads_t.Service.RecommendationService;
 import com.example.special_reads_t.Service.UserService;
+import com.example.special_reads_t.Service.WishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,9 @@ public class IndexUserController {
     private JournalService journalService;
 
     @Autowired
+    private WishListService wishListService;
+
+    @Autowired
     private RecommendationService recommendationService;
 
     @GetMapping("/indexUser")
@@ -36,15 +40,11 @@ public class IndexUserController {
         User user = userService.getCurrentUser();
 
         List<JournalEntry> currentlyReadingEntries = journalService.getReadingEntriesForUser(user);
-
         List<Review> recs = recommendationService.getRecommendationsFor(user, 8);
         model.addAttribute("recs", recs);
-
-        model.addAttribute("readingEntries", currentlyReadingEntries);
         model.addAttribute("readingEntries", currentlyReadingEntries);
 
-        List<JournalEntry> wishlist  = journalService.getWishlistEntries(user);
-        model.addAttribute("wishlistEntries", wishlist);
+        model.addAttribute("wishlistEntries", wishListService.getWishListFor(user));
 
         model.addAttribute("userame", user.getUsername());
         model.addAttribute("admin", request.isUserInRole("ADMIN"));
@@ -55,7 +55,15 @@ public class IndexUserController {
     @ResponseBody
     public ResponseEntity<?> saveToWishlist(@RequestParam("bookId") Long bookId) {
         User me = userService.getCurrentUser();
-        journalService.addToWishlist(me, bookId);
+        wishListService.addToWishList(me, bookId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/indexUser/wishlist/remove")
+    @ResponseBody
+    public ResponseEntity<?> removeFromWishlist(@RequestParam("bookId") Long bookId) {
+        User me = userService.getCurrentUser();
+        wishListService.removeFromWishList(me, bookId);
         return ResponseEntity.ok().build();
     }
 }

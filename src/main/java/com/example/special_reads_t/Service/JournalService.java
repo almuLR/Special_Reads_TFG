@@ -4,9 +4,11 @@ package com.example.special_reads_t.Service;
 import com.example.special_reads_t.Model.Book;
 import com.example.special_reads_t.Model.JournalEntry;
 import com.example.special_reads_t.Model.User;
+import com.example.special_reads_t.Model.WishList;
 import com.example.special_reads_t.Repository.BookRepository;
 import com.example.special_reads_t.Repository.JournalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JournalService {
@@ -83,20 +86,6 @@ public class JournalService {
         return journalRepository.findByUserAndStatusIgnoreCase(user, "Leyendo");
     }
 
-    public void addToWishlist(User user, Long bookId) {
-        Book b = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Libro no encontrado"));
-        // si quieres evitar duplicados, podrías buscar primero…
-        JournalEntry e = new JournalEntry();
-        e.setUser(user);
-        e.setBook(b);
-        e.setStatus("Wishlist");
-        journalRepository.save(e);
-    }
-
-    public List<JournalEntry> getWishlistEntries(User user) {
-        return journalRepository.findByUserAndStatusIgnoreCase(user, "Wishlist");
-    }
 
 
 }

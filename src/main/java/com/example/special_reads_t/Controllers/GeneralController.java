@@ -36,11 +36,6 @@ public class GeneralController {
         return "iaReader";
     }
 
-    @GetMapping("/list")
-    public String listTemplate() {
-        return "list";
-    }
-
     @GetMapping("/help")
     public String helpTemplate() {
         return "help";

@@ -83,82 +83,81 @@
                 <h1 class="list-title">Próximas lecturas</h1>
                 <div class="books-list">
                     <div class="column">
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
-                        <label><input type="checkbox"> Título y Autor</label>
+                        {{#wishlistEntries}}
+                        <label><input type="checkbox" onclick="removeFromWishlist({{#book}}{{book.id}}{{/book}}{{^book}}0{{/book}}, this)">
+                            {{#book}}{{book.title}}{{/book}}{{^book}}{{manualTitle}}{{/book}}
+                        </label>
+                        {{/wishlistEntries}}
                     </div>
                 </div>
             </div>
 
-            <!-- Botones inferiores -->
-            <div class="bottom-buttons">
-                <button class="cssbuttons-io-button">
-                    <svg
-                            height="24"
-                            width="24"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path>
-                    </svg>
-                    <span>Add</span>
-                </button>
-
+            <div id="manualAddContainer" style="display: none; margin-top: 1rem;">
+                <form id="manualAddForm">
+                    <input type="text" name="title" placeholder="Título del libro..." required>
+                    <input type="hidden" id="csrfToken" name="_csrf" value="{{token}}"/>
+                    <button type="submit">Añadir</button>
+                </form>
             </div>
+            <div class="bottom-buttons">
+                <button id="manualAddButton" class="cssbuttons-io-button">
+                    <!-- SVG + texto -->
+                    <span>+ Add</span>
+                </button>
+            </div>
+        </div>
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const addButton = document.querySelector(".cssbuttons-io-button");
-            const bookList = document.querySelector(".books-list .column");
-            const inputField = document.createElement("input");
-            inputField.setAttribute("type", "text");
-            inputField.setAttribute("placeholder", "Añadir un nuevo libro...");
-            inputField.classList.add("add-book-input");
-            bookList.appendChild(inputField);
+        const csrfToken = document.getElementById('csrfToken').value;
+        const addBtn = document.getElementById('manualAddButton');
+        const addContainer = document.getElementById('manualAddContainer');
+        const addForm = document.getElementById('manualAddForm');
 
-            addButton.addEventListener("click", function() {
-                inputField.style.display = "block";
-                inputField.focus();
-            });
-
-            inputField.addEventListener("keypress", function(event) {
-                if (event.key === "Enter" && inputField.value.trim() !== "") {
-                    const newLabel = document.createElement("label");
-                    const newCheckbox = document.createElement("input");
-                    newCheckbox.setAttribute("type", "checkbox");
-                    newLabel.appendChild(newCheckbox);
-                    newLabel.appendChild(document.createTextNode(" " + inputField.value));
-                    bookList.appendChild(newLabel);
-                    inputField.value = "";
-                    inputField.style.display = "none";
-                }
-            });
-
-            bookList.addEventListener("change", function(event) {
-                if (event.target.type === "checkbox") {
-                    const label = event.target.parentElement;
-                    label.classList.add("checked");
-                    setTimeout(() => label.remove(), 1000); // Elimina después de 1 segundo
-                }
-            });
+        // Mostrar / ocultar el formulario
+        addBtn.addEventListener('click', () => {
+            addContainer.style.display = addContainer.style.display === 'none' ? 'block' : 'none';
+            if (addContainer.style.display === 'block') {
+                addForm.querySelector('input[name=title]').focus();
+            }
         });
+
+        // Enviar el formulario vía AJAX
+        addForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const data = new URLSearchParams(new FormData(addForm));
+            fetch('/list/add', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: data
+            })
+                .then(r => {
+                    if (!r.ok) throw new Error('Error añadiendo la entrada');
+                    location.reload();    // o actualizar sólo la lista
+                })
+                .catch(console.error);
+        });
+
+        // Eliminar de la wishlist
+        function removeFromWishlist(bookId, btn) {
+            fetch('/list/wishlist/remove?bookId=' + bookId, {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'X-CSRF-TOKEN': csrfToken }
+            })
+                .then(r => {
+                    if (!r.ok) throw new Error();
+                    // Encuentra y elimina el elemento de la interfaz
+                    btn.closest('label').remove();
+                })
+                .catch(console.error);
+        }
     </script>
+
 
 </body>
 </html>
