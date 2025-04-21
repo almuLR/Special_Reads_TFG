@@ -5,6 +5,7 @@ import com.example.special_reads_t.Model.Book;
 import com.example.special_reads_t.Model.JournalEntry;
 import com.example.special_reads_t.Model.User;
 import com.example.special_reads_t.Model.WishList;
+import com.example.special_reads_t.Model.dto.ReadingEvent;
 import com.example.special_reads_t.Repository.BookRepository;
 import com.example.special_reads_t.Repository.JournalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -82,10 +85,47 @@ public class JournalService {
         return journalRepository.findByUserAndStatus(user, "Terminado", PageRequest.of(page, 21));
     }
 
+    public List<JournalEntry> getFinishedEntriesForUser(User user) {
+        return journalRepository.findByUserAndStatus(user, "Terminado");
+    }
+
     public List<JournalEntry> getReadingEntriesForUser(User user) {
         return journalRepository.findByUserAndStatusIgnoreCase(user, "Leyendo");
     }
 
+    public Long countFinishedEntriesForUser(User user) {
+        return journalRepository.countByUserAndStatus(user, "Terminado");
+    }
 
+    public List<ReadingEvent> getLatestEvents(User user, int max) {
+        // 1) traes todas las entradas del usuario
+        List<JournalEntry> entries = journalRepository.findByUser(user);
+        List<ReadingEvent> events = new ArrayList<>();
+
+        for (JournalEntry je : entries) {
+            // si tiene startDate → “Leyendo”
+            if (je.getStartDate() != null) {
+                events.add(new ReadingEvent(
+                        je.getBook().getTitle(),
+                        je.getStartDate(),
+                        "Leyendo"
+                ));
+            }
+            // si tiene finishDate → “Leído”
+            if (je.getFinishDate() != null) {
+                events.add(new ReadingEvent(
+                        je.getBook().getTitle(),
+                        je.getFinishDate(),
+                        "Leído"
+                ));
+            }
+        }
+
+        return events.stream()
+                .sorted(Comparator.comparing(ReadingEvent::getDate).reversed())
+                .limit(max)
+                .toList();
+    }
 
 }
+

@@ -80,7 +80,7 @@
         </a>
       </li>
     </ul>
-    <a href="/cerrarSesion" class="logout-link">
+    <a href="/logout" class="logout-link">
       Cerrar Sesión
       <div class="arrow-wrapper">
         <div class="arrow"></div>
@@ -113,8 +113,8 @@
             <div class="col-md-6 mb-4 stretch-card transparent">
               <div class="card card-tale">
                 <div class="card-body">
-                  <p class="mb-4">Leídos este mes</p>
-                  <p class="fs-30 mb-2">4</p>
+                  <p class="mb-4">Total Amigos</p>
+                  <p class="fs-30 mb-2">{{totFriends}}</p>
                 </div>
               </div>
             </div>
@@ -122,7 +122,7 @@
               <div class="card card-dark-blue">
                 <div class="card-body">
                   <p class="mb-4">Total Leidos</p>
-                  <p class="fs-30 mb-2">36</p>
+                  <p class="fs-30 mb-2">{{totRead}}</p>
                 </div>
               </div>
             </div>
@@ -132,28 +132,27 @@
               <div class="card card-light-blue">
                 <div class="card-body">
                   <p class="mb-4">Challenges Superados</p>
-                  <p class="fs-30 mb-2">3</p>
+                  <p class="fs-30 mb-2">{{totChallenges}}</p>
                 </div>
               </div>
             </div>
             <div class="col-md-6 stretch-card transparent">
               <div class="card card-light-danger">
                 <div class="card-body">
-                  <p class="mb-4">Ligas ganadas</p>
-                  <p class="fs-30 mb-2">2</p>
+                  <p class="mb-4">Total Páginas</p>
+                  <p class="fs-30 mb-2">{{totPages}}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <div class="row">
         <div class="col-md-7 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <p class="card-title mb-0">Últimos detelles de tu lectura</p>
-              <div class="table-responsive">
+              <p class="card-title mb-0">Últimos detalles de tu lectura</p>
+              <div class="table-responsive" >
                 <table class="table table-striped table-borderless">
                   <thead>
                   <tr>
@@ -163,61 +162,32 @@
                   </tr>
                   </thead>
                   <tbody>
+                  {{#lastEvents}}
                   <tr>
-                    <td>Una corte de niebla y furia</td>
-                    <td>21 Sep 2024</td>
+                    <td>{{book.title}}</td>
+                    <td>{{formattedDate}}</td>
                     <td class="font-weight-medium">
-                      <div class="badge badge-success">Leído</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Alas de Sangre</td>
-                    <td>13 Jun 2024</td>
-                    <td class="font-weight-medium">
-                      <div class="badge badge-success">Leído</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Morder el polvo</td>
-                    <td>28 Sep 2024</td>
-                    <td class="font-weight-medium">
+                      {{#reading}}
                       <div class="badge badge-warning">Leyendo</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Una corte de llamas plateadas</td>
-                    <td>30 Jun 2024</td>
-                    <td class="font-weight-medium">
-                      <div class="badge badge-warning">Leyendo</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Un Cuento Perfecto</td>
-                    <td>01 Nov 2024</td>
-                    <td class="font-weight-medium">
-                      <div class="badge badge-danger">Pendiente</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Una historia interminable</td>
-                    <td>20 Mar 2024</td>
-                    <td class="font-weight-medium">
-                      <div class="badge badge-warning">Leyendo</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Powerless</td>
-                    <td>20 Mar 2024</td>
-                    <td class="font-weight-medium">
+                      {{/reading}}
+                      {{#finished}}
                       <div class="badge badge-success">Leído</div>
+                      {{/finished}}
                     </td>
                   </tr>
+                  {{/lastEvents}}
+                  {{^lastEvents}}
+                  <tr>
+                    <td colspan="3" class="text-center text-muted">Sin actividad reciente</td>
+                  </tr>
+                  {{/lastEvents}}
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
+
         <div class="col-md-5 stretch-card grid-margin">
           <div class="card">
             <div class="card-body">
@@ -278,7 +248,6 @@
             </div>
           </div>
         </div>
-      </div>
       <div class="row">
         <div class="col-md-4 grid-margin stretch-card">
           <div class="card">
@@ -358,18 +327,17 @@
           </div>
         </div>
       </div>
-
-    </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
-    <footer class="footer">
-      <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.  <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Special Reads <i class="ti-heart text-danger ms-1"></i></span>
-      </div>
-    </footer>
+
     <!-- partial -->
   </div>
+      <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.  <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Special Reads <i class="ti-heart text-danger ms-1"></i></span>
+        </div>
+      </footer>
   <!-- main-panel ends -->
 </div>
 <!-- page-body-wrapper ends -->

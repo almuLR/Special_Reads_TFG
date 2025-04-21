@@ -3,6 +3,7 @@ package com.example.special_reads_t.Model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "JOURNAL_ENTRY")
@@ -136,6 +137,21 @@ public class JournalEntry {
     @Transient
     public boolean isStar5() {
         return rating == 1;
+    }
+
+    @Transient
+    public boolean isReading() {
+        return "Leyendo".equalsIgnoreCase(this.status);
+    }
+
+
+    @Transient
+    public String getFormattedDate() {
+        // si está leyendo, muestro startDate; si ha terminado, finishDate
+        LocalDateTime d = isReading() ? this.startDate : this.finishDate;
+        return d != null
+                ? d.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
+                : "";
     }
 
 

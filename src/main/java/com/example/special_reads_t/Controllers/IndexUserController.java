@@ -4,10 +4,8 @@ import com.example.special_reads_t.Model.Book;
 import com.example.special_reads_t.Model.JournalEntry;
 import com.example.special_reads_t.Model.Review;
 import com.example.special_reads_t.Model.User;
-import com.example.special_reads_t.Service.JournalService;
-import com.example.special_reads_t.Service.RecommendationService;
-import com.example.special_reads_t.Service.UserService;
-import com.example.special_reads_t.Service.WishListService;
+import com.example.special_reads_t.Model.dto.ReadingEvent;
+import com.example.special_reads_t.Service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,6 +35,10 @@ public class IndexUserController {
     @Autowired
     private RecommendationService recommendationService;
 
+    @Autowired
+    private StatisticsService statisticsService;
+
+
     @GetMapping("/indexUser")
     public String indexUserTemplate(Model model, HttpServletRequest request) {
         User user = userService.getCurrentUser();
@@ -48,6 +52,36 @@ public class IndexUserController {
 
         model.addAttribute("userame", user.getUsername());
         model.addAttribute("admin", request.isUserInRole("ADMIN"));
+
+        model.addAttribute("totRead", statisticsService.totalBooks(user));
+        model.addAttribute("totFriends", statisticsService.totalFriends(user) );
+        model.addAttribute("totChallenges", statisticsService.completedChallenges(user));
+        model.addAttribute("totPages", statisticsService.totalPages(user));
+
+        // 1) Leo entries “leyendo”
+        List<JournalEntry> reading = journalService.getReadingEntriesForUser(user);
+        // 2) Leo entries “terminados”
+        List<JournalEntry> finished = journalService.getFinishedEntriesForUser(user);
+
+        // 3) Transformo cada entry en un “evento”
+        List<JournalEntry> events = new ArrayList<>();
+        events.addAll(reading);
+        events.addAll(finished);
+
+        // 4) Ordeno por fecha descendente (startDate o finishDate según status)
+        events.sort((a,b) -> {
+            LocalDateTime da = a.isReading() ? a.getStartDate() : a.getFinishDate();
+            LocalDateTime db = b.isReading() ? b.getStartDate() : b.getFinishDate();
+            return db.compareTo(da);
+        });
+
+        // 5) Limito a las últimas 7
+        List<JournalEntry> last7 = events.stream()
+                .limit(7)
+                .toList();
+
+        model.addAttribute("lastEvents", last7);
+
         return "indexUser";
     }
 
