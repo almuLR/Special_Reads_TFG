@@ -56,6 +56,7 @@ public class ReviewController {
         Book book = journalEntry != null ? journalEntry.getBook() : null;
         model.addAttribute("entry", journalEntry);
         model.addAttribute("book", book);
+        model.addAttribute("genre", "");
 
         // Extraer y pasar el primer género (si existe)
         if (book != null && book.getGenres() != null && !book.getGenres().isEmpty()) {
