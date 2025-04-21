@@ -139,7 +139,7 @@
         }
 
         try {
-            const response = await fetch(`/api/users/?username=${encodeURIComponent(query)}`);
+            const response = await fetch(`/api/users?username=${encodeURIComponent(query)}`);
             if (!response.ok) throw new Error("Error en la búsqueda");
 
             const users = await response.json();

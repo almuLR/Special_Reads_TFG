@@ -90,4 +90,8 @@ public class UserService {
         return allUsers.stream().filter(user -> !excludedIds.contains(user.getId())).collect(Collectors.toList());
     }
 
+    public List<User> findUsersByUsernameContaining(String username) {
+        return userRepository.findByUsernameContainingIgnoreCase(username);
+    }
+
 }

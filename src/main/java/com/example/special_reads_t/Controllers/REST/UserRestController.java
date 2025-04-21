@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Controlador REST para registro y perfil de usuario.
@@ -181,6 +182,32 @@ public class UserRestController {
             this.username = username;
             this.email = email;
             this.profilePhotoUrl = profilePhotoUrl;
+        }
+    }
+    @GetMapping
+    public ResponseEntity<List<UserBasicDto>> searchUsers(@RequestParam("username") String username) {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        List<User> users = userService.findUsersByUsernameContaining(username);
+
+        List<UserBasicDto> filtered = users.stream()
+                .filter(u -> !u.getId().equals(currentUser.getId())) // Excluirse a sí mismo
+                .map(u -> new UserBasicDto(u.getId(), u.getUsername()))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(filtered);
+    }
+
+    public static class UserBasicDto {
+        public Long id;
+        public String username;
+
+        public UserBasicDto(Long id, String username) {
+            this.id = id;
+            this.username = username;
         }
     }
 }
