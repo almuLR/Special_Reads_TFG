@@ -19,7 +19,14 @@ public class Book {
 
     private String author;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "book_genres",
+            joinColumns = @JoinColumn(name = "book_id")
+    )
+    @Column(name = "genre", length = 100)
     private List<String> genres;
+
     @Column(length = 5000)
     private String synopsis;
 
