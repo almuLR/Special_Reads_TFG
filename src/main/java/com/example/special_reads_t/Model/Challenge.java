@@ -13,6 +13,10 @@ public class Challenge {
         this.target = target;
     }
 
+    public Challenge() {
+
+    }
+
     public String getTitle() {
         return title;
     }
