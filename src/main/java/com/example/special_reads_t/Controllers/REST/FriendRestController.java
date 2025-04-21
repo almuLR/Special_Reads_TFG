@@ -3,8 +3,10 @@ package com.example.special_reads_t.Controllers.REST;
 import com.example.special_reads_t.Model.Friend;
 import com.example.special_reads_t.Model.User;
 import com.example.special_reads_t.Model.dto.FriendJournalProgressDto;
+import com.example.special_reads_t.Model.dto.LeagueDto;
 import com.example.special_reads_t.Repository.FriendRepository;
 import com.example.special_reads_t.Service.FriendService;
+import com.example.special_reads_t.Service.LeagueService;
 import com.example.special_reads_t.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,9 @@ public class FriendRestController {
 
     @Autowired
     private FriendRepository friendRepository;
+
+    @Autowired
+    private LeagueService  leagueService;
 
     @PostMapping("/request")
     public ResponseEntity<String> sendFriendRequest(@RequestParam("friendId") Long friendId) {
@@ -153,5 +158,14 @@ public class FriendRestController {
         return ResponseEntity.ok(dtoList);
     }
 
+    @GetMapping
+    public ResponseEntity<List<LeagueDto>> getFriends() {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        List<LeagueDto> internalLeagues = leagueService.getInternalLeaguesDtos(currentUser);
+        return ResponseEntity.ok(internalLeagues);
+    }
 
 }
