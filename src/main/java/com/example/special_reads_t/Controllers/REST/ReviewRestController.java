@@ -18,9 +18,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-/**
- * Controlador REST para la gestión de reseñas.
- */
 @RestController
 @RequestMapping("/api/review")
 public class ReviewRestController {
@@ -37,10 +34,6 @@ public class ReviewRestController {
     @Autowired
     private JournalService journalService;
 
-    /**
-     * GET /api/review/{id}
-     * Marca fecha de finalización y devuelve datos para revisar un journal entry.
-     */
     @GetMapping("/{id}")
     public ResponseEntity<ReviewResponse> getReview(@PathVariable Long id) {
         User currentUser = userService.getCurrentUser();
@@ -65,75 +58,50 @@ public class ReviewRestController {
         return ResponseEntity.ok(resp);
     }
 
-    /**
-     * POST /api/review/save
-     * Guarda una reseña y actualiza el journal entry.
-     */
     @PostMapping("/save")
-    public ResponseEntity<Void> saveReview(
-            @RequestParam Long bookId,
-            @RequestParam int starRating,
-            @RequestParam BigDecimal decimalRating,
-            @RequestParam String format,
-            @RequestParam int plotTwist,
-            @RequestParam int spicy,
-            @RequestParam int funny,
-            @RequestParam(required = false) String love,
-            @RequestParam(required = false) String pain,
-            @RequestParam(required = false) String anger,
-            @RequestParam(required = false) String xd,
-            @RequestParam(required = false) String neutral,
-            @RequestParam String favoriteCharacter,
-            @RequestParam String pointOfView,
-            @RequestParam String oneWord,
-            @RequestParam String favoriteQuote,
-            @RequestParam boolean recommend,
-            @RequestParam String reviewText
-    ) {
+    public ResponseEntity<Void> saveReview(@RequestBody ReviewRequestDto dto) {
         User currentUser = userService.getCurrentUser();
-        if (currentUser == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        Book book = bookService.findById(bookId);
-        if (book == null) {
-            return ResponseEntity.notFound().build();
-        }
+        if (currentUser == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        Book book = bookService.findById(dto.bookId);
+        if (book == null) return ResponseEntity.notFound().build();
+
         Review review = new Review();
         review.setBook(book);
         review.setUser(currentUser);
-        review.setStarRating(starRating);
-        review.setDecimalRating(decimalRating);
-        review.setFormat(format);
-        review.setPlotTwist(plotTwist);
-        review.setSpicy(spicy);
-        review.setFunny(funny);
-        review.setLove(love != null);
-        review.setPain(pain != null);
-        review.setAnger(anger != null);
-        review.setXd(xd != null);
-        review.setNeutral(neutral != null);
-        review.setFavoriteCharacter(favoriteCharacter);
-        review.setPointOfView(pointOfView);
-        review.setOneWord(oneWord);
-        review.setFavoriteQuote(favoriteQuote);
-        review.setRecommend(recommend);
-        review.setReviewText(reviewText);
+        review.setStarRating(dto.starRating);
+        review.setDecimalRating(dto.decimalRating);
+        review.setFormat(dto.format);
+        review.setPlotTwist(dto.plotTwist);
+        review.setSpicy(dto.spicy);
+        review.setFunny(dto.funny);
+        review.setLove(dto.love);
+        review.setPain(dto.pain);
+        review.setAnger(dto.anger);
+        review.setXd(dto.xd);
+        review.setNeutral(dto.neutral);
+        review.setFavoriteCharacter(dto.favoriteCharacter);
+        review.setPointOfView(dto.pointOfView);
+        review.setOneWord(dto.oneWord);
+        review.setFavoriteQuote(dto.favoriteQuote);
+        review.setRecommend(dto.recommend);
+        review.setReviewText(dto.reviewText);
         review.setCreatedAt(LocalDateTime.now());
+
         reviewService.save(review);
+
         JournalEntry je = journalService.findByBookAndUser(book, currentUser);
         if (je != null) {
             je.setStatus("Terminado");
             je.setProgress(100);
-            je.setRating(starRating);
+            je.setRating(dto.starRating);
             je.setFinishDate(LocalDateTime.now());
             journalService.updateJournalEntry(je);
         }
+
         return ResponseEntity.ok().build();
     }
 
-    /**
-     * DTO de respuesta para GET /api/review/{id}
-     */
     public static class ReviewResponse {
         public Long entryId;
         public Long bookId;
@@ -150,5 +118,63 @@ public class ReviewRestController {
             this.finishDate = finishDate;
             this.genre = genre;
         }
+    }
+
+    public static class ReviewRequestDto {
+        public Long bookId;
+        public int starRating;
+        public BigDecimal decimalRating;
+        public String format;
+        public int plotTwist;
+        public int spicy;
+        public int funny;
+        public boolean love;
+        public boolean pain;
+        public boolean anger;
+        public boolean xd;
+        public boolean neutral;
+        public String favoriteCharacter;
+        public String pointOfView;
+        public String oneWord;
+        public String favoriteQuote;
+        public boolean recommend;
+        public String reviewText;
+
+        public Long getBookId() { return bookId; }
+        public void setBookId(Long bookId) { this.bookId = bookId; }
+        public int getStarRating() { return starRating; }
+        public void setStarRating(int starRating) { this.starRating = starRating; }
+        public BigDecimal getDecimalRating() { return decimalRating; }
+        public void setDecimalRating(BigDecimal decimalRating) { this.decimalRating = decimalRating; }
+        public String getFormat() { return format; }
+        public void setFormat(String format) { this.format = format; }
+        public int getPlotTwist() { return plotTwist; }
+        public void setPlotTwist(int plotTwist) { this.plotTwist = plotTwist; }
+        public int getSpicy() { return spicy; }
+        public void setSpicy(int spicy) { this.spicy = spicy; }
+        public int getFunny() { return funny; }
+        public void setFunny(int funny) { this.funny = funny; }
+        public boolean isLove() { return love; }
+        public void setLove(boolean love) { this.love = love; }
+        public boolean isPain() { return pain; }
+        public void setPain(boolean pain) { this.pain = pain; }
+        public boolean isAnger() { return anger; }
+        public void setAnger(boolean anger) { this.anger = anger; }
+        public boolean isXd() { return xd; }
+        public void setXd(boolean xd) { this.xd = xd; }
+        public boolean isNeutral() { return neutral; }
+        public void setNeutral(boolean neutral) { this.neutral = neutral; }
+        public String getFavoriteCharacter() { return favoriteCharacter; }
+        public void setFavoriteCharacter(String favoriteCharacter) { this.favoriteCharacter = favoriteCharacter; }
+        public String getPointOfView() { return pointOfView; }
+        public void setPointOfView(String pointOfView) { this.pointOfView = pointOfView; }
+        public String getOneWord() { return oneWord; }
+        public void setOneWord(String oneWord) { this.oneWord = oneWord; }
+        public String getFavoriteQuote() { return favoriteQuote; }
+        public void setFavoriteQuote(String favoriteQuote) { this.favoriteQuote = favoriteQuote; }
+        public boolean isRecommend() { return recommend; }
+        public void setRecommend(boolean recommend) { this.recommend = recommend; }
+        public String getReviewText() { return reviewText; }
+        public void setReviewText(String reviewText) { this.reviewText = reviewText; }
     }
 }

@@ -66,6 +66,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/chat/**").permitAll()
                         .requestMatchers("/api/users/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/users/signup").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/users/me").permitAll()
                         .requestMatchers("/api/books/**").permitAll()
                         .requestMatchers("/api/ranking/**").permitAll()
                         .requestMatchers("api/indexUser/**").permitAll()
@@ -73,6 +75,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/review/**").permitAll()
                         .requestMatchers("/api/friends/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/friends/**").permitAll()
+                        .requestMatchers("/api/statistics/**").permitAll()
                         .requestMatchers("/api/leagues/**").permitAll()
                         .anyRequest().permitAll()
                 );
