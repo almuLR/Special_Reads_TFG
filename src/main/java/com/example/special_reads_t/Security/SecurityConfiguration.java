@@ -68,6 +68,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/books/**").permitAll()
                         .requestMatchers("/api/ranking/**").permitAll()
+                        .requestMatchers("api/indexUser/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/journal/**").permitAll()
                         .requestMatchers("/api/review/**").permitAll()
                         .requestMatchers("/api/friends/**").permitAll()
