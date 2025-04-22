@@ -1,9 +1,0 @@
-# render.yaml
-services:
-  - type: web
-    name: special-reads-tfg      # el nombre que quieras para tu servicio
-    env: java                     # ! obliga a usar JDK/JRE en lugar de Node
-    plan: free                    # plan gratuito
-    branch: main                  # la rama que quieres desplegar
-    buildCommand: "./mvnw clean package -DskipTests"
-    startCommand: "java -jar target/*.jar"
