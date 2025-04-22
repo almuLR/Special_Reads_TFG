@@ -73,6 +73,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/review/**").permitAll()
                         .requestMatchers("/api/friends/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/friends/**").permitAll()
+                        .requestMatchers("/api/leagues/**").permitAll()
                         .anyRequest().permitAll()
                 );
 

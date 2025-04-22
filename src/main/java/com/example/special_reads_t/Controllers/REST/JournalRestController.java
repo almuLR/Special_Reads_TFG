@@ -143,6 +143,69 @@ public class JournalRestController {
             this.prevPage = prevPage;
             this.nextPage = nextPage;
         }
-        // Getters y setters omitidos para brevedad
+        public List<JournalEntry> getLeftJournalEntries() {
+            return leftJournalEntries;
+        }
+
+        public void setLeftJournalEntries(List<JournalEntry> leftJournalEntries) {
+            this.leftJournalEntries = leftJournalEntries;
+        }
+
+        public List<JournalEntry> getRightJournalEntries() {
+            return rightJournalEntries;
+        }
+
+        public void setRightJournalEntries(List<JournalEntry> rightJournalEntries) {
+            this.rightJournalEntries = rightJournalEntries;
+        }
+
+        public int getCurrentPage() {
+            return currentPage;
+        }
+
+        public void setCurrentPage(int currentPage) {
+            this.currentPage = currentPage;
+        }
+
+        public int getTotalPages() {
+            return totalPages;
+        }
+
+        public void setTotalPages(int totalPages) {
+            this.totalPages = totalPages;
+        }
+
+        public boolean isHasPrevious() {
+            return hasPrevious;
+        }
+
+        public void setHasPrevious(boolean hasPrevious) {
+            this.hasPrevious = hasPrevious;
+        }
+
+        public boolean isHasNext() {
+            return hasNext;
+        }
+
+        public void setHasNext(boolean hasNext) {
+            this.hasNext = hasNext;
+        }
+
+        public int getPrevPage() {
+            return prevPage;
+        }
+
+        public void setPrevPage(int prevPage) {
+            this.prevPage = prevPage;
+        }
+
+        public int getNextPage() {
+            return nextPage;
+        }
+
+        public void setNextPage(int nextPage) {
+            this.nextPage = nextPage;
+        }
+
     }
 }

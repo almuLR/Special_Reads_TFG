@@ -155,7 +155,30 @@ public class LeagueRestController {
             this.internalLeagues = internalLeagues;
             this.maxedOut = maxedOut;
         }
-        // getters/setters omitidos
+        public List<LeagueDto> getDefaultsLeagues() {
+            return defaultsLeagues;
+        }
+
+        public void setDefaultsLeagues(List<LeagueDto> defaultsLeagues) {
+            this.defaultsLeagues = defaultsLeagues;
+        }
+
+        public List<LeagueDto> getInternalLeagues() {
+            return internalLeagues;
+        }
+
+        public void setInternalLeagues(List<LeagueDto> internalLeagues) {
+            this.internalLeagues = internalLeagues;
+        }
+
+        public boolean isMaxedOut() {
+            return maxedOut;
+        }
+
+        public void setMaxedOut(boolean maxedOut) {
+            this.maxedOut = maxedOut;
+        }
+
     }
 
     public static class SimpleUserDto {
@@ -165,7 +188,22 @@ public class LeagueRestController {
             this.id = id;
             this.username = username;
         }
-        // getters/setters omitidos
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
     }
 
     public static class FriendMembershipDto {
@@ -177,7 +215,30 @@ public class LeagueRestController {
             this.username = username;
             this.inLeague = inLeague;
         }
-        // getters/setters omitidos
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public boolean isInLeague() {
+            return inLeague;
+        }
+
+        public void setInLeague(boolean inLeague) {
+            this.inLeague = inLeague;
+        }
+
     }
 
     public static class LeagueDetailResponse {
@@ -187,6 +248,21 @@ public class LeagueRestController {
             this.league = league;
             this.friends = friends;
         }
-        // getters/setters omitidos
+        public LeagueDto getLeague() {
+            return league;
+        }
+
+        public void setLeague(LeagueDto league) {
+            this.league = league;
+        }
+
+        public List<FriendMembershipDto> getFriends() {
+            return friends;
+        }
+
+        public void setFriends(List<FriendMembershipDto> friends) {
+            this.friends = friends;
+        }
+
     }
 }
