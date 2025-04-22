@@ -65,7 +65,6 @@ public class SecurityConfiguration {
                 .securityMatcher("/api/**")
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/chat/**").permitAll()
-                        .requestMatchers("/api/book/**").permitAll()
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/books/**").permitAll()
                         .requestMatchers("/api/ranking/**").permitAll()

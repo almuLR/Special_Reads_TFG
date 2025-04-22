@@ -119,7 +119,15 @@ public class BookRestController {
             this.reviews = reviews;
         }
 
-        // Getters y setters omitidos para brevedad
+        public Book getBook() { return book; }
+        public BigDecimal getAverageRating() { return averageRating; }
+        public int getAverageStars() { return averageStars; }
+        public boolean isAverageStars5() { return isAverageStars5; }
+        public boolean isAverageStars4() { return isAverageStars4; }
+        public boolean isAverageStars3() { return isAverageStars3; }
+        public boolean isAverageStars2() { return isAverageStars2; }
+        public boolean isAverageStars1() { return isAverageStars1; }
+        public List<ReviewResponse> getReviews() { return reviews; }
     }
 
     /**
@@ -143,6 +151,12 @@ public class BookRestController {
             this.starRating = starRating;
             this.formattedDate = formattedDate;
         }
+
+        public Long getId() { return id; }
+        public String getComment() { return comment; }
+        public BigDecimal getDecimalRating() { return decimalRating; }
+        public int getStarRating() { return starRating; }
+        public String getFormattedDate() { return formattedDate; }
 
     }
 }

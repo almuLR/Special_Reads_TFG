@@ -106,6 +106,15 @@ public class BookShelfRestController {
             this.prevPage = prevPage;
             this.nextPage = nextPage;
         }
+        public List<JournalEntry> getRow1() { return row1; }
+        public List<JournalEntry> getRow2() { return row2; }
+        public List<JournalEntry> getRow3() { return row3; }
+        public int getCurrentPage() { return currentPage; }
+        public int getTotalPages() { return totalPages; }
+        public boolean isHasPrevious() { return hasPrevious; }
+        public boolean isHasNext() { return hasNext; }
+        public int getPrevPage() { return prevPage; }
+        public int getNextPage() { return nextPage; }
 
     }
 }
