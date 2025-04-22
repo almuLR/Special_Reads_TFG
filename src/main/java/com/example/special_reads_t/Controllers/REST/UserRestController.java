@@ -103,7 +103,7 @@ public class UserRestController {
      * PUT /api/users/me
      * Actualiza datos de perfil y foto (multipart/form-data).
      */
-    @PutMapping(value = "/me", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/me", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> updateProfile(
             @RequestPart("data") ProfileUpdateRequest req,
             @RequestPart(value = "profilePicture", required = false) MultipartFile file

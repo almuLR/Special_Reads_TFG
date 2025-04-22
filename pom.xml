@@ -116,6 +116,10 @@
             <version>4.1.97.Final</version>
             <classifier>osx-aarch_64</classifier>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
