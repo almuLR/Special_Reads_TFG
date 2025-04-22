@@ -154,6 +154,84 @@ public class IndexUserRestController {
             this.lastEvents = lastEvents;
         }
 
-        // Getters y setters omitidos para brevedad
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public boolean isAdmin() {
+            return admin;
+        }
+
+        public void setAdmin(boolean admin) {
+            this.admin = admin;
+        }
+
+        public List<Review> getRecs() {
+            return recs;
+        }
+
+        public void setRecs(List<Review> recs) {
+            this.recs = recs;
+        }
+
+        public List<JournalEntry> getReadingEntries() {
+            return readingEntries;
+        }
+
+        public void setReadingEntries(List<JournalEntry> readingEntries) {
+            this.readingEntries = readingEntries;
+        }
+
+        public List<WishList> getWishlistEntries() {
+            return wishlistEntries;
+        }
+
+        public void setWishlistEntries(List<WishList> wishlistEntries) {
+            this.wishlistEntries = wishlistEntries;
+        }
+
+        public long getTotRead() {
+            return totRead;
+        }
+
+        public void setTotRead(long totRead) {
+            this.totRead = totRead;
+        }
+
+        public long getTotFriends() {
+            return totFriends;
+        }
+
+        public void setTotFriends(long totFriends) {
+            this.totFriends = totFriends;
+        }
+
+        public long getTotChallenges() {
+            return totChallenges;
+        }
+
+        public void setTotChallenges(long totChallenges) {
+            this.totChallenges = totChallenges;
+        }
+
+        public long getTotPages() {
+            return totPages;
+        }
+
+        public void setTotPages(long totPages) {
+            this.totPages = totPages;
+        }
+
+        public List<JournalEntry> getLastEvents() {
+            return lastEvents;
+        }
+
+        public void setLastEvents(List<JournalEntry> lastEvents) {
+            this.lastEvents = lastEvents;
+        }
     }
 }
