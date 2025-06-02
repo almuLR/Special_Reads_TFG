@@ -41,66 +41,49 @@ public class BookController {
         model.addAttribute("book", bookDetails);
 
         List<Review> reviews = reviewService.findByBook_GoogleBookId(googleBookId);
+        model.addAttribute("reviews", reviews);
 
-        BigDecimal average = reviews.stream()
-                .map(Review::getDecimalRating)
-                .filter(Objects::nonNull)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-
+        // Calcular media decimal
         BigDecimal averageScore = BigDecimal.ZERO;
-        if (!reviews.isEmpty()) {
-            long count = reviews.stream().filter(r -> r.getDecimalRating() != null).count();
-            if (count > 0) {
-                averageScore = average.divide(BigDecimal.valueOf(count), 2, RoundingMode.HALF_UP);
-            }
+        long validDecimalCount = reviews.stream().filter(r -> r.getDecimalRating() != null).count();
+        if (validDecimalCount > 0) {
+            BigDecimal sum = reviews.stream()
+                    .map(Review::getDecimalRating)
+                    .filter(Objects::nonNull)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            averageScore = sum.divide(BigDecimal.valueOf(validDecimalCount), 2, RoundingMode.HALF_UP);
         }
         model.addAttribute("averageRating", averageScore);
-        int starCount = (int) Math.round(
-                reviews.stream()
-                        .mapToInt(Review::getStarRating)
-                        .average()
-                        .orElse(0.0)
-        );
+
+        // Calcular estrellas promedio (de 0 a 5)
+        double starAvg = reviews.stream()
+                .mapToInt(r -> 6 - r.getStarRating())
+                .average()
+                .orElse(0.0);
+
+        int starCount = (int) Math.floor(starAvg);
         List<Boolean> avgFilledStars = new ArrayList<>();
         List<Boolean> avgEmptyStars = new ArrayList<>();
         for (int i = 0; i < starCount; i++) avgFilledStars.add(true);
         for (int i = starCount; i < 5; i++) avgEmptyStars.add(true);
-
         model.addAttribute("avgFilledStars", avgFilledStars);
         model.addAttribute("avgEmptyStars", avgEmptyStars);
 
-
+        // Formatear fecha y preparar estrellas individuales por reseña
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (Review review : reviews) {
             if (review.getCreatedAt() != null) {
-                String formattedDate = review.getCreatedAt().format(formatter);
-                review.setFormattedDate(formattedDate);
+                review.setFormattedDate(review.getCreatedAt().format(formatter));
             }
 
-            int rating = 6 - review.getStarRating();
+            int stars = 6 - review.getStarRating();
             List<Boolean> filled = new ArrayList<>();
             List<Boolean> empty = new ArrayList<>();
-            for (int i = 0; i < rating; i++) filled.add(true);
-            for (int i = rating; i < 5; i++) empty.add(true);
+            for (int i = 0; i < stars; i++) filled.add(true);
+            for (int i = stars; i < 5; i++) empty.add(true);
             review.setFilledStars(filled);
             review.setEmptyStars(empty);
         }
-
-
-        double starAvg = reviews.stream()
-                .mapToInt(Review::getStarRating)
-                .average()
-                .orElse(0.0);
-
-        int rounded = (int) Math.round(starAvg);
-        model.addAttribute("averageStarsIs5", rounded == 1);
-        model.addAttribute("averageStarsIs4", rounded == 2);
-        model.addAttribute("averageStarsIs3", rounded == 3);
-        model.addAttribute("averageStarsIs2", rounded == 4);
-        model.addAttribute("averageStarsIs1", rounded == 5);
-
-
-        model.addAttribute("reviews", reviews);
 
         return "bookDetailsView";
     }

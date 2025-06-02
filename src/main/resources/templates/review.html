@@ -83,6 +83,28 @@
             <form action="/review/save" method="post">
                 <input type="hidden" name="_csrf" value="{{token}}"/>
                 <input type="hidden" name="bookId" value="{{book.id}}"/>
+
+                {{#error}}
+                <div class="error-box">
+                    {{error}}
+                </div>
+                {{/error}}
+
+                <style>
+                    .error-box {
+                        background-color: #ffe6e6;
+                        color: #c00;
+                        border: 2px solid red;
+                        padding: 1rem;
+                        border-radius: 10px;
+                        margin-bottom: 1.5rem;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 1.1rem;
+                    }
+                </style>
+
+
                 <div class="book-container">
                     <div class="page left">
                         <div class="left-content">
@@ -188,7 +210,7 @@
                         <h3><strong>Humor:</strong></h3>
                         <div style="align-self: flex-start">
                             <div class="funny">
-                                <input type="radio" id="funny1" name="funny" value="1" required>
+                                <input type="radio" id="funny1" name="funny" value="1">
                                 <label for="funny1"></label>
 
                                 <input type="radio" id="funny2" name="funny" value="2">
@@ -278,5 +300,14 @@
 
 
     </div>
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            const btn = this.querySelector("button[type='submit']");
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = "Enviando...";
+            }
+        });
+    </script>
 </body>
 </html>

@@ -68,34 +68,46 @@ public class ReviewController {
     @PostMapping("/review/save")
     public String saveReview(
             @RequestParam("bookId") Long bookId,
-            @RequestParam("starRating") int starRating,
-            @RequestParam(value = "decimalRating", required = true)BigDecimal decimalRating,
-            @RequestParam("format") String format,
-            @RequestParam("plotTwist") int plotTwist,
-            @RequestParam("spicy") int spicy,
-            @RequestParam("funny") int funny,
+            @RequestParam(value = "starRating", required = false) Integer starRating,
+            @RequestParam(value = "decimalRating", required = false) BigDecimal decimalRating,
+            @RequestParam(value = "format", required = false) String format,
+            @RequestParam(value = "plotTwist", required = false) Integer plotTwist,
+            @RequestParam(value = "spicy", required = false) Integer spicy,
+            @RequestParam(value = "funny", required = false) Integer funny,
             @RequestParam(value = "love", required = false) String love,
             @RequestParam(value = "pain", required = false) String pain,
             @RequestParam(value = "anger", required = false) String anger,
             @RequestParam(value = "xd", required = false) String xd,
             @RequestParam(value = "neutral", required = false) String neutral,
-            @RequestParam("favoriteCharacter") String favoriteCharacter,
-            @RequestParam("pointOfView") String pointOfView,
-            @RequestParam("oneWord") String oneWord,
-            @RequestParam("favoriteQuote") String favoriteQuote,
-            @RequestParam("recommend") boolean recommend,
-            @RequestParam("reviewText") String reviewText
+            @RequestParam(value = "favoriteCharacter", required = false) String favoriteCharacter,
+            @RequestParam(value = "pointOfView", required = false) String pointOfView,
+            @RequestParam(value = "oneWord", required = false) String oneWord,
+            @RequestParam(value = "favoriteQuote", required = false) String favoriteQuote,
+            @RequestParam(value = "recommend", required = false) Boolean recommend,
+            @RequestParam(value = "reviewText", required = false) String reviewText,
+            Model model
     ) {
         Book book = bookService.findById(bookId);
-        if (book == null) {
-            return "redirect:/journal";
-        }
+        if (book == null) return "redirect:/journal";
 
         User currentUser = userService.getCurrentUser();
-        if (currentUser == null) {
-            return "redirect:/login";
-        }
+        if (currentUser == null) return "redirect:/login";
 
+        // Validación: campos obligatorios
+        if (starRating == null || decimalRating == null || format == null || format.isBlank()
+                || plotTwist == null || funny == null
+                || favoriteCharacter == null || favoriteCharacter.isBlank()
+                || pointOfView == null || pointOfView.isBlank()
+                || oneWord == null || oneWord.isBlank()
+                || favoriteQuote == null || favoriteQuote.isBlank()
+                || recommend == null || reviewText == null || reviewText.isBlank()) {
+
+            model.addAttribute("error", "Por favor, completa todos los campos obligatorios.");
+            model.addAttribute("book", book);
+            model.addAttribute("genre", book.getGenres().isEmpty() ? "" : book.getGenres().get(0));
+            model.addAttribute("entry", journalService.findByBookAndUser(book, currentUser));
+            return "review";
+        }
 
         Review review = new Review();
         review.setBook(book);
@@ -104,9 +116,9 @@ public class ReviewController {
         review.setDecimalRating(decimalRating);
         review.setFormat(format);
         review.setPlotTwist(plotTwist);
-        review.setSpicy(spicy);
+        review.setSpicy(spicy != null ? spicy : 0);
         review.setFunny(funny);
-        review.setLove(love != null);     // true si la checkbox "love" está marcada
+        review.setLove(love != null);
         review.setPain(pain != null);
         review.setAnger(anger != null);
         review.setXd(xd != null);
@@ -117,13 +129,12 @@ public class ReviewController {
         review.setFavoriteQuote(favoriteQuote);
         review.setRecommend(recommend);
         review.setReviewText(reviewText);
-        review.setUser(currentUser);
         review.setCreatedAt(LocalDateTime.now());
 
         reviewService.save(review);
 
         JournalEntry journalEntry = journalService.findByBookAndUser(book, currentUser);
-        if(journalEntry != null) {
+        if (journalEntry != null) {
             journalEntry.setStatus("Terminado");
             journalEntry.setProgress(100);
             journalEntry.setRating(starRating);
@@ -131,7 +142,7 @@ public class ReviewController {
             journalService.updateJournalEntry(journalEntry);
         }
 
-
         return "redirect:/journal";
     }
+
 }
