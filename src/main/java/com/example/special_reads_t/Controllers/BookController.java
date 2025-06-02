@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,14 +55,37 @@ public class BookController {
             }
         }
         model.addAttribute("averageRating", averageScore);
+        int starCount = (int) Math.round(
+                reviews.stream()
+                        .mapToInt(Review::getStarRating)
+                        .average()
+                        .orElse(0.0)
+        );
+        List<Boolean> avgFilledStars = new ArrayList<>();
+        List<Boolean> avgEmptyStars = new ArrayList<>();
+        for (int i = 0; i < starCount; i++) avgFilledStars.add(true);
+        for (int i = starCount; i < 5; i++) avgEmptyStars.add(true);
+
+        model.addAttribute("avgFilledStars", avgFilledStars);
+        model.addAttribute("avgEmptyStars", avgEmptyStars);
+
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (Review review : reviews) {
             if (review.getCreatedAt() != null) {
                 String formattedDate = review.getCreatedAt().format(formatter);
-                review.setFormattedDate(formattedDate);  // Necesitarás este campo
+                review.setFormattedDate(formattedDate);
             }
+
+            int rating = 6 - review.getStarRating();
+            List<Boolean> filled = new ArrayList<>();
+            List<Boolean> empty = new ArrayList<>();
+            for (int i = 0; i < rating; i++) filled.add(true);
+            for (int i = rating; i < 5; i++) empty.add(true);
+            review.setFilledStars(filled);
+            review.setEmptyStars(empty);
         }
+
 
         double starAvg = reviews.stream()
                 .mapToInt(Review::getStarRating)

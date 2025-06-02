@@ -461,3 +461,10 @@ h1, h3 {
 .cssbuttons-io-button:active .icon {
     transform: scale(0.95);
 }
+.star-solid path {
+    fill: #ffa723; /* Naranja para estrellas llenas */
+}
+
+.star-outline path {
+    fill: #666666; /* Gris oscuro para estrellas vacías */
+}

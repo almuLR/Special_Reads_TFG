@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "REVIEW")
@@ -43,10 +44,14 @@ public class Review {
     private boolean anger;
     private boolean xd;
     private boolean neutral;
-
     private LocalDateTime createdAt;
     @Transient
     private String formattedDate;
+    @Transient
+    private List<Boolean> filledStars;
+
+    @Transient
+    private List<Boolean> emptyStars;
 
     public String getFormattedDate() {
         return formattedDate;
@@ -235,28 +240,22 @@ public class Review {
         this.recommend = recommend;
     }
 
-    @Transient
-    public boolean isStar1() {
-        return starRating == 5;
+
+
+    public List<Boolean> getFilledStars() {
+        return filledStars;
     }
 
-    @Transient
-    public boolean isStar2() {
-        return starRating == 4;
+    public void setFilledStars(List<Boolean> filledStars) {
+        this.filledStars = filledStars;
     }
 
-    @Transient
-    public boolean isStar3() {
-        return starRating == 3;
+    public List<Boolean> getEmptyStars() {
+        return emptyStars;
     }
 
-    @Transient
-    public boolean isStar4() {
-        return starRating == 2;
+    public void setEmptyStars(List<Boolean> emptyStars) {
+        this.emptyStars = emptyStars;
     }
 
-    @Transient
-    public boolean isStar5() {
-        return starRating == 1;
-    }
 }
