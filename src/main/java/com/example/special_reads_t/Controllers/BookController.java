@@ -69,11 +69,11 @@ public class BookController {
                 .orElse(0.0);
 
         int rounded = (int) Math.round(starAvg);
-        model.addAttribute("averageStarsIs5", rounded == 5);
-        model.addAttribute("averageStarsIs4", rounded == 4);
+        model.addAttribute("averageStarsIs5", rounded == 1);
+        model.addAttribute("averageStarsIs4", rounded == 2);
         model.addAttribute("averageStarsIs3", rounded == 3);
-        model.addAttribute("averageStarsIs2", rounded == 2);
-        model.addAttribute("averageStarsIs1", rounded == 1);
+        model.addAttribute("averageStarsIs2", rounded == 4);
+        model.addAttribute("averageStarsIs1", rounded == 5);
 
 
         model.addAttribute("reviews", reviews);
