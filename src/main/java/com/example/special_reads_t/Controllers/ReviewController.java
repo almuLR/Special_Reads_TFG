@@ -42,11 +42,14 @@ public class ReviewController {
         JournalEntry journalEntry = journalService.findById(id);
         User currentUser = userService.getCurrentUser();
         if (journalEntry != null) {
-            // No marcamos finishDate aquí, solo lo mostraremos si ya existe
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            String formattedStartDate = journalEntry.getStartDate().format(formatter);
+            model.addAttribute("startDateFormatted", formattedStartDate);
+
             if (journalEntry.getFinishDate() != null) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                model.addAttribute("finishDateFormatted", journalEntry.getFinishDate().format(formatter));
-                model.addAttribute("startDateFormatted", journalEntry.getStartDate().format(formatter));
+                String formattedFinishDate = journalEntry.getFinishDate().format(formatter);
+                model.addAttribute("finishDateFormatted", formattedFinishDate);
             }
         }
         Book book = journalEntry != null ? journalEntry.getBook() : null;
