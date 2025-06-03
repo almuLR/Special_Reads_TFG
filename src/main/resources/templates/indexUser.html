@@ -191,26 +191,15 @@
                 <table class="table table-borderless">
                   <thead>
                   <tr>
+                    <th class="border-bottom pb-2">Guardar</th>
                     <th class="ps-0  pb-2 border-bottom">Libro</th>
                     <th class="border-bottom pb-2">Puntuación</th>
                     <th class="border-bottom pb-2">Estrellas</th>
-                    <th class="border-bottom pb-2">Guardar</th>
                   </tr>
                   </thead>
                   <tbody>
                   {{#recs}}
                   <tr>
-                    <td class="ps-0">{{book.title}}</td>
-                    <td>
-                      <p class="mb-0"><span class="font-weight-bold me-2"></span>({{decimalRating}})</p>
-                    </td>
-                    <td class="text-muted" style="align-self: center">
-                      {{#star1}}1{{/star1}}
-                      {{#star2}}2{{/star2}}
-                      {{#star3}}3{{/star3}}
-                      {{#star4}}4{{/star4}}
-                      {{#star5}}5{{/star5}}
-                    </td>
                     <td>
                       <div class="heart-container" title="Like">
                         <input type="checkbox" class="checkbox" data-book-id="{{book.id}}" onchange="saveRecommendation(this)">
@@ -231,6 +220,17 @@
                           </svg>
                         </div>
                       </div>
+                    </td>
+                    <td class="ps-0">{{book.title}}</td>
+                    <td>
+                      <p class="mb-0"><span class="font-weight-bold me-2"></span>({{decimalRating}})</p>
+                    </td>
+                    <td class="text-muted" style="align-self: center">
+                      {{#star1}}1{{/star1}}
+                      {{#star2}}2{{/star2}}
+                      {{#star3}}3{{/star3}}
+                      {{#star4}}4{{/star4}}
+                      {{#star5}}5{{/star5}}
                     </td>
                   </tr>
                   {{/recs}}
