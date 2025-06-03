@@ -49,19 +49,39 @@ public class JournalController {
                                  @RequestParam("progressValue") int progressValue, @RequestParam("status") String status) {
 
         JournalEntry entry = journalService.findById(journalEntryId);
+        if (progressValue < 0) {
+            progressValue = 0;
+        }
         if (entry != null) {
-            if ("pages".equalsIgnoreCase(progressType)) {
-                int totalPages = entry.getBook().getPageCount();
-                if (totalPages > 0) {
-                    int percentage = (int) ((progressValue / (double)totalPages) * 100);
-                    entry.setProgress(percentage);
+            int totalPages = entry.getBook().getPageCount();
 
+            if ("pages".equalsIgnoreCase(progressType)) {
+                if (progressValue > totalPages) {
+                    progressValue = totalPages; // Limita al máximo
+                } else if (progressValue < 0) {
+                    progressValue = 0;
                 }
+
+                int percentage = (int) ((progressValue / (double) totalPages) * 100);
+                entry.setProgress(percentage);
+
+                if (percentage >= 100) {
+                    return "redirect:/review/" + entry.getId();  // Solo redirige
+                }
+
             } else if ("percentage".equalsIgnoreCase(progressType)) {
+                if (progressValue > 100) progressValue = 100;
+                if (progressValue < 0) progressValue = 0;
+
                 entry.setProgress(progressValue);
+
+                if (progressValue >= 100) {
+                    return "redirect:/review/" + entry.getId();  // Solo redirige
+                }
             }
-            entry.setStatus(status);
-            journalService.updateJournalEntry(entry);
+
+            entry.setStatus(status); // "Leyendo", "Pendiente", etc.
+            journalService.updateJournalEntry(entry); // Solo guarda si no redirige
         }
         return "redirect:/journal";
     }

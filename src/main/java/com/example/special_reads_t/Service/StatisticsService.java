@@ -54,15 +54,21 @@ public class StatisticsService {
     //chart3
     public Map<String, Long> monthlyFinishes(User user) {
         Map<String, Long> meses = new LinkedHashMap<>();
-        String[] labels = {"Enero","Febrero","Marzo","Abril","Mayo","Junio",
-                "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
-        for (String m : labels) meses.put(m, 0L);
+        String[] labels = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+
+        for (String m : labels) {
+            meses.put(m, 0L);
+        }
 
         journalRepository.findByUserAndStatus(user, "Terminado").forEach(entry -> {
-            int month = entry.getFinishDate().getMonthValue(); // 1–12
-            String label = labels[month-1];
-            meses.put(label, meses.get(label) + 1);
+            if (entry.getFinishDate() != null) {
+                int month = entry.getFinishDate().getMonthValue(); // 1–12
+                String label = labels[month - 1];
+                meses.put(label, meses.get(label) + 1);
+            }
         });
+
         return meses;
     }
 

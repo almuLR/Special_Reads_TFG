@@ -112,6 +112,11 @@ public class ReviewController {
             model.addAttribute("error", "Ya has enviado una reseña para este libro.");
             return "review";
         }
+        if (decimalRating.compareTo(new BigDecimal(10)) > 0) {
+            decimalRating = new BigDecimal(10);
+        } else if (decimalRating.compareTo(BigDecimal.ZERO) < 0) {
+            decimalRating = BigDecimal.ZERO;
+        }
 
         Review review = new Review();
         review.setBook(book);
