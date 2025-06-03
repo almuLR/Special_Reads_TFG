@@ -79,8 +79,12 @@
                 <div class="books-list">
                     <div class="column">
                         {{#wishlistEntries}}
-                        <label><input type="checkbox" onclick="removeFromWishlist({{#book}}{{book.id}}{{/book}}{{^book}}0{{/book}}, this)">
-                            {{#book}}{{book.title}}{{/book}}{{^book}}{{manualTitle}}{{/book}}
+                        <label class="custom-checkbox">
+                            <input class="checkmark" type="checkbox" onchange="removeFromWishlist({{#book}}{{book.id}}{{/book}}{{^book}}0{{/book}}, this)">
+                            <span class="checkmark"></span>
+                            <span class="book-title">
+    {{#book}}{{book.title}}{{/book}}{{^book}}{{manualTitle}}{{/book}}
+  </span>
                         </label>
                         {{/wishlistEntries}}
                     </div>
@@ -91,7 +95,7 @@
                 <form id="manualAddForm">
                     <input type="text" name="title" placeholder="Título del libro..." required>
                     <input type="hidden" id="csrfToken" name="_csrf" value="{{token}}"/>
-                    <button type="submit">Añadir</button>
+                    <button type="submit" class="add-submit-button">Añadir</button>
                 </form>
             </div>
             <div class="bottom-buttons">

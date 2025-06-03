@@ -280,3 +280,88 @@ body a:hover {
 .cssbuttons-io-button:active {
     box-shadow: 0 0.3em 1em -0.5em #14a73e98;
 }
+
+
+#manualAddForm input[type="text"] {
+    padding: 0.7rem 1rem;
+    border: 2px solid #71c784;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#manualAddForm input[type="text"]:focus {
+    border-color: #43a047;
+    box-shadow: 0 0 0 2px rgba(67, 160, 71, 0.2);
+}
+.add-submit-button {
+    background: linear-gradient(to right, #43e97b, #38f9d7);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.3rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-submit-button:hover {
+    background: linear-gradient(to right, #38f9d7, #43e97b);
+    transform: scale(1.05);
+}
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    background-color: white;
+    border: 2px solid #71c784;
+    margin-right: 12px;
+    position: relative;
+    display: inline-block;
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .checkmark {
+    background-color: #71c784;
+    border-color: #71c784;
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .checkmark::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.book-title {
+    color: #222;
+}
+.custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
