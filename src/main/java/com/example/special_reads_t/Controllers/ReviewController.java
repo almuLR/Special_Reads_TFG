@@ -40,18 +40,14 @@ public class ReviewController {
     @GetMapping("/review/{id}")
     public String review(@PathVariable("id") Long id, Model model) {
         JournalEntry journalEntry = journalService.findById(id);
-        if (journalEntry != null && journalEntry.getFinishDate() == null) {
-            journalEntry.setFinishDate(LocalDateTime.now());
-            journalService.updateJournalEntry(journalEntry);
-        }
-        // Formateamos la fecha para que muestre solo la parte de la fecha (sin hora)
-        if (journalEntry != null && journalEntry.getFinishDate() != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String formattedFinishDate = journalEntry.getFinishDate().format(formatter);
-            String formattedStartDate = journalEntry.getStartDate().format(formatter);
-
-            model.addAttribute("finishDateFormatted", formattedFinishDate);
-            model.addAttribute("startDateFormatted", formattedStartDate);
+        User currentUser = userService.getCurrentUser();
+        if (journalEntry != null) {
+            // No marcamos finishDate aquí, solo lo mostraremos si ya existe
+            if (journalEntry.getFinishDate() != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                model.addAttribute("finishDateFormatted", journalEntry.getFinishDate().format(formatter));
+                model.addAttribute("startDateFormatted", journalEntry.getStartDate().format(formatter));
+            }
         }
         Book book = journalEntry != null ? journalEntry.getBook() : null;
         model.addAttribute("entry", journalEntry);
@@ -109,6 +105,11 @@ public class ReviewController {
             return "review";
         }
 
+        if (reviewService.existsByUserAndBook(currentUser, book)) {
+            model.addAttribute("error", "Ya has enviado una reseña para este libro.");
+            return "review";
+        }
+
         Review review = new Review();
         review.setBook(book);
         review.setUser(currentUser);
@@ -140,6 +141,8 @@ public class ReviewController {
             journalEntry.setRating(starRating);
             journalEntry.setFinishDate(LocalDateTime.now());
             journalService.updateJournalEntry(journalEntry);
+        } else {
+            model.addAttribute("error", "Ya has enviado una reseña para este libro.");
         }
 
         return "redirect:/journal";

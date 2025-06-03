@@ -37,6 +37,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findAllByUserAndRecommendTrue(User user);
     List<Review> findAllByRecommendTrueAndUserNot(User user);
 
+    boolean existsByUserAndBook(User user, Book book);
 
+    Review findByUserAndBook(User user, Book book);
     List<Review> findByBook_GoogleBookId(String googleBookId);
 }
