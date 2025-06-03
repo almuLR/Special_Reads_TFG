@@ -1,0 +1,973 @@
+{
+	"info": {
+		"_postman_id": "4bf1fd14-4fb8-4882-be11-897a84f2145a",
+		"name": "SpecialReads",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33923179"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "/api/books/search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/books/search",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"books",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/Api/books/{googleId}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/books/HVH2CwAAQBAJ",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"books",
+								"HVH2CwAAQBAJ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookShelf",
+			"item": [
+				{
+					"name": "/api/BookShelf",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/bookshelf",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"bookshelf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Challenges",
+			"item": [
+				{
+					"name": "/api/challengues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/challenges",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"challenges"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "api/chat/send",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"message\": \"Hola, ¿qué tal?\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/chat/send",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"chat",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Friends",
+			"item": [
+				{
+					"name": "api/friends/request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/friends/request?friendId=202",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"friends",
+								"request"
+							],
+							"query": [
+								{
+									"key": "friendId",
+									"value": "202"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/friends/requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/friends/requests",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"friends",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/friends/accept",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "friendId",
+									"value": "52",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/friends/accept",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"friends",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/friends/decline",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/friends/decline?friendId=52",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"friends",
+								"decline"
+							],
+							"query": [
+								{
+									"key": "friendId",
+									"value": "52"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/friends/accept",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/friends/accept",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"friends",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/friends(ligas donde participa)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/friends",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"friends"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "/api/auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ancarret\",\n    \"password\": \"ancarret\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://special-reads-tfg.onrender.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"special-reads-tfg",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/auth/refresh",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "/api/users/me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/users/me",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users?username=...",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/users?username=a",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"ana123\",\n  \"password\": \"ana\",\n  \"email\": \"ana@example.com\",\n  \"country\": \"Portugal\",\n  \"dateOfBirth\": \"2001-05-12\",\n  \"description\": \"Amante de la fantasía y los libros de misterio.\",\n  \"favoriteGenres\": [\"Fantasía\", \"Misterio\", \"Romance\"]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/users/signup",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/users/me",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "postman-cloud:///1f01f834-9c15-4830-823b-ac72cbe03b5d"
+								},
+								{
+									"key": "data",
+									"value": "{\"username\":\"anaActualizada\",\"email\":\"ana_nueva@example.com\",\"dateOfBirth\":\"2001-05-12\",\"description\":\"Ahora me encanta la ciencia ficción también.\",\"favoriteGenres\":[\"Fantasía\",\"Ciencia Ficción\"]}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://special-reads-tfg.onrender.com/api/users/me",
+							"protocol": "https",
+							"host": [
+								"special-reads-tfg",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"",
+								"api",
+								"users",
+								"me"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IndexUser",
+			"item": [
+				{
+					"name": "/api/indexUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/indexUser",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"indexUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wishlist/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "bookId",
+									"value": "52",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/indexUser/wishlist/add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"indexUser",
+								"wishlist",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/wishlist/remove",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/indexUser/wishlist/remove?bookId=52",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"indexUser",
+								"wishlist",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "bookId",
+									"value": "52"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Journal",
+			"item": [
+				{
+					"name": "api/journal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/journal",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"journal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/jorunal/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/journal/add/bSDUDwAAQBAJ",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"journal",
+								"add",
+								"bSDUDwAAQBAJ"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/journla/updateProgress",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/journal/updateProgress?journalEntryId=51&progressType=Páginas&progressValue=155&status=Leyendo",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"journal",
+								"updateProgress"
+							],
+							"query": [
+								{
+									"key": "journalEntryId",
+									"value": "51"
+								},
+								{
+									"key": "progressType",
+									"value": "Páginas"
+								},
+								{
+									"key": "progressValue",
+									"value": "155"
+								},
+								{
+									"key": "status",
+									"value": "Leyendo"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "League",
+			"item": [
+				{
+					"name": "/api/leagues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/leagues",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"leagues"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/leagues/new",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/leagues/new",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"leagues",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/leagues/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/leagues/52",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"leagues",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/leagues",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/leagues?title=Liga Primavera&booksGoal=22&participantIds=12",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"leagues"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Liga Primavera"
+								},
+								{
+									"key": "booksGoal",
+									"value": "22"
+								},
+								{
+									"key": "participantIds",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/leagues/id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Liga Primavera\",\n    \"booksGoal\" : 20\n    \"participantIds\" : 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/leagues/355?title=Liga Primavera&booksGoal=20&participantIds=12",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"leagues",
+								"355"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Liga Primavera"
+								},
+								{
+									"key": "booksGoal",
+									"value": "20"
+								},
+								{
+									"key": "participantIds",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List",
+			"item": [
+				{
+					"name": "/api/list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/list",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/list/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/list/add?title=Como influenciar a la gente",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"list",
+								"add"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Como influenciar a la gente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/list/remove",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/list/remove?bookId=11",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"list",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "bookId",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "/api/review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/review/30",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"review",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/review/save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bookId\": 552,\n  \"starRating\": 4,\n  \"decimalRating\": 4.25,\n  \"format\": \"Físico\",\n  \"plotTwist\": 5,\n  \"spicy\": 2,\n  \"funny\": 3,\n  \"love\": true,\n  \"pain\": false,\n  \"anger\": false,\n  \"xd\": false,\n  \"neutral\": false,\n  \"favoriteCharacter\": \"Emma\",\n  \"pointOfView\": \"Primera persona\",\n  \"oneWord\": \"Aventurero\",\n  \"favoriteQuote\": \"Ser feliz es una decisión.\",\n  \"recommend\": true,\n  \"reviewText\": \"Una historia envolvente con personajes entrañables.\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/review/save",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"review",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "statistics",
+			"item": [
+				{
+					"name": "api/statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/statistics/charts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"statistics",
+								"charts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
