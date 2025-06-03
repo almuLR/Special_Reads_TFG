@@ -50,10 +50,20 @@ public class FriendRestController {
             return ResponseEntity.badRequest().body("No puedes enviarte una solicitud a ti mismo");
         }
 
-        Optional<Friend> exisingRequest = friendService.getRequest(currentUser, friendUser);
-        if (exisingRequest.isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body("Ya existe una solicitud de amistad pendiente o una amistad establecida");
+        // Verifica si ya existe una relación (en cualquier dirección)
+        Optional<Friend> existing = friendService.getRequest(currentUser, friendUser);
+
+        if (existing.isPresent()) {
+            Friend existingFriend = existing.get();
+            String status = existingFriend.getStatus();
+
+            if ("PENDIENTE".equalsIgnoreCase(status) || "ACEPTADA".equalsIgnoreCase(status)) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body("Ya existe una solicitud pendiente o amistad.");
+            }
+
+            // Si la solicitud fue RECHAZADA en cualquier dirección, la eliminamos
+            friendRepository.delete(existingFriend);
         }
 
         Friend friendRequest = new Friend();

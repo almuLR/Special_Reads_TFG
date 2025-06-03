@@ -38,9 +38,13 @@ public class FriendService {
         return result;
     }
 
-    public Optional<Friend> getRequest(User currentUser, User friend) {
-        Optional<Friend> request = friendRepository.findByOwnerAndFriend(currentUser, friend);
-        return request;
+    public Optional<Friend> getRequest(User user1, User user2) {
+        Optional<Friend> direct  = friendRepository.findByOwnerAndFriend(user1, user2)
+                .filter(f -> !"RECHAZADA".equalsIgnoreCase(f.getStatus()));
+        Optional<Friend> inverse = friendRepository.findByOwnerAndFriend(user2, user1)
+                .filter(f -> !"RECHAZADA".equalsIgnoreCase(f.getStatus()));
+
+        return direct.isPresent() ? direct : inverse;
     }
 
 
