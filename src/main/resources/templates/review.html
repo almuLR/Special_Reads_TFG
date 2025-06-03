@@ -227,7 +227,7 @@
                         </div>
                         <h3><strong>Mood:</strong></h3>
                         <div class="mood">
-                            <input type="checkbox" id="love" name="love" value="true" required>
+                            <input type="checkbox" id="love" name="love" value="true">
                             <label for="love"></label>
 
                             <input type="checkbox" id="pain" name="pain" value="true">
@@ -300,12 +300,71 @@
 
     </div>
     <script>
-        document.querySelector("form").addEventListener("submit", function (e) {
-            const btn = this.querySelector("button[type='submit']");
-            if (btn) {
-                btn.disabled = true;
-                btn.innerText = "Enviando...";
-            }
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (e) {
+                const errorMessages = [];
+
+                // Moods
+                const moods = ["love", "pain", "anger", "xd", "neutral"];
+                const moodChecked = moods.some(id => document.getElementById(id)?.checked);
+                if (!moodChecked) {
+                    errorMessages.push("Selecciona al menos una emoción (mood).");
+                }
+
+                // Plot twist
+                if (!form.querySelector("input[name='plotTwist']:checked")) {
+                    errorMessages.push("Selecciona una puntuación para 'Plot Twist'.");
+                }
+
+                // Spicy
+                if (!form.querySelector("input[name='spicy']:checked")) {
+                    errorMessages.push("Selecciona una puntuación para 'Spicy'.");
+                }
+
+                // Funny
+                if (!form.querySelector("input[name='funny']:checked")) {
+                    errorMessages.push("Selecciona una puntuación para 'Humor'.");
+                }
+
+                // Format
+                if (!form.querySelector("input[name='format']:checked")) {
+                    errorMessages.push("Selecciona un formato de lectura.");
+                }
+
+                // Point of view
+                if (!form.querySelector("input[name='pointOfView']:checked")) {
+                    errorMessages.push("Selecciona un punto de vista.");
+                }
+
+                // Recommendation
+                if (!form.querySelector("input[name='recommend']:checked")) {
+                    errorMessages.push("Indica si recomendarías el libro.");
+                }
+
+                // Mostrar errores si hay
+                if (errorMessages.length > 0) {
+                    e.preventDefault();
+
+                    let errorBox = document.querySelector(".error-box");
+                    if (!errorBox) {
+                        errorBox = document.createElement("div");
+                        errorBox.className = "error-box";
+                        form.prepend(errorBox);
+                    }
+                    errorBox.innerHTML = errorMessages.map(msg => `<p>${msg}</p>`).join("");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    return;
+                }
+
+                // Botón de envío deshabilitado
+                const btn = form.querySelector("button[type='submit']");
+                if (btn) {
+                    btn.disabled = true;
+                    btn.innerText = "Enviando...";
+                }
+            });
         });
     </script>
 </body>
