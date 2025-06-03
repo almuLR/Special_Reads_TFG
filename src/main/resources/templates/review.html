@@ -125,7 +125,7 @@
                         </div>
                         <div style="align-self: flex-start">
                             <div class="rating">
-                                <input type="radio" id="star-1" name="starRating" value="1" required>
+                                <input type="radio" id="star-1" name="starRating" value="1">
                                 <label for="star-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
                                 </label>
@@ -150,7 +150,7 @@
                         <h3><strong>Calificación:</strong><input name="decimalRating" type="number" step="0.01" required/></h3>
                         <h3><strong>Formato:</strong></h3>
                         <div class="format">
-                            <input type="radio" id="audioBook" name="format" value="audio" required>
+                            <input type="radio" id="audioBook" name="format" value="audio">
                             <label for="audioBook">
                                 <img src="/images/audio_format.png" alt="Audio">
                                 <span>Audio</span>
@@ -171,7 +171,7 @@
                         <h3><strong>Plot Twist:</strong></h3>
                         <div style="align-self: flex-start">
                             <div class="plot-twist">
-                                <input type="radio" id="twist1" name="plotTwist" value="1" required>
+                                <input type="radio" id="twist1" name="plotTwist" value="1">
                                 <label for="twist1"></label>
 
                                 <input type="radio" id="twist2" name="plotTwist" value="2" >
@@ -190,7 +190,7 @@
                         <h3><strong>Spicy:</strong></h3>
                         <div style="align-self: flex-start">
                             <div class="spicy">
-                                <input type="radio" id="spicy1" name="spicy" value="1" required>
+                                <input type="radio" id="spicy1" name="spicy" value="1">
                                 <label for="spicy1"></label>
 
                                 <input type="radio" id="spicy2" name="spicy" value="2">
@@ -251,7 +251,7 @@
                         <!-- POV (Punto de vista) -->
                         <h3><strong>Punto de vista:</strong></h3>
                         <div class="pov" style="gap: 40px">
-                            <input type="radio" id="1persona" name="pointOfView" value="1" required>
+                            <input type="radio" id="1persona" name="pointOfView" value="1">
                             <label for="1persona">
                                 <img src="/images/1persona.png" alt="1persona">
                                 <span>1ª</span>
@@ -275,7 +275,7 @@
 
                         <h3><strong>¿Volverías a leer o recomendarías este libro?</strong></h3>
                         <div class="recomendation" style="gap: 40px">
-                            <input type="radio" id="yes" name="recommend" value="true" required>
+                            <input type="radio" id="yes" name="recommend" value="true">
                             <label for="yes">
                                 <img src="/images/tick_green.png" alt="yes">
                                 <span>Sí</span>
@@ -300,69 +300,46 @@
 
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", function () {
             const form = document.querySelector("form");
 
             form.addEventListener("submit", function (e) {
-                const errorMessages = [];
+                const errors = [];
 
-                // Moods
-                const moods = ["love", "pain", "anger", "xd", "neutral"];
-                const moodChecked = moods.some(id => document.getElementById(id)?.checked);
-                if (!moodChecked) {
-                    errorMessages.push("Selecciona al menos una emoción (mood).");
+                function isChecked(name) {
+                    return form.querySelectorAll(`input[name="${name}"]:checked`).length > 0;
                 }
 
-                // Plot twist
-                if (!form.querySelector("input[name='plotTwist']:checked")) {
-                    errorMessages.push("Selecciona una puntuación para 'Plot Twist'.");
+                function isMoodChecked() {
+                    const ids = ['love', 'pain', 'anger', 'xd', 'neutral'];
+                    return ids.some(id => document.getElementById(id)?.checked);
                 }
 
-                // Spicy
-                if (!form.querySelector("input[name='spicy']:checked")) {
-                    errorMessages.push("Selecciona una puntuación para 'Spicy'.");
-                }
+                if (!isMoodChecked()) errors.push("Selecciona al menos una cara en el estado de ánimo (Mood).");
+                if (!isChecked("plotTwist")) errors.push("Selecciona un valor para 'Plot Twist'.");
+                if (!isChecked("spicy")) errors.push("Selecciona un valor para 'Spicy'.");
+                if (!isChecked("funny")) errors.push("Selecciona un valor para 'Humor'.");
+                if (!isChecked("format")) errors.push("Selecciona el formato.");
+                if (!isChecked("pointOfView")) errors.push("Selecciona el punto de vista.");
+                if (!isChecked("recommend")) errors.push("Indica si recomendarías el libro.");
 
-                // Funny
-                if (!form.querySelector("input[name='funny']:checked")) {
-                    errorMessages.push("Selecciona una puntuación para 'Humor'.");
-                }
-
-                // Format
-                if (!form.querySelector("input[name='format']:checked")) {
-                    errorMessages.push("Selecciona un formato de lectura.");
-                }
-
-                // Point of view
-                if (!form.querySelector("input[name='pointOfView']:checked")) {
-                    errorMessages.push("Selecciona un punto de vista.");
-                }
-
-                // Recommendation
-                if (!form.querySelector("input[name='recommend']:checked")) {
-                    errorMessages.push("Indica si recomendarías el libro.");
-                }
-
-                // Mostrar errores si hay
-                if (errorMessages.length > 0) {
+                if (errors.length > 0) {
                     e.preventDefault();
-
                     let errorBox = document.querySelector(".error-box");
                     if (!errorBox) {
                         errorBox = document.createElement("div");
                         errorBox.className = "error-box";
                         form.prepend(errorBox);
                     }
-                    errorBox.innerHTML = errorMessages.map(msg => `<p>${msg}</p>`).join("");
+                    errorBox.innerHTML = errors.map(msg => `<p>${msg}</p>`).join('');
                     window.scrollTo({ top: 0, behavior: "smooth" });
                     return;
                 }
 
-                // Botón de envío deshabilitado
-                const btn = form.querySelector("button[type='submit']");
-                if (btn) {
-                    btn.disabled = true;
-                    btn.innerText = "Enviando...";
+                const submitBtn = form.querySelector("button[type='submit']");
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerText = "Enviando...";
                 }
             });
         });
