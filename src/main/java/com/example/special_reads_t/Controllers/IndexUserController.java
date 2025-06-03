@@ -45,6 +45,19 @@ public class IndexUserController {
 
         List<JournalEntry> currentlyReadingEntries = journalService.getReadingEntriesForUser(user);
         List<Review> recs = recommendationService.getRecommendationsFor(user, 8);
+
+        for (Review review : recs) {
+            int rating =  6 - review.getStarRating(); // valor entre 1 y 5
+
+            List<Boolean> filled = new ArrayList<>();
+            List<Boolean> empty = new ArrayList<>();
+            for (int i = 0; i < rating; i++) filled.add(true);
+            for (int i = rating; i < 5; i++) empty.add(true);
+
+            review.setFilledStars(filled);
+            review.setEmptyStars(empty);
+        }
+
         model.addAttribute("recs", recs);
         model.addAttribute("readingEntries", currentlyReadingEntries);
 

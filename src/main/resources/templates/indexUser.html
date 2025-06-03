@@ -226,11 +226,12 @@
                       <p class="mb-0"><span class="font-weight-bold me-2"></span>({{decimalRating}})</p>
                     </td>
                     <td class="text-muted" style="align-self: center">
-                      {{#star1}}1{{/star1}}
-                      {{#star2}}2{{/star2}}
-                      {{#star3}}3{{/star3}}
-                      {{#star4}}4{{/star4}}
-                      {{#star5}}5{{/star5}}
+                      {{#filledStars}}
+                      <i class="fa fa-star" style="color: #ffcc00;"></i>
+                      {{/filledStars}}
+                      {{#emptyStars}}
+                      <i class="fa fa-star-o" style="color: #ffcc00;"></i>
+                      {{/emptyStars}}
                     </td>
                   </tr>
                   {{/recs}}
