@@ -70,9 +70,7 @@ public class BookService {
     }
 
     public Book detailsBook(String googleBookId) {
-        // Construye la URL usando el ID del libro
         String apiUrl = "https://www.googleapis.com/books/v1/volumes/" + googleBookId;
-        // Realiza la petición y mapea la respuesta a un objeto GoogleBookItem
         ResponseEntity<GoogleBookResult> response = restTemplate.getForEntity(apiUrl, GoogleBookResult.class);
         GoogleBookResult result = response.getBody();
 
@@ -80,7 +78,6 @@ public class BookService {
             VolumeInfo info = result.getVolumeInfo();
             Book book = new Book();
             book.setTitle(info.getTitle());
-            // Asigna el ID de la API al campo googleBookId
             book.setGoogleBookId(result.getGoogleBookId());
             if (info.getAuthors() != null && !info.getAuthors().isEmpty()) {
                 book.setAuthor(info.getAuthors().get(0));

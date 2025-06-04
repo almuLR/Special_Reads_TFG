@@ -11,11 +11,10 @@ public class Friend {
     private Long id;
 
     @ManyToOne
-    private User owner;//El que envia la solicitud
+    private User owner;
 
     @ManyToOne
-    private User friend;//El que tiene que gestionar la solicitd
-
+    private User friend;
     private String status;
 
     public Long getId() {

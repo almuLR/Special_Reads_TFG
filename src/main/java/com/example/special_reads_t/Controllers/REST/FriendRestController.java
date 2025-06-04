@@ -50,7 +50,6 @@ public class FriendRestController {
             return ResponseEntity.badRequest().body("No puedes enviarte una solicitud a ti mismo");
         }
 
-        // Verifica si ya existe una relación (en cualquier dirección)
         Optional<Friend> existing = friendService.getRequest(currentUser, friendUser);
 
         if (existing.isPresent()) {
@@ -62,7 +61,6 @@ public class FriendRestController {
                         .body("Ya existe una solicitud pendiente o amistad.");
             }
 
-            // Si la solicitud fue RECHAZADA en cualquier dirección, la eliminamos
             friendRepository.delete(existingFriend);
         }
 

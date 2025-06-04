@@ -98,12 +98,10 @@ public class JournalService {
     }
 
     public List<ReadingEvent> getLatestEvents(User user, int max) {
-        // 1) traes todas las entradas del usuario
         List<JournalEntry> entries = journalRepository.findByUser(user);
         List<ReadingEvent> events = new ArrayList<>();
 
         for (JournalEntry je : entries) {
-            // si tiene startDate → “Leyendo”
             if (je.getStartDate() != null) {
                 events.add(new ReadingEvent(
                         je.getBook().getTitle(),
@@ -111,7 +109,6 @@ public class JournalService {
                         "Leyendo"
                 ));
             }
-            // si tiene finishDate → “Leído”
             if (je.getFinishDate() != null) {
                 events.add(new ReadingEvent(
                         je.getBook().getTitle(),

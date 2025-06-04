@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Controlador REST para desafíos (challenges).
- */
+
 @RestController
 @RequestMapping("/api/challenges")
 public class ChallengesRestController {
@@ -26,10 +24,7 @@ public class ChallengesRestController {
     @Autowired
     private UserService userService;
 
-    /**
-     * Obtiene la lista de desafíos para el usuario autenticado.
-     * @return 200 OK con la lista de Challenge, o 401 si no está autenticado.
-     */
+
     @GetMapping
     public ResponseEntity<List<Challenge>> getChallenges() {
         User currentUser = userService.getCurrentUser();

@@ -46,7 +46,6 @@ public class BookRestController {
         Book book = bookService.detailsBook(googleBookId);
         List<Review> reviews = reviewService.findByBook_GoogleBookId(googleBookId);
 
-        // Cálculo de la calificación promedio decimal
         BigDecimal sumDecimal = reviews.stream()
                 .map(Review::getDecimalRating)
                 .filter(Objects::nonNull)
@@ -59,7 +58,6 @@ public class BookRestController {
             averageDecimal = sumDecimal.divide(BigDecimal.valueOf(countDecimal), 2, RoundingMode.HALF_UP);
         }
 
-        // Cálculo de la calificación promedio en estrellas
         double avgStars = reviews.stream()
                 .mapToInt(Review::getStarRating)
                 .average()
@@ -90,9 +88,7 @@ public class BookRestController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    /**
-     * DTO para respuesta de detalles de libro.
-     */
+
     public static class BookDetailsResponse {
         private Book book;
         private BigDecimal averageRating;
@@ -130,9 +126,7 @@ public class BookRestController {
         public List<ReviewResponse> getReviews() { return reviews; }
     }
 
-    /**
-     * DTO para respuesta de reseñas.
-     */
+
     public static class ReviewResponse {
         private Long id;
         private String comment;

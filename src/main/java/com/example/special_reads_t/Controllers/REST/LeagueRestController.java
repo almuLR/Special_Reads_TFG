@@ -24,10 +24,7 @@ public class LeagueRestController {
     @Autowired
     private UserService userService;
 
-    /**
-     * GET /api/leagues
-     * Obtiene ligas por defecto e internas, y flag de límite.
-     */
+
     @GetMapping
     public ResponseEntity<LeagueRankingResponse> getRankings() {
         User currentUser = userService.getCurrentUser();
@@ -41,10 +38,7 @@ public class LeagueRestController {
         return ResponseEntity.ok(resp);
     }
 
-    /**
-     * POST /api/leagues
-     * Crea una nueva liga interna.
-     */
+
     @PostMapping
     public ResponseEntity<Void> createLeague(
             @RequestParam String title,
@@ -66,10 +60,7 @@ public class LeagueRestController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    /**
-     * GET /api/leagues/new
-     * Obtiene amigos para seleccionar al crear liga.
-     */
+
     @GetMapping("/new")
     public ResponseEntity<List<SimpleUserDto>> getNewLeagueUsers() {
         User currentUser = userService.getCurrentUser();
@@ -82,17 +73,13 @@ public class LeagueRestController {
         return ResponseEntity.ok(list);
     }
 
-    /**
-     * GET /api/leagues/{id}
-     * Obtiene detalles de liga e información de miembros.
-     */
+
     @GetMapping("/{id}")
     public ResponseEntity<LeagueDetailResponse> getLeagueDetail(@PathVariable Long id) {
         User currentUser = userService.getCurrentUser();
         if (currentUser == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        // Obtiene DTO interno
         Optional<LeagueDto> optDto = leagueService.getInternalLeaguesDtos(currentUser).stream()
                 .filter(d -> d.getId().equals(id))
                 .findFirst();
@@ -100,13 +87,11 @@ public class LeagueRestController {
             return ResponseEntity.notFound().build();
         }
         LeagueDto dto = optDto.get();
-        // Obtiene entidad para participantes
         Optional<League> leagueOpt = leagueService.getLeagueById(id);
         if (!leagueOpt.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         List<User> participants = leagueOpt.get().getParticipants();
-        // Construye lista de amigos marcando participantes
         List<FriendMembershipDto> members = userService.getFriendsOf(currentUser).stream()
                 .map(u -> new FriendMembershipDto(
                         u.getId(), u.getUsername(), participants.contains(u)
@@ -116,10 +101,7 @@ public class LeagueRestController {
         return ResponseEntity.ok(resp);
     }
 
-    /**
-     * PUT /api/leagues/{id}
-     * Actualiza una liga existente.
-     */
+
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateLeague(
             @PathVariable Long id,
@@ -143,7 +125,6 @@ public class LeagueRestController {
         return ResponseEntity.ok().build();
     }
 
-    // === DTOs internos ===
     public static class LeagueRankingResponse {
         private List<LeagueDto> defaultsLeagues;
         private List<LeagueDto> internalLeagues;

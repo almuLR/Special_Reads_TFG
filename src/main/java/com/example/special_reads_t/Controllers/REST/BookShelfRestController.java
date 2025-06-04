@@ -26,11 +26,7 @@ public class BookShelfRestController {
     @Autowired
     private UserService userService;
 
-    /**
-     * Devuelve la distribución de libros terminados del usuario en 3 filas de 7 celdas.
-     * @param page Página de la paginación (0-index).
-     * @return Estructura con filas y datos de paginación.
-     */
+
     @GetMapping
     public ResponseEntity<BookshelfResponse> getBookshelf(
             @RequestParam(defaultValue = "0") int page) {
@@ -73,9 +69,7 @@ public class BookShelfRestController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * DTO para la respuesta del bookshelf REST.
-     */
+
     public static class BookshelfResponse {
         private List<JournalEntry> row1;
         private List<JournalEntry> row2;

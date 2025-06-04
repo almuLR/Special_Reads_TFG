@@ -51,7 +51,6 @@ public class BookShelfController {
                     row3.add(finishedBooks.get(i));
                 }
             } else {
-                // Rellenamos con null para que la plantilla muestre placeholders
                 if (i < slotsPerRow) {
                     row1.add(null);
                 } else if (i < slotsPerRow * 2) {
@@ -66,7 +65,6 @@ public class BookShelfController {
         model.addAttribute("row1", row1);
         model.addAttribute("row2", row2);
         model.addAttribute("row3", row3);
-        // Información de paginación para los botones de navegación
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", pageResult.getTotalPages());
         model.addAttribute("currentPage", page);

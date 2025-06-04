@@ -39,10 +39,7 @@ public class UserRestController {
     @Autowired
     private FileStorageConfig fileStorageConfig;
 
-    /**
-     * GET /api/users/current
-     * Devuelve datos básicos del usuario autenticado.
-     */
+
     @GetMapping("/current")
     public ResponseEntity<UserSummaryResponse> getCurrentUserSummary() {
         User user = userService.getCurrentUser();
@@ -58,13 +55,9 @@ public class UserRestController {
         return ResponseEntity.ok(summary);
     }
 
-    /**
-     * POST /api/users/signup
-     * Registra un nuevo usuario.
-     */
+
     @PostMapping("/signup")
     public ResponseEntity<Void> registerUser(@RequestBody SignupRequest req) {
-        // Crea nuevo usuario sin validación explícita de unicidad (el servicio debe manejarla si es necesario)
         User user = new User();
         user.setUsername(req.username);
         user.setEmail(req.email);
@@ -78,10 +71,7 @@ public class UserRestController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    /**
-     * GET /api/users/me
-     * Obtiene datos de perfil del usuario autenticado.
-     */
+
     @GetMapping("/me")
     public ResponseEntity<ProfileResponse> getProfile() {
         User user = userService.getCurrentUser();
@@ -99,10 +89,7 @@ public class UserRestController {
         return ResponseEntity.ok(resp);
     }
 
-    /**
-     * PUT /api/users/me
-     * Actualiza datos de perfil y foto (multipart/form-data).
-     */
+
     @PostMapping(value = "/me", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> updateProfile(
             @RequestPart("data") ProfileUpdateRequest req,
@@ -133,13 +120,12 @@ public class UserRestController {
         return ResponseEntity.ok().build();
     }
 
-    // === DTOs internos ===
     public static class SignupRequest {
         public String username;
         public String password;
         public String email;
         public String country;
-        public String dateOfBirth; // ISO: yyyy-MM-dd
+        public String dateOfBirth;
         public String description;
         public List<String> favoriteGenres;
     }

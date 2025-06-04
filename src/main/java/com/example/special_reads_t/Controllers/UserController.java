@@ -181,11 +181,9 @@ public class UserController {
         if (!profilePicture.isEmpty()) {
             try {
                 String originalFilename = profilePicture.getOriginalFilename();
-                // Sanitiza el nombre para evitar espacios
                 String sanitizedFilename = originalFilename.replaceAll("\\s+", "_");
                 String filename = UUID.randomUUID() + "_" + sanitizedFilename;
 
-                // Usa la ruta absoluta definida en application.properties
                 String uploadDir = fileStorageConfig.getUploadDir();
                 Path path = Paths.get(uploadDir);
                 if (!Files.exists(path)) {

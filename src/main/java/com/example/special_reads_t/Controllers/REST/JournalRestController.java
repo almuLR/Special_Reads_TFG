@@ -29,9 +29,7 @@ public class JournalRestController {
     @Autowired
     private UserService userService;
 
-    /**
-     * Añade un libro al diario del usuario autenticado.
-     */
+
     @PostMapping("/add/{googleBookId}")
     public ResponseEntity<JournalEntry> addBookToJournal(@PathVariable String googleBookId) {
         User user = userService.getCurrentUser();
@@ -46,9 +44,7 @@ public class JournalRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(entry);
     }
 
-    /**
-     * Actualiza el progreso de lectura de una entrada en el diario.
-     */
+
     @PostMapping("/updateProgress")
     public ResponseEntity<JournalEntry> updateProgress(
             @RequestParam Long journalEntryId,
@@ -77,9 +73,7 @@ public class JournalRestController {
         return ResponseEntity.ok(updated);
     }
 
-    /**
-     * Obtiene las entradas del diario del usuario paginadas y organizadas en dos columnas.
-     */
+
     @GetMapping
     public ResponseEntity<JournalPageResponse> getJournal(
             @RequestParam(defaultValue = "0") int page) {
@@ -94,7 +88,6 @@ public class JournalRestController {
         List<JournalEntry> left = entries.stream().limit(slotsPerSide).collect(Collectors.toList());
         List<JournalEntry> right = entries.stream().skip(slotsPerSide).limit(slotsPerSide).collect(Collectors.toList());
 
-        // Asigna clase CSS según estado
         entries.forEach(entry -> {
             switch (entry.getStatus().toLowerCase()) {
                 case "pendiente": entry.setCssClass("progress-red"); break;
@@ -113,9 +106,7 @@ public class JournalRestController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * DTO para paginación y estructuras de columnas.
-     */
+
     public static class JournalPageResponse {
         private List<JournalEntry> leftJournalEntries;
         private List<JournalEntry> rightJournalEntries;

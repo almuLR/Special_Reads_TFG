@@ -42,21 +42,18 @@ public class WishListService {
     public void addManualToWishList(User user, String title) {
         Book book = bookRepo.findByTitle(title).orElse(null);
 
-        // Si no existe, creamos un libro temporal para la lista de deseos
         if (book == null) {
             book = new Book();
             book.setTitle(title);
-            // Establecer valores predeterminados para campos obligatorios
             book.setAuthor("Desconocido");
             book.setIsbn("Manual-" + System.currentTimeMillis());
-            // Guarda el libro en la base de datos
             book = bookRepo.save(book);
         }
 
         WishList entry = new WishList();
         entry.setUser(user);
         entry.setManualTitle(title);
-        entry.setBook(book); // Asignamos el libro (ya sea existente o recién creado)
+        entry.setBook(book);
 
         wishListRepo.save(entry);
 

@@ -63,7 +63,7 @@ public class StatisticsService {
 
         journalRepository.findByUserAndStatus(user, "Terminado").forEach(entry -> {
             if (entry.getFinishDate() != null) {
-                int month = entry.getFinishDate().getMonthValue(); // 1–12
+                int month = entry.getFinishDate().getMonthValue();
                 String label = labels[month - 1];
                 meses.put(label, meses.get(label) + 1);
             }

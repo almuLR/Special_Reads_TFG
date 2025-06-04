@@ -92,7 +92,6 @@ public class ReviewController {
         User currentUser = userService.getCurrentUser();
         if (currentUser == null) return "redirect:/login";
 
-        // Validación: campos obligatorios
         if (starRating == null || decimalRating == null || format == null || format.isBlank()
                 || plotTwist == null || funny == null
                 || favoriteCharacter == null || favoriteCharacter.isBlank()

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class ReadingEvent {
     private String title;
     private LocalDateTime date;
-    private String status; // "Leyendo" o "Leído"
+    private String status;
 
     public ReadingEvent(String title, LocalDateTime date, String status) {
         this.title = title;

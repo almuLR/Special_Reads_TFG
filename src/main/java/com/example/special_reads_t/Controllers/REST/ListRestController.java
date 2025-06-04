@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Controlador REST para la gestión de la lista de deseos y entradas manuales.
- */
+
+
 @RestController
 @RequestMapping("/api/list")
 public class ListRestController {
@@ -28,10 +27,7 @@ public class ListRestController {
     @Autowired
     private JournalService journalService;
 
-    /**
-     * GET /api/list
-     * Obtiene la lista de deseos del usuario autenticado.
-     */
+
     @GetMapping
     public ResponseEntity<List<WishList>> getWishList() {
         User currentUser = userService.getCurrentUser();
@@ -42,10 +38,6 @@ public class ListRestController {
         return ResponseEntity.ok(entries);
     }
 
-    /**
-     * POST /api/list/add
-     * Añade una entrada manual a la lista de deseos.
-     */
     @PostMapping("/add")
     public ResponseEntity<Void> addManualEntry(@RequestParam("title") String title) {
         User currentUser = userService.getCurrentUser();
@@ -56,10 +48,7 @@ public class ListRestController {
         return ResponseEntity.ok().build();
     }
 
-    /**
-     * POST /api/list/remove
-     * Elimina un libro de la lista de deseos por su ID.
-     */
+
     @PostMapping("/remove")
     public ResponseEntity<Void> removeFromWishList(@RequestParam("bookId") Long bookId) {
         User currentUser = userService.getCurrentUser();

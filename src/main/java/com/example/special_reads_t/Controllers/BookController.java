@@ -43,7 +43,6 @@ public class BookController {
         List<Review> reviews = reviewService.findByBook_GoogleBookId(googleBookId);
         model.addAttribute("reviews", reviews);
 
-        // Calcular media decimal
         BigDecimal averageScore = BigDecimal.ZERO;
         long validDecimalCount = reviews.stream().filter(r -> r.getDecimalRating() != null).count();
         if (validDecimalCount > 0) {
@@ -55,7 +54,6 @@ public class BookController {
         }
         model.addAttribute("averageRating", averageScore);
 
-        // Calcular estrellas promedio (de 0 a 5)
         double starAvg = reviews.stream()
                 .mapToInt(r -> 6 - r.getStarRating())
                 .average()
@@ -69,7 +67,6 @@ public class BookController {
         model.addAttribute("avgFilledStars", avgFilledStars);
         model.addAttribute("avgEmptyStars", avgEmptyStars);
 
-        // Formatear fecha y preparar estrellas individuales por reseña
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (Review review : reviews) {
             if (review.getCreatedAt() != null) {

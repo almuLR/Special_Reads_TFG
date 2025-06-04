@@ -57,7 +57,7 @@ public class JournalController {
 
             if ("pages".equalsIgnoreCase(progressType)) {
                 if (progressValue > totalPages) {
-                    progressValue = totalPages; // Limita al máximo
+                    progressValue = totalPages;
                 } else if (progressValue < 0) {
                     progressValue = 0;
                 }
@@ -66,7 +66,7 @@ public class JournalController {
                 entry.setProgress(percentage);
 
                 if (percentage >= 100) {
-                    return "redirect:/review/" + entry.getId();  // Solo redirige
+                    return "redirect:/review/" + entry.getId();
                 }
 
             } else if ("percentage".equalsIgnoreCase(progressType)) {
@@ -76,12 +76,12 @@ public class JournalController {
                 entry.setProgress(progressValue);
 
                 if (progressValue >= 100) {
-                    return "redirect:/review/" + entry.getId();  // Solo redirige
+                    return "redirect:/review/" + entry.getId();
                 }
             }
 
-            entry.setStatus(status); // "Leyendo", "Pendiente", etc.
-            journalService.updateJournalEntry(entry); // Solo guarda si no redirige
+            entry.setStatus(status);
+            journalService.updateJournalEntry(entry);
         }
         return "redirect:/journal";
     }

@@ -14,9 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Controlador REST para estadísticas y datos de gráficos.
- */
+
 @RestController
 @RequestMapping("/api/statistics")
 public class StatisticsRestController {
@@ -27,17 +25,13 @@ public class StatisticsRestController {
     @Autowired
     private UserService userService;
 
-    /**
-     * GET /api/statistics/charts
-     * Devuelve datos de top autores, géneros, finalizaciones mensuales y métricas.
-     */
+
     @GetMapping("/charts")
     public ResponseEntity<StatisticsResponse> getChartsData() {
         User currentUser = userService.getCurrentUser();
         if (currentUser == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        // Datos de servicio
         Map<String, Long> topAuthors = statisticsService.topAuthors(currentUser);
         Map<String, Long> topGenres = statisticsService.topGenres(currentUser);
         Map<String, Long> monthly = statisticsService.monthlyFinishes(currentUser);
@@ -48,7 +42,6 @@ public class StatisticsRestController {
         long totChallenges = statisticsService.completedChallenges(currentUser);
         long totFriends = statisticsService.totalFriends(currentUser);
 
-        // Transformaciones a DTOs
         List<NameValueDto> authorsList = topAuthors.entrySet().stream()
                 .map(e -> new NameValueDto(e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
@@ -59,7 +52,6 @@ public class StatisticsRestController {
                 .map(e -> new NameValueDto(e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
 
-        // Construcción de la respuesta
         StatisticsResponse response = new StatisticsResponse(
                 authorsList,
                 genresList,
@@ -74,9 +66,7 @@ public class StatisticsRestController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * DTO genérico para pares nombre-valor.
-     */
+
     public static class NameValueDto {
         private String name;
         private Long value;
@@ -88,9 +78,7 @@ public class StatisticsRestController {
         public Long getValue() { return value; }
     }
 
-    /**
-     * DTO de respuesta con todos los datos.
-     */
+
     public static class StatisticsResponse {
         private List<NameValueDto> topAuthors;
         private List<NameValueDto> topGenres;

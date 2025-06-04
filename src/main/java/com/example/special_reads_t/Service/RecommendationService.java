@@ -39,9 +39,9 @@ public class RecommendationService {
                     boolean sameGenre = bookGenres.stream().anyMatch(favGenres::contains);
                     boolean notRead = !journalRepo.existsByUserAndBook(user, r.getBook());
                     if (sameGenre && notRead) {
-                        System.out.println("✅ Recomendado: " + r.getBook().getTitle());
+                        System.out.println("Recomendado: " + r.getBook().getTitle());
                     } else {
-                        System.out.println("❌ Descartado: " + r.getBook().getTitle() +
+                        System.out.println("Descartado: " + r.getBook().getTitle() +
                                 " | Género coincide: " + sameGenre +
                                 " | Ya leído: " + !notRead);
                     }
@@ -54,7 +54,6 @@ public class RecommendationService {
                 .toList();
 
         if (recommendations.isEmpty()) {
-            // Fallback: por mejor puntuación
             recommendations = candidates.stream()
                     .filter(r -> !journalRepo.existsByUserAndBook(user, r.getBook()))
                     .sorted((a, b) -> Double.compare(

@@ -44,7 +44,6 @@ public class GeminiService {
 
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
 
-        // Realizar la petición POST
         ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
         System.out.println("Respuesta completa: " + response.getBody());
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {

@@ -47,7 +47,7 @@ public class IndexUserController {
         List<Review> recs = recommendationService.getRecommendationsFor(user, 8);
 
         for (Review review : recs) {
-            int rating =  6 - review.getStarRating(); // valor entre 1 y 5
+            int rating =  6 - review.getStarRating();
 
             List<Boolean> filled = new ArrayList<>();
             List<Boolean> empty = new ArrayList<>();
@@ -71,24 +71,25 @@ public class IndexUserController {
         model.addAttribute("totChallenges", statisticsService.completedChallenges(user));
         model.addAttribute("totPages", statisticsService.totalPages(user));
 
-        // 1) Leo entries “leyendo”
         List<JournalEntry> reading = journalService.getReadingEntriesForUser(user);
-        // 2) Leo entries “terminados”
         List<JournalEntry> finished = journalService.getFinishedEntriesForUser(user);
 
-        // 3) Transformo cada entry en un “evento”
         List<JournalEntry> events = new ArrayList<>();
         events.addAll(reading);
         events.addAll(finished);
 
-        // 4) Ordeno por fecha descendente (startDate o finishDate según status)
-        events.sort((a,b) -> {
+        events.removeIf(e ->
+                (e.isReading() && e.getStartDate() == null) ||
+                        (!e.isReading() && e.getFinishDate() == null)
+        );
+
+        events.sort((a, b) -> {
             LocalDateTime da = a.isReading() ? a.getStartDate() : a.getFinishDate();
             LocalDateTime db = b.isReading() ? b.getStartDate() : b.getFinishDate();
             return db.compareTo(da);
         });
 
-        // 5) Limito a las últimas 7
+
         List<JournalEntry> last7 = events.stream()
                 .limit(7)
                 .toList();
