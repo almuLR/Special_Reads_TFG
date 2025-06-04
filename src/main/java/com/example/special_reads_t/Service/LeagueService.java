@@ -98,7 +98,7 @@ public class LeagueService {
                         List<User> portuguesUsers = userService.getUsersByCountry("Portugal");
                         league.setParticipants(portuguesUsers);
                     }
-                } else if ("Liga Internacional".equals(league.getTitle())) {
+                } else if ("Liga Iberica".equals(league.getTitle())) {
                     List<User> interUsers = new ArrayList<>(userService.getUsersByCountry("España"));
                     interUsers.addAll(userService.getUsersByCountry("Portugal"));
                     league.setParticipants(interUsers);
@@ -134,16 +134,16 @@ public class LeagueService {
             nacional = leagueRepository.save(nacional);
             defaultsLeagues.add(nacional);
 
-            League internacional = new League();
-            internacional.setTitle("Liga Internacional");
-            internacional.setLeagueType(LeagueType.DEFAULT);
-            internacional.setCreationDate(LocalDate.now());
-            internacional.setBooksGoal(null);
+            League iberica = new League();
+            iberica.setTitle("Liga Iberica");
+            iberica.setLeagueType(LeagueType.DEFAULT);
+            iberica.setCreationDate(LocalDate.now());
+            iberica.setBooksGoal(null);
             List<User> interUsers = new ArrayList<>(userService.getUsersByCountry("España"));
             interUsers.addAll(userService.getUsersByCountry("Portugal"));
-            internacional.setParticipants(interUsers);
-            internacional = leagueRepository.save(internacional);
-            defaultsLeagues.add(internacional);
+            iberica.setParticipants(interUsers);
+            iberica = leagueRepository.save(iberica);
+            defaultsLeagues.add(iberica);
 
 
         return defaultsLeagues;
