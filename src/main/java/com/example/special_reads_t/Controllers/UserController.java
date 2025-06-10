@@ -146,11 +146,12 @@ public class UserController {
         }
         model.addAttribute("genres", favoritesGenres);
 
-        String profilePhotoUrl = currentUser.getProfilePhotoUrl() != null
+        String baseUrl = currentUser.getProfilePhotoUrl() != null
                 ? currentUser.getProfilePhotoUrl()
                 : "/images/iconoPerfil.png";
-        System.out.println("URL de foto de perfil enviada a la vista: " + profilePhotoUrl);
-        model.addAttribute("profilePhotoUrl", profilePhotoUrl);
+        String versionedUrl = baseUrl + "?v=" + UUID.randomUUID(); // o System.currentTimeMillis()
+        model.addAttribute("profilePhotoUrl", versionedUrl);
+
         return "profile";
     }
 

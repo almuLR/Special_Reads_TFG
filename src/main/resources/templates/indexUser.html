@@ -396,7 +396,9 @@
         // Imagen: Usar la URL real, o si no existe, una imagen por defecto
         const img = document.createElement('img');
         // Si profilePhotoUrl existe lo usamos, de lo contrario se usa un valor por defecto
-        img.src = friend.profilePhotoUrl ? friend.profilePhotoUrl : "/images/iconoPerfil.png";
+        const baseUrl = friend.profilePhotoUrl ? friend.profilePhotoUrl : "/images/iconoPerfil.png";
+        const separator = baseUrl.includes('?') ? '&' : '?';
+        img.src = baseUrl + separator + 'v=' + new Date().getTime();
         img.alt = friend.friendName;
 
         // Div con la info

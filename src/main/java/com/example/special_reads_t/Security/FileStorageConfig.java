@@ -9,17 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class FileStorageConfig implements WebMvcConfigurer {
 
-    @Value("${file.upload-dir}")
+    @Value("${upload.dir}")
     private String uploadDir;
 
-    public String getUploadDir(){
-        System.out.println("Upload Dir: " + uploadDir);
+    public String getUploadDir() {
         return uploadDir;
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/uploads/**")
-                .addResourceLocations("file:" + uploadDir + "/");
     }
 }
