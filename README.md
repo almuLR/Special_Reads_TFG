@@ -49,7 +49,7 @@ del siguiente enlace: https://special-reads-tfg.onrender.com
 **La página no es responsive ajusta el tamaño del navegador para que se vea bien**
 
 ### Tecnologías utilizadas
--**Backend**: Java 17, Spring Boot, Spring Security, JPA, Maven
--**Base de datos**: MySQL
--**Pruebas**: Mockito, Postman
--**Otros**: Git, GitHub, Jira, API RESTful, principios de Nielsen para usabilidad
+- **Backend**: Java 17, Spring Boot, Spring Security, JPA, Maven
+- **Base de datos**: MySQL
+- **Pruebas**: Mockito, Postman
+- **Otros**: Git, GitHub, Jira, API RESTful, principios de Nielsen para usabilidad
