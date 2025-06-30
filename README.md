@@ -46,6 +46,8 @@ Si deseas ejecutar la aplicación en tu máquina local, sigue estos pasos:
 Si por el contrario directamente quieres probar la aplicación sin neceisdad de ejecutarla accede a ella a través
 del siguiente enlace: https://special-reads-tfg.onrender.com
 
+**La página no es responsive ajusta el tamaño del navegador para que se vea bien**
+
 ### Tecnologías utilizadas
 -**Backend**: Java 17, Spring Boot, Spring Security, JPA, Maven
 -**Base de datos**: MySQL
