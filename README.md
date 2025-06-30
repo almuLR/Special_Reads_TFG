@@ -31,7 +31,7 @@ Si deseas ejecutar la aplicación en tu máquina local, sigue estos pasos:
 
 1. **Clona el repositorio**
    ```bash
-   git clone https://github.com/tuusuario/special-reads.git
+   git clone https://github.com/almuLR/Special_Reads_TFG.git
    cd special-reads
    
 2. **Base datos**
