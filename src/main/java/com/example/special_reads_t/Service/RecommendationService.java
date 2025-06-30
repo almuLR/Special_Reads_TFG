@@ -22,7 +22,7 @@ public class RecommendationService {
     public List<Review> getRecommendationsFor(User user, int max) {
         List<String> favGenres = reviewRepo.findAllByUserAndRecommendTrue(user).stream()
                 .flatMap(r -> r.getBook().getGenres().stream())
-                .map(g -> g.toLowerCase().trim()) // normaliza géneros
+                .map(g -> g.toLowerCase().trim())
                 .distinct()
                 .toList();
 
@@ -61,7 +61,7 @@ public class RecommendationService {
                             a.getDecimalRating().doubleValue()))
                     .limit(max)
                     .toList();
-            System.out.println("↪️ Usando fallback por puntuación");
+            System.out.println("↪Usando fallback por puntuación");
         }
 
         return recommendations;

@@ -12,11 +12,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/chat")
-public class ChatController {
+public class ChatRestController {
 
     private final GeminiService geminiService;
 
-    public ChatController(GeminiService geminiService) {
+    public ChatRestController(GeminiService geminiService) {
         this.geminiService = geminiService;
     }
 
